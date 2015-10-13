@@ -1,0 +1,123 @@
+* 811a63c : Fixed gulp build chain bug for export.js - printing
+* d5e49ed : Added print button
+* 74685ae : Added support for independant printing page
+* 2351cf9 : Fixed typo
+* 042321e : Darkened textbox highlight on write page and added contact details on about page
+* 84fe79b : Animated background for divs
+* 4c478b3 : Prettied up with proper Markdown and styling
+* cbeaf58 : Added divshot configuration
+* 1ea35da : Adding basic copyright comments
+* 1c160ea : Added possible bug fix for non focusing markdown text
+* a52af1a : Fix z-index of textarea text
+* d5a98be : More comments
+*   aeff565 : Merging Mac and Linux work on cleaning up repo Merge remote-tracking branch 'origin/dev' intoc dev
+|\  
+| * b90f232 : Ignored jshinting
+* | ee188bc : Deleted deploy folder and added a few comments
+|/  
+* 8bf6f39 : Main.py experiments
+* 68d1bf5 : experimental tornado server
+* 6295181 : No longer requires markdown comment hack
+* b45d7a7 : Moved responsive boxes below A4 page
+* 847ae3c : Added paper that floats left
+* 05ee268 : Removed markdown text from HTML, now injected from main.js
+* 66ce4f1 : Styling tweaks and added About page
+* 6a532c6 : Added write page and removed hashbangs from URLs
+* ac105a8 : Integrated Simple Markdown Editor to native material design paper card
+* 2680748 : Fixed positioning of textboxes in document with new relative position
+* cdfb20e : Changed color scheme to bright blue and grey
+* 0d9c652 : Changed log prefix to Designless
+* a798d4e : Made responsive-width 1280 pixels (before drawer opens by default)
+* dca69a5 : Fixed SimpleMDE javascript import
+* 36495fa : Git RM'ed bower_components
+* c3f7ae5 : Ignored bower components
+* 991b1c3 : Fixed simplemde js import
+* 4112f92 : Fixed node_modules ignore
+* af1fb60 : Remved node_modules and ignored in .gitignore
+* 89b4b4f : Added Markdown components and fixed Node
+* 46c9d6d : Added bower componetsn - WORKING
+* e698a08 : Checking in node modules to git
+* a28be50 : Decided to check in bower components to Git
+* 724801b : Added main.js file
+* af3316d : Added dependances with bower
+* aabca0b : Wired in wiredep
+* 4a18b8a : Initial deploy of Polymer
+* 1673238 : Light colors menu
+* d96836c : Working on paper
+* 85bfaee : Working on tabs
+* 87ddef1 : Added button prototypes
+* a380155 : Added Roboto font files
+* dda1343 : Moved notes out of deploy
+* e153f33 : Working! Fixed bug of re formatted (pre) markdown
+* cdc393a : Removed polymer example
+* a5c9031 : Added Grunt automation and Polymer
+* bd32abb : Installed Polymer
+* 9261fab : More ui cleaning
+* 6d336f4 : Prettifying editor
+* 9a0eb49 : Added scss file
+* 1a221b3 : Starting to work on fonts and editor background
+* c1a8a58 : Re enabled client side layout save
+* 8ab35f0 : More integration of layout.js
+* a5be04b : Barely working layout class
+* 1957c46 : Mostly finished off layout class, ready to integrate
+* 443e9c0 : Added insertTextbox function into Layout
+* 30180a2 : Cleaned up index and debug html files
+*   7351fe3 : Merge branch 'master' into dev Bringing layout insertion work into dev
+|\  
+| * 38d5e64 : New heading adds new box to layout
+| * 20ad34d : Working live typing with proper line breaks
+| * 4a6f793 : Removed markdown and installed marked
+| * c162373 : Working markdown writer and barely functioning vim mode
+| * 894f164 : Added fancy markdown editor
+* | 015183b : Working on Layout class
+|/  
+* bd04443 : Successfully updates box content on keyup
+* 5b24a5a : Added textbox creation for box headers that don't exist in Document.updte()
+* 973306c : Starting to work on progressive, realtime box updating
+* a5f014e : Made textbox above page
+* dd9bb6c : Cleaning up
+* 2d59351 : Finished localstorage layout save
+* ea5a12a : broken: Trying to fix box position bugs
+* 75147bf : Added callback for moving box position
+* 17627c2 : Changed layout format for size and position box data to be grouped
+* 833d538 : Beginning to develop functionality for callbacks on moving boxes
+* 2164184 : Cleaned up and added start and stop callback functions
+* 0160ded : More cleaning and added helpful link
+* 3fa5474 : Added lockr to project, wiped debug javascript
+* ada964f : Added box on box resize
+* 3f8195f : Relatively stable document creation from markdown text and layout
+* 95a8412 : Creates box objects before rendering
+* 5c93f41 : Cleaned up box creation initialiser function arguments
+* c9c862f : Created class for Boxes, started integrating this to render pipeline
+* ceeeca7 : Added DPI scaling - need to fix a lot though
+* 74204e3 : Working on document rendering - about to add content rendering for each box
+* 2962bf0 : BROKEN: Need to fix the markdown document object model
+* c6f7c6a : Multiline markdown and cleaning up
+* 4cd61c2 : Broke out MarkdownJson into class
+* d1c7b1c : Working on regex where marked
+* d09c20c : Finished YICTE and ITMP proposals
+* cefd596 : Working on main proposal
+* a76b424 : Added names and YICTE proposal
+* 34031e8 : Moving documentation
+* 3108e33 : Added project proposal spec for school
+* 954dc4a : Work on markdown html
+* 4ede2eb : Working on markdown splitting in debug.js
+* 0faf737 : cleaning up
+* 3822bd8 : Relative textbox generator
+* ddcd07f : Working printing in chrome
+* e1d3279 : First prototype layout structure
+* e2625a2 : More work on the proposal
+* 014d655 : Working on more ideas for integrating site to files
+* 18ee49e : Begun statement
+* 3dc02f7 : Added names and cleaned up
+* ca82693 : Development goals start
+* 2df0dd3 : More ideas at IT camp
+* 46f77b4 : More work on proposal and moved idea files
+* d8aeb88 : More work
+* d263bdf : Beginning of project proposal and course content
+* 7844001 : Added box coordinates and beginning pages
+* 3364ef8 : Can't figure out why Chrome won't print the exact mm page size on A4
+* ac29475 : First revision testing before CSS pages
+* 4ee31d7 : A function for text boxes
+* a57d2f4 : Divs instead of text boxes
+* 373209c : Initial boilerplate commit

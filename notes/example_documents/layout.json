@@ -1,0 +1,16 @@
+{
+"boxes": {
+  "mainbox": {
+    "height":210,
+    "width":297,
+    "layout":"absolute",
+    "children":[
+    {"title": "@@@header", "xpos":0,"ypos":0}
+    ]   
+  },
+
+  "@@@header":{
+    "width":50,
+    "height":50
+  }
+}
