@@ -13,7 +13,7 @@
   <!-- SPELLS -->
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
-  <script src="script.js"></script>
+  <script src="js/controllers.js"></script>
 
 
 <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
@@ -26,27 +26,47 @@
 <!-- define angular controller -->
 <body ng-controller="mainController">
 
-  <nav class="navbar navbar-default">
-    <div class="container">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="/">Angular Routing Example</a>
+
+
+
+
+<div class="ui attached stackable menu">
+  <div class="ui container">
+    <a class="item" href="#">
+      <i class="home icon"></i> Home
+    </a>
+    <a class="item" href="#create">
+      <i class="grid layout icon"></i> Create
+    </a>
+    <a class="item" href="#about">
+      <i class="grid layout icon"></i> About
+    </a>
+    <a class="item" href="#contact">
+      <i class="mail icon"></i> Contact
+    </a>
+    <div class="ui simple dropdown item">
+      More
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        <a class="item"><i class="edit icon"></i> Edit Profile</a>
+        <a class="item"><i class="globe icon"></i> Choose Language</a>
+        <a class="item"><i class="settings icon"></i> Account Settings</a>
       </div>
-
-
-<div class="ui three buttons">
-  <button class="ui active button">One</button>
-  <button class="ui button">Two</button>
-  <button class="ui button">Three</button>
+    </div>
+    <div class="right item">
+      <div class="ui input"><input type="text" placeholder="Search..."></div>
+    </div>
+  </div>
 </div>
 
+<!--
+<div class="ui three buttons">
+  <button class="ui button">Home</button>
+  <button onclick="location.href='#about';" class="ui button">About</button>
+  <button class="ui button">Contact</button>
+</div>
 
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-        <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
-        <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
-      </ul>
-    </div>
-  </nav>
+-->
 
   <div id="main">
   
@@ -57,9 +77,8 @@
   </div>
   
   <footer class="text-center">
-    <p>View the tutorial on <a href="http://scotch.io/tutorials/javascript/single-page-apps-with-angularjs-routing-and-templating">Scotch.io</a></p>
-  
-    <p>View a tutorial on <a href="http://scotch.io/tutorials/javascript/animating-angularjs-apps-ngview">Animating Your Angular Single Page App</a></p>
+
+    <p>Hello world footer!</p>
   </footer>
   
 </body>

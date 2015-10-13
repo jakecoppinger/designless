@@ -1,15 +1,19 @@
-var gulp        = require('gulp');
+var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
-var sass        = require('gulp-sass');
-var watch = require('./semantic/tasks/watch');
-var build = require('./semantic/tasks/build');
+var sass = require('gulp-sass');
+
+//var watch = require('app/semantic/tasks/watch');
+//var build = require('app/semantic/tasks/build');
 
 
 // Static Server + watching scss/html files
 gulp.task('serve', ['sass'], function() {
 
     browserSync.init({
-        server: "app"
+        server: "app",
+        open: false,
+        notify: false,
+        logPrefix: 'Designless'
     });
 
     gulp.watch("app/scss/*.scss", ['sass']);
@@ -30,5 +34,5 @@ gulp.task('default', ['serve']);
 
 
 
-gulp.task('watch-ui', 'Watch UI for Semantic UI', watch);
-gulp.task('build-ui', 'Build UI for Semantic UI', build);
+//gulp.task('watch-ui', 'Watch UI for Semantic UI', watch);
+//gulp.task('build-ui', 'Build UI for Semantic UI', build);
