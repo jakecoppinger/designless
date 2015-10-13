@@ -1,0 +1,19 @@
+{
+  "name": "designless",
+  "version": "0.0.0",
+  "authors": [
+    "Jake Coppinger <jake@jakecoppinger.com>"
+  ],
+  "license": "All Rights Reserved",
+  "homepage": "http://www.designless.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7"
+  }
+}
