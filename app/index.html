@@ -9,29 +9,40 @@
     <link rel="stylesheet" type="text/css" href="css/global.css">
     <link rel="stylesheet" type="text/css" href="css/pages.css">
     <link rel="stylesheet" type="text/css" href="css/create.css">
-    <!--
+    
 
     <link rel="stylesheet" type="text/css" href="css/editor_styles.css">
     <link rel="stylesheet" type="text/css" href="css/editor_format.css">
-  -->
-    <link rel="stylesheet" type="text/css" href="/bower_components/simplemde-markdown-editor/dist/simplemde.min.css">
+  
+    <!-- <link rel="stylesheet" type="text/css" href="/bower_components/simplemde-markdown-editor/dist/simplemde.min.css">
+-->
     <base href="/">
 </head>
 
 <body ng-controller="mainController">
-    <div class="ui attached stackable menu">
+
+
+
+
+    <div class="ui attached stackable menu inverted">
         <div class="ui container">
-            <a class="item" href="/">
-                <i class="home icon"></i> Home
+
+            <a class="header item" href="/">
+                 Designless
             </a>
             <a class="item" href="/create">
-                <i class="grid layout icon"></i> Create
+                <i class="edit icon"></i> Create
             </a>
+            
             <a class="item" href="/guide">
-                <i class="mail icon"></i> Markdown Guide
+                <i class="external square icon"></i> Export
+            </a>
+
+            <a class="item" href="/guide">
+                <i class="help icon"></i> Markdown Guide
             </a>
             <a class="item" href="/about">
-                <i class="grid layout icon"></i> About
+                <i class="mail icon"></i> About
             </a>
             <div class="ui simple dropdown item">
                 More
@@ -42,13 +53,13 @@
                     <a class="item"><i class="settings icon"></i> Account Settings</a>
                 </div>
             </div>
-            <div class="right item">
-                <div class="ui input">
-                    <input type="text" placeholder="Search...">
-                </div>
-            </div>
+          
         </div>
     </div>
+
+
+
+
     <!--
 <div class="ui three buttons">
   <button class="ui button">Home</button>
