@@ -1,2 +1,14 @@
 body {
   background: #202020; }
+
+.ui.menu .item {
+  font-family: 'Open Sans'; }
+
+.ui.blue.button,
+.ui.blue.buttons .button {
+  color: #04A9F4; }
+
+.ui.inverted.menu .active.item {
+  background: 0 0; }
+  .ui.inverted.menu .active.item:hover {
+    background: #173039; }

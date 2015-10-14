@@ -1,3 +1,97 @@
-h1 {
-  //color:red !important;
+/* 
+Designless
+Jake Coppinger 2015
+*/
+
+#landingbackground {
+    background-color: #333333;
+    width: 100vw;
+    height: calc(100vh - 40px);
+    margin: 0px;
+    padding: 0px;
+    //margin-top:64px;
+    //position: absolute;
+    display: block;
+    vertical-align: baseline;
+    #maintitle {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-45%);
+        font-size: 10vw;
+        font-family: 'COM4t Fine';
+        color: #CCCCCC;
+        text-transform: uppercase;
+    }
+    #tagline {
+        position: absolute;
+        top: 70%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-70%);
+        font-size: calc(0.9em + 1vw);
+        font-family: 'Open Sans';
+        text-align: center;
+        color: #999999;
+        line-height: 1.5;
+    }
+    #landingnotice {
+        position: absolute;
+        top: 90%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-90%);
+        font-size: calc(0.7em + 0.6vw);
+        font-family: 'Open Sans';
+        text-align: center;
+        color: #5F5F5F;
+        a {
+            border-bottom: 1px solid #a4c9fa;
+            //box-shadow: inset 0 -3px 0 #FA0A00;
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+            &:hover {
+                color: white;
+            }
+        }
+    }
+}
+
+#firstinfo {
+    background-color: #3F51B5;
+}
+
+#secondinfo {
+    background-color: #2196F3;
+}
+
+#thirdinfo {
+    background-color: #04A9F4;
+}
+
+.landinginfobox {
+    width: 100vw;
+    height: calc(28vh + 20vw);
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+    vertical-align: baseline;
+    .landinginfotext {
+        position: relative;
+        top: 40%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-40%);
+        text-align: center;
+        color: #FFFFFF;
+        width: 70vw;
+        h1 {
+            font-family: 'Open Sans';
+            text-transform: uppercase;
+            font-size: 5vw;
+            line-height: 0.2;
+        }
+        p {
+            font-family: 'COM4t Fine';
+            font-size: 4vw;
+        }
+    }
 }

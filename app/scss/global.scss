@@ -1,3 +1,25 @@
 body {
     background: #202020;
 }
+
+.ui.menu .item {
+    font-family: 'Open Sans';
+    //text-transform: uppercase;
+    //letter-spacing: 0.3em;
+}
+
+.ui.blue.button,
+.ui.blue.buttons .button {
+    color: #04A9F4;
+}
+
+.ui.inverted.menu .active.item {
+    //color: #04A9F4 !important;
+    background: 0 0;
+    &:hover {
+
+    background: #173039;
+
+    //color: #04A9F4 !important;
+    }
+}
