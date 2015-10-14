@@ -1,0 +1,85 @@
+/* 
+Designless
+Jake Coppinger 2015
+*/
+.CodeMirror {
+  height: auto;
+  padding: 10px;
+  font: inherit; }
+  .CodeMirror pre {
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    border-width: 0;
+    background: 0 0;
+    font-family: inherit;
+    font-size: inherit;
+    margin: 0;
+    white-space: pre;
+    word-wrap: normal;
+    line-height: inherit;
+    color: inherit;
+    position: relative;
+    overflow: visible;
+    -webkit-tap-highlight-color: transparent; }
+  .CodeMirror .CodeMirror-selected {
+    background: #d9d9d9; }
+  .CodeMirror .CodeMirror-code {
+    color: #bebebe;
+    font-family: 'Open Sans'; }
+    .CodeMirror .CodeMirror-code .cm-header-1 {
+      font-size: 200%;
+      line-height: 200%; }
+    .CodeMirror .CodeMirror-code .cm-header-2 {
+      font-size: 160%;
+      line-height: 160%; }
+    .CodeMirror .CodeMirror-code .cm-header-3 {
+      font-size: 125%;
+      line-height: 125%; }
+    .CodeMirror .CodeMirror-code .cm-header-4 {
+      font-size: 110%;
+      line-height: 110%; }
+    .CodeMirror .CodeMirror-code .cm-comment {
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 2px; }
+    .CodeMirror .CodeMirror-code .cm-link {
+      color: #7f8c8d; }
+    .CodeMirror .CodeMirror-code .cm-url {
+      color: #aab2b3; }
+    .CodeMirror .CodeMirror-code .cm-strikethrough {
+      text-decoration: line-through; }
+    .CodeMirror .CodeMirror-code .cm-spell-error:not(.cm-url):not(.cm-comment) {
+      background: rgba(255, 0, 0, 0.15); }
+
+.editor-toolbar {
+  position: relative;
+  opacity: 1;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  padding: 0 10px;
+  transition: opacity 0.5s ease;
+  text-align: center;
+  border-bottom: 1px solid #323232; }
+  .editor-toolbar a {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none !important;
+    color: #E6E6E6 !important;
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    cursor: pointer; }
+
+.editor-toolbar:hover,
+.editor-wrapper input.title:focus,
+.editor-wrapper input.title:hover {
+  opacity: .8; }
+
+.editor-toolbar a.active,
+.editor-toolbar a:hover {
+  border-color: #95a5a6; }

@@ -1,65 +1,49 @@
 <!DOCTYPE html>
-
-<!-- define angular app -->
 <html ng-app="scotchApp">
 
 <head>
-  <!-- SCROLLS -->
- <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
-
--->
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
-
-  <!-- SPELLS -->
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
-  <script src="js/controllers.js"></script>
-
-
-<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
-<script src="semantic/dist/semantic.min.js"></script>
-
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css">
+    
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
     <link rel="stylesheet" type="text/css" href="css/landing.css">
 
+        <link rel="stylesheet" type="text/css" href="css/editor_styles.css">
+    <link rel="stylesheet" type="text/css" href="css/editor_format.css">
+
+
 </head>
-
-<!-- define angular controller -->
 <body ng-controller="mainController">
-
-
-
-
-
-<div class="ui attached stackable menu">
-  <div class="ui container">
-    <a class="item" href="#">
-      <i class="home icon"></i> Home
-    </a>
-    <a class="item" href="#create">
-      <i class="grid layout icon"></i> Create
-    </a>
-    <a class="item" href="#about">
-      <i class="grid layout icon"></i> About
-    </a>
-    <a class="item" href="#contact">
-      <i class="mail icon"></i> Contact
-    </a>
-    <div class="ui simple dropdown item">
-      More
-      <i class="dropdown icon"></i>
-      <div class="menu">
-        <a class="item"><i class="edit icon"></i> Edit Profile</a>
-        <a class="item"><i class="globe icon"></i> Choose Language</a>
-        <a class="item"><i class="settings icon"></i> Account Settings</a>
-      </div>
+    <div class="ui attached stackable menu">
+        <div class="ui container">
+            <a class="item" href="#">
+                <i class="home icon"></i> Home
+            </a>
+            <a class="item" href="#create">
+                <i class="grid layout icon"></i> Create
+            </a>
+            <a class="item" href="#about">
+                <i class="grid layout icon"></i> About
+            </a>
+            <a class="item" href="#contact">
+                <i class="mail icon"></i> Contact
+            </a>
+            <div class="ui simple dropdown item">
+                More
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a class="item"><i class="edit icon"></i> Edit Profile</a>
+                    <a class="item"><i class="globe icon"></i> Choose Language</a>
+                    <a class="item"><i class="settings icon"></i> Account Settings</a>
+                </div>
+            </div>
+            <div class="right item">
+                <div class="ui input">
+                    <input type="text" placeholder="Search...">
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="right item">
-      <div class="ui input"><input type="text" placeholder="Search..."></div>
-    </div>
-  </div>
-</div>
-
-<!--
+    <!--
 <div class="ui three buttons">
   <button class="ui button">Home</button>
   <button onclick="location.href='#about';" class="ui button">About</button>
@@ -67,20 +51,37 @@
 </div>
 
 -->
+    <div id="main">
+        <!-- angular templating -->
+        <!-- this is where content will be injected -->
+        <div ng-view></div>
+    </div>
+    <footer class="text-center">
+        <p>Hello world footer!</p>
+    </footer>
 
-  <div id="main">
-  
-    <!-- angular templating -->
-		<!-- this is where content will be injected -->
-    <div ng-view></div>
-    
-  </div>
-  
-  <footer class="text-center">
+    <span ng-show="mainFunction()"></span>
 
-    <p>Hello world footer!</p>
-  </footer>
-  
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/semantic/dist/semantic.min.js"></script>
+
+    <script src="/bower_components/simplemde-markdown-editor/dist/simplemde.min.js"></script>
+    <script src="/bower_components/marked/lib/marked.js"></script>
+    <script src="../bower_components/lockr/lockr.js"></script>
+
+    <script src="/js/controllers.js"></script>
+    <script src="/js/classes/box.js"></script>
+    <script src="/js/classes/class_extensions.js"></script>
+    <script src="/js/classes/document.js"></script>
+    <script src="/js/classes/layout.js"></script>
+    <script src="/js/classes/markdown.js"></script>
+    <script src="/js/classes/view.js"></script>
+
+
+    <script src="/js/main.js"></script>
+
 </body>
 
 </html>
