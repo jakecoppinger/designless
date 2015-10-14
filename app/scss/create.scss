@@ -1,0 +1,14 @@
+.textbox {
+    padding: 0px;
+    margin: 0px;
+    position: absolute !important;
+    cursor: move;
+    overflow: hidden;
+    &.overflowing {
+        -webkit-animation: pulsateTextboxes 5s ease-out;
+        -webkit-animation-iteration-count: infinite;
+    }
+    h1 {
+        -webkit-margin-before: 0mm;
+    }
+}

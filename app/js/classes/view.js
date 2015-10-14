@@ -61,16 +61,14 @@ View.prototype._textboxDragged = function(pixelSize,heading,newSizeCallback) {
 View.prototype.newTextBox = function(box, newPositionCallback,newSizeCallback) {
     var textboxWidth = box.size().width * this._ppm;
     var textboxHeight = box.size().height * this._ppm;
-    var textboxHTML = '<div><paper-ripple animated recenters></paper-ripple><div class="innertext">' + box.html() + '</div></div>';
+    var textboxHTML = '<div><div class="innertext">' + box.html() + '</div></div>';
     var new_offset = this._mmToPixelPosition(box.position())
     var objectThis = this;
-
-
 
     var newElement$ = $(textboxHTML)
         .appendTo('#' + box.parentid()) // Should this just be main?
         .attr("id", box.id())
-        .attr("class", "ui-widget-content textbox")
+        .attr("class", "ui-widget-content textbox") 
         .width(textboxWidth)
         .height(textboxHeight)
         .resizable({
@@ -97,9 +95,13 @@ View.prototype.newTextBox = function(box, newPositionCallback,newSizeCallback) {
         },
 
         stop: function() {
+            var object = document.getElementById(box.id());
+            var leftPixels = parseInt(object.style.left);
+            var topPixels = parseInt(object.style.top);
+
             var newBoxPos = objectThis._currentBoxPosition({
-                left: document.getElementById(box.id()).offsetLeft,
-                top: document.getElementById(box.id()).offsetTop,
+                left: leftPixels, //document.getElementById(box.id()).offsetLeft,
+                top: topPixels
             });
 
             newPositionCallback(box.heading(), newBoxPos);
