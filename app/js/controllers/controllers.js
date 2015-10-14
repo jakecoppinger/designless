@@ -1,8 +1,8 @@
 	// create the module and name it scotchApp
-	var scotchApp = angular.module('scotchApp', ['ngRoute']);
+	var designlessApp = angular.module('designlessApp', ['ngRoute']);
 
 	// configure our routes
-	scotchApp.config(function($routeProvider) {
+	designlessApp.config(function($routeProvider,$locationProvider) {
 	    $routeProvider
 
 	    // route for the home page
@@ -28,15 +28,18 @@
 	        templateUrl: 'pages/contact.html',
 	        controller: 'contactController'
 	    });
+
+	    // use the HTML5 History API
+	    $locationProvider.html5Mode(true);
 	});
 
 	// create the controller and inject Angular's $scope
-	scotchApp.controller('mainController', function($scope) {
+	designlessApp.controller('mainController', function($scope) {
 	    // create a message to display in our view
 	    $scope.message = 'Everyone come and see how good I look!';
 	});
 
-	scotchApp.controller('createController', function($scope) {
+	designlessApp.controller('createController', function($scope) {
 	    console.log("Loaded create controller");
 
 	    $scope.markdown = "# Designless.io\n*If you can use an emoticon, you can write Markdown.*\n\nDeployed frequently at [Designless.io](http://www.designless.io).\nBuilt by [Jake Coppinger](http://www.jakecoppinger.com).\n\n## Example textbox\n**This is an example textbox**\nTextboxes are created with a heading, denoted with a hash (or number of hashes\n\nSee the Markdown Guide in the menu for more information";
@@ -81,7 +84,7 @@
 	    };
 
 	    // Set up layout from localstorage if possible
-	    var localStorageLayout = undefined; //Lockr.get('layoutjson');
+	    var localStorageLayout = Lockr.get('layoutjson');
 	    //console.log(localStorageLayout);
 	    if (localStorageLayout) {
 	        console.log("using local storage layout");
@@ -127,7 +130,8 @@
 	    $scope.$watch("markdown", function(newValue, oldValue) {
 	        //console.log($scope.markdown);
 
-
+	        var md = new Markdown($scope.markdown);
+	        documentObject.update(md);
 
 
 	    });
@@ -137,10 +141,10 @@
 
 	});
 
-	scotchApp.controller('aboutController', function($scope) {
+	designlessApp.controller('aboutController', function($scope) {
 	    $scope.message = 'Look! I am an about page.';
 	});
 
-	scotchApp.controller('contactController', function($scope) {
+	designlessApp.controller('contactController', function($scope) {
 	    $scope.message = 'Contact us! JK. This is just a demo.';
 	});

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="scotchApp">
+<html ng-app="designlessApp">
 
 <head>
     <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css">
@@ -15,25 +15,24 @@
     <link rel="stylesheet" type="text/css" href="css/editor_format.css">
   -->
     <link rel="stylesheet" type="text/css" href="/bower_components/simplemde-markdown-editor/dist/simplemde.min.css">
+
+    <base href="/">
 </head>
 
 <body ng-controller="mainController">
     <div class="ui attached stackable menu">
         <div class="ui container">
-            <a class="item" href="#">
+            <a class="item" href="/">
                 <i class="home icon"></i> Home
             </a>
-            <a class="item" href="#create">
+            <a class="item" href="/create">
                 <i class="grid layout icon"></i> Create
             </a>
-            <a class="item" href="#about">
-                <i class="grid layout icon"></i> About
-            </a>
-            <a class="item" href="#about">
-                <i class="grid layout icon"></i> About
-            </a>
-            <a class="item" href="#guide">
+            <a class="item" href="/guide">
                 <i class="mail icon"></i> Markdown Guide
+            </a>
+            <a class="item" href="/about">
+                <i class="grid layout icon"></i> About
             </a>
             <div class="ui simple dropdown item">
                 More
@@ -75,15 +74,14 @@
     <script src="/semantic/dist/semantic.min.js"></script>
     <script src="/bower_components/simplemde-markdown-editor/dist/simplemde.min.js"></script>
     <script src="/bower_components/marked/lib/marked.js"></script>
-    <script src="../bower_components/lockr/lockr.js"></script>
-    <script src="/js/controllers.js"></script>
+    <script src="/bower_components/lockr/lockr.js"></script>
+    <script src="/js/controllers/controllers.js"></script>
     <script src="/js/classes/box.js"></script>
     <script src="/js/classes/class_extensions.js"></script>
     <script src="/js/classes/document.js"></script>
     <script src="/js/classes/layout.js"></script>
     <script src="/js/classes/markdown.js"></script>
     <script src="/js/classes/view.js"></script>
-    <script src="/js/main.js"></script>
 </body>
 
 </html>

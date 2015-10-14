@@ -2,10 +2,10 @@ var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
 var sass = require('gulp-sass');
 var reload = browserSync.reload;
+historyApiFallback = require('connect-history-api-fallback');
 
 //var watch = require('app/semantic/tasks/watch');
 //var build = require('app/semantic/tasks/build');
-
 
 // Static Server + watching scss/html files
 gulp.task('serve', ['sass'], function() {
@@ -15,7 +15,8 @@ gulp.task('serve', ['sass'], function() {
             baseDir: ["app"],
             routes: {
                 '/bower_components': 'bower_components'
-            }
+            },
+            middleware: [historyApiFallback()]
         },
         open: false,
         notify: false,
@@ -26,10 +27,7 @@ gulp.task('serve', ['sass'], function() {
     gulp.watch("app/scss/*.scss", ['sass']);
     gulp.watch("app/**/*.html").on('change', reload);
 
-
-  gulp.watch(['app/js/**/*.js'], reload); // ['jshint']
-
-
+    gulp.watch(['app/js/**/*.js'], reload); // ['jshint']
 
 });
 
