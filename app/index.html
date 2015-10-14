@@ -3,15 +3,17 @@
 
 <head>
     <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css">
-    
     <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
     <link rel="stylesheet" type="text/css" href="css/landing.css">
+    <link rel="stylesheet" type="text/css" href="css/global.css">
+    <!--
 
-        <link rel="stylesheet" type="text/css" href="css/editor_styles.css">
+    <link rel="stylesheet" type="text/css" href="css/editor_styles.css">
     <link rel="stylesheet" type="text/css" href="css/editor_format.css">
-
-
+  -->
+    <link rel="stylesheet" type="text/css" href="/bower_components/simplemde-markdown-editor/dist/simplemde.min.css">
 </head>
+
 <body ng-controller="mainController">
     <div class="ui attached stackable menu">
         <div class="ui container">
@@ -59,18 +61,14 @@
     <footer class="text-center">
         <p>Hello world footer!</p>
     </footer>
-
     <span ng-show="mainFunction()"></span>
-
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-route/angular-route.js"></script>
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/semantic/dist/semantic.min.js"></script>
-
     <script src="/bower_components/simplemde-markdown-editor/dist/simplemde.min.js"></script>
     <script src="/bower_components/marked/lib/marked.js"></script>
     <script src="../bower_components/lockr/lockr.js"></script>
-
     <script src="/js/controllers.js"></script>
     <script src="/js/classes/box.js"></script>
     <script src="/js/classes/class_extensions.js"></script>
@@ -78,10 +76,7 @@
     <script src="/js/classes/layout.js"></script>
     <script src="/js/classes/markdown.js"></script>
     <script src="/js/classes/view.js"></script>
-
-
     <script src="/js/main.js"></script>
-
 </body>
 
 </html>
