@@ -24,10 +24,10 @@ gulp.task('serve', ['sass'], function() {
 
     });
 
-    gulp.watch("app/scss/*.scss", ['sass']);
+    gulp.watch("app/**/*.scss", ['sass']);
     gulp.watch("app/**/*.html").on('change', reload);
 
-    gulp.watch(['app/js/**/*.js'], reload); // ['jshint']
+    gulp.watch(['app/**/*.js'], reload); // ['jshint']
 
 });
 
