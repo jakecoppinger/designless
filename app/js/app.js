@@ -17,7 +17,9 @@ angular.module('designlessApp', ['ngRoute', 'designlessApp.controllers'])
         templateUrl: 'pages/create.html',
         controller: 'createController'
     })
-
+.when('/guide', {
+        templateUrl: 'pages/guide.html'
+    })
     .when('/contact', {
         templateUrl: 'pages/contact.html',
         controller: 'contactController'
