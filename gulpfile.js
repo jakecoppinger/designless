@@ -14,7 +14,8 @@ gulp.task('serve', ['sass'], function() {
         server: {
             baseDir: ["app"],
             routes: {
-                '/bower_components': 'bower_components'
+                '/bower_components': 'bower_components',
+                '/semantic': 'semantic'
             },
             middleware: [historyApiFallback()]
         },
