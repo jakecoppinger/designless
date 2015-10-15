@@ -21,6 +21,7 @@
     "jquery-ui": "~1.11.4",
     "lockr": "~0.8.2",
     "marked": "~0.3.5",
-    "simplemde-markdown-editor": "https://github.com/NextStepWebs/simplemde-markdown-editor.git#~1.7.4"
+    "simplemde-markdown-editor": "https://github.com/NextStepWebs/simplemde-markdown-editor.git#~1.7.4",
+    "open-sans-fontface": "~1.4.2"
   }
 }
