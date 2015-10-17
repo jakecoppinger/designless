@@ -1,70 +1,22 @@
 
-
-
-<div class="ui pointing secondary demo menu">
-    <a class="active red item" data-tab="write">Write</a>
-    <a class="blue item" data-tab="design">Design</a>
-</div>
-
-<div class="ui active tab segment" data-tab="write">Now writing</div>
-<div class="ui tab segment" data-tab="design">Now designing</div>
-
-
-
-<div class="ui text container">
-    <h2 class="ui header">Writer</h2>
-    <div class="markdownpage">
-        <textarea id="markdowninput">
-            <!-- This textarea is used by SimpleMDE Markdown editor -->
-            {{markdowninput}}
-        </textarea>
+<br>
+<div class="ui center aligned grid">
+    <div class="ui pointing secondary demo menu inverted">
+        <a class="active white item" data-tab="write">Write</a>
+        <a class="white item" data-tab="design">Design</a>
     </div>
 </div>
-
-
-
-<!--
-<div class="row">
-  <div class="ui active tab segment" data-tab="first">First</div>
-  <div class="ui tab segment" data-tab="second">Second</div>
-  <div class="ui tab segment" data-tab="third">Third</div>
-
-  <div class="ui pointing secondary demo menu">
-    <a class="active red item" data-tab="first">One</a>
-    <a class="blue item" data-tab="second">Two</a>
-    <a class="green item" data-tab="third">Three</a>
-  </div>
-</div>
--->
-
-<div>
-    <div id="designcontainer">
-        <!-- This is the page surface used for drawing the boxes -->
-        <!--
-    <div id="designleft" class="design-side-panel-container">
-        <paper-material class="stylebox" elevation="1">
-            <h2>Style 1</h2>
-        </paper-material>
-        <paper-material class="stylebox" elevation="1">
-            <h2>Style 2</h2>
-        </paper-material>
-    </div>
--->
-        <!--
-    <div id="designright" class="design-side-panel-container">
-        <paper-material elevation="1" class="stylebox">
-            <h2>Options 1</h2>
-        </paper-material>
-        <paper-material elevation="1" class="stylebox">
-            <h2>Options 2</h2>
-        </paper-material>
-    </div>
--->
-        <!--  <div id="designcenter"> -->
-        <div id="page1" class="page"></div>
+<br>
+<div class="ui active tab" data-tab="write">
+    <div class="ui text container">
+        <div class="markdownpage">
+            <textarea id="markdowninput">
+                <!-- This textarea is used by SimpleMDE Markdown editor -->
+                {{markdowninput}}
+            </textarea>
+        </div>
     </div>
 </div>
-
-<div class="ui text container segment">
-    <p>{{ markdown }}</p>
+<div class="ui tab" data-tab="design">
+    <div id="page1" class="page"></div>
 </div>
