@@ -1,6 +1,21 @@
 angular.module('designlessApp')
 
-.controller('createController', function($scope) {
+.controller('createController', function($scope, $timeout) {
+
+    // Initialize Semantic UI
+    $timeout(function() {
+
+
+        $('.demo.menu .item').tab({
+            history: false
+        });
+
+    }, 0);
+
+
+
+
+
     console.log("Loaded create controller");
 
     $scope.markdown = "# Designless.io\n*If you can use an emoticon, you can write Markdown.*\n\nDeployed frequently at [Designless.io](http://www.designless.io).\nBuilt by [Jake Coppinger](http://www.jakecoppinger.com).\n\n## Example textbox\n**This is an example textbox**\nTextboxes are created with a heading, denoted with a hash (or number of hashes\n\nSee the Markdown Guide in the menu for more information";
