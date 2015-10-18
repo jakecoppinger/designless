@@ -1,13 +1,12 @@
 <br>
-
 <div class="ui center aligned grid">
     <div class="ui pointing secondary demo menu inverted">
-        <a class="active white item" data-tab="write">Write</a>
-        <a class="white item" data-tab="design">Design</a>
+        <a class="white item" data-tab="write">Write</a>
+        <a class="active white item" data-tab="design">Design</a>
     </div>
 </div>
 <br>
-<div class="ui active tab" data-tab="write">
+<div class="ui tab" data-tab="write">
     <div class="ui text container">
         <div class="markdownpage">
             <textarea id="markdowninput">
@@ -17,6 +16,28 @@
         </div>
     </div>
 </div>
-<div class="ui tab" data-tab="design">
-    <div id="page1" class="page"></div>
+<div class="ui tab active" data-tab="design">
+
+<div id="designcontainer">
+
+    <div id="designleft" class="design-side-panel-container">
+        <div class="ui segment stylebox">
+            <h2>Style 1</h2>
+        </div>
+        <div class="ui segment stylebox">
+            <h2>Style 2</h2>
+        </div>
+    </div>
+    <div id="designright" class="design-side-panel-container">
+        <div class="ui segment stylebox">
+            <h2>Options 1</h2>
+        </div>
+        <div class="ui segment stylebox">
+            <h2>Options 2</h2>
+        </div>
+    </div>
+    <div id="designcenter">
+        <div id="page1" class="page"></div>
+    </div>
+</div>
 </div>
