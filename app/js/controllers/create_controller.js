@@ -66,7 +66,7 @@ angular.module('designlessApp')
         console.log("using local storage layout");
     } else {
 
-        var layoutJSON = '{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{"Designless.io":{"size":{"width":100,"height":100},"position":{"left":0,"top":0},"style":"Papryus"},"Example textbox":{"size":{"width":100,"height":100},"position":{"left":0,"top":0},"style":"Papryus"}},"styles":{"Papyrus":{"font":"papyrus","color":"#FF0000"}}}'
+        var layoutJSON = '{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{"Designless.io":{"size":{"width":100,"height":100},"position":{"left":0,"top":0},"style":"Papryus"},"Example textbox":{"size":{"width":100,"height":100},"position":{"left":0,"top":0},"style":"Papryus"}},"styles":{"Papyrus":{"font":"papyrus","textcolor":"rgb(182, 63, 63)"}}}'
 
         //'{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{},"styles":{"Default":{"font":"Arial"}}}';
 
@@ -119,7 +119,6 @@ angular.module('designlessApp')
 
 
     $scope.styles = layout.styles;
-    $scope.styles.Papyrus.colormodel = 'rgb(182, 63, 63)';
 
     console.log(JSON.stringify(layout.styles));
 
@@ -129,12 +128,24 @@ angular.module('designlessApp')
     };
     */
 
-    console.log($scope.styles);
+    //console.log($scope.styles);
 
     
-    $scope.$watch("styles.Papyrus.colormodel", function(newValue, oldValue) {
-        console.log($scope.styles.Papyrus.colormodel);
+    $scope.$watch("styles.Papyrus.textcolor", function(newValue, oldValue) {
+        console.log($scope.styles.Papyrus.textcolor);
     });
     
 
+    $scope.$watch("styles", function() {
+        console.log($scope.styles);
+    },true);
+    
+
+
+
 });
+
+
+
+
+
