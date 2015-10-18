@@ -1,12 +1,13 @@
 # To Do
 
-Fix theme!!!
-https://scotch.io/tutorials/single-page-apps-with-angularjs-routing-and-templating
 
 # Done
 - Boxes snap to other boxes (https://github.com/polomoshnov/jQuery-UI-Resizable-Snap-extension)
 - Professional dark theme
 - Pretty landing page
+Fix theme!!!
+https://scotch.io/tutorials/single-page-apps-with-angularjs-routing-and-templating
+
 
 # Not Done
 - Typography Controls

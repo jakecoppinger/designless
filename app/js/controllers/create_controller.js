@@ -60,14 +60,23 @@ angular.module('designlessApp')
     };
 
     // Set up layout from localstorage if possible
-    var localStorageLayout = Lockr.get('layoutjson');
+    var layout = undefined; //Lockr.get('layoutjson');
     //console.log(localStorageLayout);
-    if (localStorageLayout) {
+    if (layout) {
         console.log("using local storage layout");
-        layoutConfig["layout"] = JSON.parse(localStorageLayout);
     } else {
+
+        var layoutJSON = '{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{"Designless.io":{"size":{"width":100,"height":100},"position":{"left":0,"top":0}},"Example textbox":{"size":{"width":100,"height":100},"position":{"left":0,"top":0}}},"styles":{"Papyrus":{"font":"papyrus","color":"#FF0000"}}}'
+
+        //'{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{},"styles":{"Default":{"font":"Arial"}}}';
+
+        layout = JSON.parse(layoutJSON);
+
         console.log("using default layout");
     }
+
+
+    layoutConfig["layout"] = layout;
 
     // Create layout object
     var layoutObj = new Layout(function() {

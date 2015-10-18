@@ -10,13 +10,8 @@ This class represents the layout object used by the app, suppoted by a flexible 
 function Layout(layoutChangedFunction, obj) {
     this._changeCallback = layoutChangedFunction;
     this._ppm = obj.ppm;
-    if ("layout" in obj) {
-        this._layout = obj.layout;
-    } else {
-        var newLayout = '{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{},"styles":{"Default":{"font":"Arial"}}}';
+    this._layout = obj.layout;
 
-        this._layout = JSON.parse(newLayout);
-    }
 }
 
 Layout.prototype.insertTextbox = function(textbox) {
@@ -42,15 +37,15 @@ Layout.prototype.updateTextboxSize = function(boxTitle, size) {
 
 
 Layout.prototype.boxExist = function(boxTitle) {
-  if(boxTitle in this._layout.boxes) {
-    return true;
-  } else {
-    return false;
-  }
+    if (boxTitle in this._layout.boxes) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 Layout.prototype.getBoxJSON = function(boxTitle) {
-  return this._layout.boxes[boxTitle];
+    return this._layout.boxes[boxTitle];
 }
 
 Layout.prototype.boxPosition = function(boxPos, parentPos) {
