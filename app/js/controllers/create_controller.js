@@ -130,13 +130,13 @@ angular.module('designlessApp')
 
     //console.log($scope.styles);
 
-    
+    /*
     $scope.$watch("styles.Papyrus.textcolor", function(newValue, oldValue) {
         console.log($scope.styles.Papyrus.textcolor);
     });
-    
+    */
 
-    $scope.$watch("styles", function() {
+    $scope.$watch("styles", function(newValue,oldValue) {
         console.log($scope.styles);
     },true);
     
