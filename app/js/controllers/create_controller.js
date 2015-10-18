@@ -116,17 +116,25 @@ angular.module('designlessApp')
     });
 
 
+
+
     $scope.styles = layout.styles;
+    $scope.styles.Papyrus.colormodel = 'rgb(182, 63, 63)';
 
     console.log(JSON.stringify(layout.styles));
 
-    $scope.colors = {
-        backColor: 'rgb(182, 63, 63)'
+    /*
+    $scope.colors.boxcolor = {
+        Papyrus: 'rgb(182, 63, 63)'
     };
+    */
 
+    console.log($scope.styles);
 
-    $scope.$watch("colors.backColor", function(newValue, oldValue) {
-        console.log($scope.colors.backColor);
+    
+    $scope.$watch("styles.Papyrus.colormodel", function(newValue, oldValue) {
+        console.log($scope.styles.Papyrus.colormodel);
     });
+    
 
 });
