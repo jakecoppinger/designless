@@ -66,7 +66,7 @@ angular.module('designlessApp')
         console.log("using local storage layout");
     } else {
 
-        var layoutJSON = '{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{"Designless.io":{"size":{"width":100,"height":100},"position":{"left":0,"top":0}},"Example textbox":{"size":{"width":100,"height":100},"position":{"left":0,"top":0}}},"styles":{"Papyrus":{"font":"papyrus","color":"#FF0000"}}}'
+        var layoutJSON = '{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{"Designless.io":{"size":{"width":100,"height":100},"position":{"left":0,"top":0},"style":"Papryus"},"Example textbox":{"size":{"width":100,"height":100},"position":{"left":0,"top":0},"style":"Papryus"}},"styles":{"Papyrus":{"font":"papyrus","color":"#FF0000"}}}'
 
         //'{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{},"styles":{"Default":{"font":"Arial"}}}';
 

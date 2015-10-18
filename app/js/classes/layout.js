@@ -11,7 +11,6 @@ function Layout(layoutChangedFunction, obj) {
     this._changeCallback = layoutChangedFunction;
     this._ppm = obj.ppm;
     this._layout = obj.layout;
-
 }
 
 Layout.prototype.insertTextbox = function(textbox) {
@@ -33,8 +32,6 @@ Layout.prototype.updateTextboxSize = function(boxTitle, size) {
     this._layout.boxes[boxTitle].size = size;
     this._changeCallback();
 };
-
-
 
 Layout.prototype.boxExist = function(boxTitle) {
     if (boxTitle in this._layout.boxes) {
