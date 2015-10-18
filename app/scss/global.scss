@@ -17,9 +17,13 @@ body {
     //color: #04A9F4 !important;
     background: 0 0;
     &:hover {
-
-    background: #173039;
-
-    //color: #04A9F4 !important;
+        background: #173039;
+        //color: #04A9F4 !important;
     }
+}
+
+// Color picker fix
+.color-picker-wrapper.color-picker-swatch-only .color-picker-input {
+    opacity: 0;
+    cursor: pointer;
 }

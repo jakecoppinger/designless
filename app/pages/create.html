@@ -20,11 +20,22 @@
     <div id="designcontainer">
         <div id="side-panel-container">
             <div id="designleft" class="side-panel">
-                <div class="ui segment stylebox">
-                    <h2>Style 1</h2>
+                <div ng-repeat="(stylename,style) in styles">
+                    <div class="ui segment stylebox">
+                        <h2>{{stylename}}</h2>
+                        <p>Font: {{style.font}}</p>
+                        <p>Color: {{test.color}}</p>
+                        
+                        <color-picker ng-model="colors.backColor"
+                        color-picker-format="'rgb'"
+                        color-picker-swatch="true"
+                        color-picker-swatch-only="true"
+                        color-picker-swatch-bootstrap="false"
+                        ></color-picker>
+                    </div>
                 </div>
                 <div class="ui segment stylebox">
-                    <h2>Style 2</h2>
+                    <h2>Style 1</h2>
                 </div>
             </div>
             <div id="designright" class="side-panel">

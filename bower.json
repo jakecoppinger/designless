@@ -23,5 +23,8 @@
     "marked": "~0.3.5",
     "simplemde-markdown-editor": "https://github.com/NextStepWebs/simplemde-markdown-editor.git#~1.7.4",
     "open-sans-fontface": "~1.4.2"
+  },
+  "devDependencies": {
+    "angular-color-picker": "angularjs-color-picker#~0.6.8"
   }
 }

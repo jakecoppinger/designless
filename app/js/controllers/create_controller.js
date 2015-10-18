@@ -110,18 +110,23 @@ angular.module('designlessApp')
     });
 
 
-
-
     $scope.$watch("markdown", function(newValue, oldValue) {
-        //console.log($scope.markdown);
-
         var md = new Markdown($scope.markdown);
         documentObject.update(md);
-
-
     });
 
 
+    $scope.styles = layout.styles;
 
+    console.log(JSON.stringify(layout.styles));
+
+    $scope.colors = {
+        backColor: 'rgb(182, 63, 63)'
+    };
+
+
+    $scope.$watch("colors.backColor", function(newValue, oldValue) {
+        console.log($scope.colors.backColor);
+    });
 
 });

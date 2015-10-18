@@ -1,5 +1,5 @@
-angular.module('designlessApp.controllers', []);
-angular.module('designlessApp', ['ngRoute', 'designlessApp.controllers'])
+angular.module('designlessApp.controllers', ['color.picker']);
+angular.module('designlessApp', ['ngRoute', 'designlessApp.controllers', 'color.picker'])
 
 // configure our routes
 .config(function($routeProvider, $locationProvider) {
