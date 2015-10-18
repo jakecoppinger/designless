@@ -10,6 +10,15 @@
   .textbox h1 {
     -webkit-margin-before: 0mm; }
 
+.page {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0px;
+  height: 297mm;
+  width: 210mm;
+  padding: 0px;
+  position: relative; }
+
 #designcontainer .ui.segment {
   color: blue; }
 
@@ -31,13 +40,25 @@
   float: right;
   margin-left: 0; }
 
-.design-side-panel-container {
-  width: 100%;
-  max-width: calc(40vw - 20em);
+.side-panel {
+  width: calc((100% - 210mm) / 2 - 3em);
   margin: 0 2em; }
 
-@media (max-width: 80em) {
-  .design-side-panel-container {
+@media (max-width: 83em) {
+  .side-panel {
     color: red;
-    width: 45%;
-    max-width: none; } }
+    width: calc(210mm / 2 - 3em);
+    max-width: none; }
+  #side-panel-container {
+    width: 100%;
+    max-width: 210mm;
+    margin-left: auto;
+    margin-right: auto; } }
+
+@media (max-width: 210mm) {
+  .side-panel {
+    width: calc(100% - 3em);
+    max-width: none;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    float: none !important; } }
