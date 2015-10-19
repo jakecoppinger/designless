@@ -60,7 +60,7 @@ gulp.task('styles', function() {
         }))
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('.tmp/' + inputPath))
-        .pipe($.if('*.css', $.cssmin()))
+        .pipe($.cssmin())
         .pipe(gulp.dest('dist/' + outputPath))
         .pipe($.size({
             title: inputPath
@@ -84,9 +84,9 @@ gulp.task('js', function() {
 
     .pipe($.jshint())
         .pipe($.jshint.reporter('jshint-stylish'))
-        .pipe($.uglify({
-            preserveComments: false
-        }))
+        //.pipe($.uglify({
+        //    preserveComments: false
+        //}))
         .pipe(gulp.dest('dist/' + outputPath))
 });
 
@@ -96,11 +96,11 @@ gulp.task('html', function() {
     return gulp.src(['app/**/*.html'])
 
 
-    .pipe($.if('*.html', $.minifyHtml({
+    .pipe($.minifyHtml({
             quotes: true,
             empty: true,
             spare: true
-        })))
+        }))
         // Output Files
         .pipe(gulp.dest('dist'))
         .pipe($.size({
