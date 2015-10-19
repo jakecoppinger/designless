@@ -39,27 +39,27 @@ Layout.prototype.boxExist = function(boxTitle) {
     } else {
         return false;
     }
-}
+};
 
 Layout.prototype.getBoxJSON = function(boxTitle) {
     return this._layout.boxes[boxTitle];
-}
+};
 
 Layout.prototype.boxPosition = function(boxPos, parentPos) {
     return {
         left: (boxPos.left - parentPos.left) / this._ppm,
         top: (boxPos.top - parentPos.top) / this._ppm
-    }
-}
+    };
+};
 
 Layout.prototype.layoutString = function() {
     return JSON.stringify(this._layout, null, 2);
-}
+};
 
 Layout.prototype.layoutJSON = function() {
     return this._layout;
-}
+};
 
 Layout.prototype.ppm = function() {
     return this._ppm;
-}
+};

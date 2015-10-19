@@ -12,10 +12,6 @@ angular.module('designlessApp')
 
     }, 0);
 
-
-
-
-
     console.log("Loaded create controller");
 
     $scope.markdown = "# Designless.io\n*If you can use an emoticon, you can write Markdown.*\n\nDeployed frequently at [Designless.io](http://www.designless.io).\nBuilt by [Jake Coppinger](http://www.jakecoppinger.com).\n\n## Example textbox\n**This is an example textbox**\nTextboxes are created with a heading, denoted with a hash (or number of hashes\n\nSee the Markdown Guide in the menu for more information";
@@ -36,7 +32,7 @@ angular.module('designlessApp')
     marked.setOptions({
         gfm: true,
         breaks: true
-    })
+    });
 
     // Work out pixels per inch
     var div = $("<div>").css({
@@ -60,13 +56,14 @@ angular.module('designlessApp')
     };
 
     // Set up layout from localstorage if possible
-    var layout = undefined; //Lockr.get('layoutjson');
-    //console.log(localStorageLayout);
+    var layoutJSON = Lockr.get('layoutjson');
+    var layout = JSON.parse(layoutJSON);
+
     if (layout) {
         console.log("using local storage layout");
     } else {
 
-        var layoutJSON = '{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{"Designless.io":{"size":{"width":100,"height":100},"position":{"left":0,"top":0},"style":"Papryus"},"Example textbox":{"size":{"width":100,"height":100},"position":{"left":0,"top":0},"style":"Papryus"}},"styles":{"Papyrus":{"font":"papyrus","textcolor":"rgb(182, 63, 63)"}}}'
+        layoutJSON = '{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{"Designless.io":{"size":{"width":100,"height":100},"position":{"left":0,"top":0},"style":"Papryus"},"Example textbox":{"size":{"width":100,"height":100},"position":{"left":0,"top":0},"style":"Papryus"}},"styles":{"Papyrus":{"font":"papyrus","textcolor":"rgb(182, 63, 63)"}}}';
 
         //'{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{},"styles":{"Default":{"font":"Arial"}}}';
 
@@ -76,7 +73,7 @@ angular.module('designlessApp')
     }
 
 
-    layoutConfig["layout"] = layout;
+    layoutConfig.layout = layout;
 
     // Create layout object
     var layoutObj = new Layout(function() {

@@ -22,7 +22,7 @@ Markdown.prototype.structured = function() {
         var currentLine = lines[i];
         if (this._lineIsHeading(currentLine)) {
 
-            if (buffer.length > 0 && this._isWhitespace(buffer) == false) {
+            if (buffer.length > 0 && this._isWhitespace(buffer) === false) {
                 paragraphs[this._bareHeading(currentHeading)] = {
                     "heading": this._bareHeading(currentHeading),
                     "order": order,
@@ -41,7 +41,7 @@ Markdown.prototype.structured = function() {
         buffer = buffer + currentLine + "\n";
     }
 
-    if (buffer.length > 0 && this._isWhitespace(buffer) == false) {
+    if (buffer.length > 0 && this._isWhitespace(buffer) === false) {
         paragraphs[this._bareHeading(currentHeading)] = {
             "heading": this._bareHeading(currentHeading),
             "order": order,
@@ -51,8 +51,8 @@ Markdown.prototype.structured = function() {
     }
 
     this._structured = paragraphs;
-    return paragraphs
-}
+    return paragraphs;
+};
 
 Markdown.prototype._isWhitespace = function(s) {
     if ($.trim(s).length > 0) {
@@ -60,7 +60,7 @@ Markdown.prototype._isWhitespace = function(s) {
     } else {
         return true;
     }
-}
+};
 
 Markdown.prototype._lineIsHeading = function(line) {
     var strippedLine = line.trim();
@@ -69,23 +69,23 @@ Markdown.prototype._lineIsHeading = function(line) {
     } else {
         return false;
     }
-}
+};
 
 Markdown.prototype._headingLevel = function(line) {
     var regExp = /^ *(#+) *.*$/;
     var matches = regExp.exec(line);
-    return matches[1].length
-}
+    return matches[1].length;
+};
 
 Markdown.prototype._bareHeading = function(rawHeading) {
     var regExp = /^ *#+ *(.*)$/;
     var matches = regExp.exec(rawHeading);
     return matches[1];
-}
+};
 
 Markdown.prototype.headings = function() {
     return Object.keys(this._structured);
-}
+};
 
 Markdown.prototype.IDs = function() {
     var headings = this.headings();

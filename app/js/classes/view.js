@@ -15,21 +15,21 @@ View.prototype._currentBoxPosition = function(obj) {
     return {
         left: obj.left / this._ppm,
         top: obj.top / this._ppm
-    }
-}
+    };
+};
 
 View.prototype._mmToPixelPosition = function(desiredPosition) {
     return {
         top: desiredPosition.top * this._ppm,
         left: desiredPosition.left * this._ppm
     };
-}
+};
 
 View.prototype.updateOverflows = function(headings) {
     for (var i = 0; i < headings.length; i += 1) {
         this._updateBoxOverflow(headings[i]);
     }
-}
+};
 
 View.prototype._updateBoxOverflow = function(heading) {
     var textbox = $("#" + heading.hashCode());
@@ -51,7 +51,7 @@ View.prototype._textboxDragged = function(pixelSize,heading,newSizeCallback) {
     var newBoxSize =  {
         width: pixelSize.width / this._ppm,
         height: pixelSize.height / this._ppm
-    }  
+    };
 
     newSizeCallback(heading, newBoxSize);
 };
@@ -62,7 +62,7 @@ View.prototype.newTextBox = function(box, newPositionCallback,newSizeCallback) {
     var textboxWidth = box.size().width * this._ppm;
     var textboxHeight = box.size().height * this._ppm;
     var textboxHTML = '<div><div class="innertext">' + box.html() + '</div></div>';
-    var new_offset = this._mmToPixelPosition(box.position())
+    var new_offset = this._mmToPixelPosition(box.position());
     var objectThis = this;
 
     var newElement$ = $(textboxHTML)
@@ -107,15 +107,15 @@ View.prototype.newTextBox = function(box, newPositionCallback,newSizeCallback) {
             newPositionCallback(box.heading(), newBoxPos);
         }
     });
-}
+};
 
 View.prototype.updateTextBox = function(structuredMD) {
     var safeID = (structuredMD.heading).hashCode();
     var newHTMLContent = marked(structuredMD.markdowntext);
-    $("#" + safeID + " .innertext").html(newHTMLContent)
-}
+    $("#" + safeID + " .innertext").html(newHTMLContent);
+};
 
 View.prototype.deleteTextBox = function(heading) {
     var safeID = heading.hashCode();
     $("#" + safeID).remove();
-}
+};
