@@ -18,6 +18,7 @@ function Box(data) {
     this._parentid = data.parentid;
     this._pos = data.position;
     this._size = data.size;
+    this._style = data.style;
 }
 
 Box.prototype.setPosition = function(pos) {
@@ -51,6 +52,11 @@ Box.prototype.html = function() {
 Box.prototype.heading = function() {
     return this._title;
 };
+
+Box.prototype.style = function() {
+    return this._style;
+};
+
 
 Box.prototype.layoutJSON = function() {
     return {

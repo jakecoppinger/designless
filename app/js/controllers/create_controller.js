@@ -130,7 +130,7 @@ angular.module('designlessApp')
         var differences = DeepDiff(oldValue, newValue);
         console.log(pretty(differences));
     }, true);
-
+    /*
     $scope.boxes = {
         "NotDesignless.io": {
             "content": "<h2>Hello world</h2>"
@@ -139,4 +139,5 @@ angular.module('designlessApp')
             "content": "<h3>something world</h3>"
         }
     };
+    */
 });

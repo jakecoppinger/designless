@@ -49,17 +49,18 @@ Document.prototype._insertTextbox = function(boxKey) {
     var boxMDStructured = this._mdcontent[boxKey];
     var boxPos;
     var boxSize;
-    var safeID = (boxMDStructured.heading).hashCode();
+
+    var boxTitle = boxMDStructured.heading;
+    var box = this._layoutObj.box(boxTitle);    
+
+    var safeID = boxTitle.hashCode();
     var parentID = this._defaultContainerID;
 
-
-    //console.log(this._layoutObj.layoutJSON());
-
     // Is layout of box heading defined
-    if (this._layoutObj.boxExist(boxMDStructured.heading)) {
-        textboxJSON = this._layoutObj.getBoxJSON(boxMDStructured.heading);
-        boxSize = textboxJSON.size;
-        boxPos = textboxJSON.position;
+    if (this._layoutObj.boxExist(boxTitle)) {
+        textboxJSON = this._layoutObj.box(boxTitle);
+        boxSize = box.size;
+        boxPos = box.position;
     } else {
         console.log("Box not in layout - defaulting");
         boxSize = {
@@ -74,7 +75,7 @@ Document.prototype._insertTextbox = function(boxKey) {
 
     // Create new textbox
     textbox = new Box({
-        title: boxMDStructured.heading,
+        title: boxTitle,
         id: safeID,
         text: boxMDStructured.markdowntext,
         parentid: parentID,
@@ -84,7 +85,7 @@ Document.prototype._insertTextbox = function(boxKey) {
 
 
     // Is layout of box heading NOT defined (again)
-    if (this._layoutObj.boxExist(boxMDStructured.heading) === false) {
+    if (this._layoutObj.boxExist(boxTitle) === false) {
         console.log("Putting box layout into layout file");
         this._layoutObj.insertTextbox(textbox);
     }

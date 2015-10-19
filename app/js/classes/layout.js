@@ -41,7 +41,7 @@ Layout.prototype.boxExist = function(boxTitle) {
     }
 };
 
-Layout.prototype.getBoxJSON = function(boxTitle) {
+Layout.prototype.box = function(boxTitle) {
     return this._layout.boxes[boxTitle];
 };
 
