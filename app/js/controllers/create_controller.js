@@ -4,8 +4,6 @@ angular.module('designlessApp')
 
     // Initialize Semantic UI
     $timeout(function() {
-
-
         $('.demo.menu .item').tab({
             history: false
         });
@@ -137,8 +135,8 @@ angular.module('designlessApp')
         "NotDesignless.io": {
             "content": "<h2>Hello world</h2>"
         },
-
-        "something else":{
-            "content":"<h3>something world</h3>"}
-    };  
+        "something else": {
+            "content": "<h3>something world</h3>"
+        }
+    };
 });

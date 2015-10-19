@@ -28,18 +28,7 @@ angular.module('designlessApp', ['ngRoute', 'designlessApp.controllers', 'color.
     // use the HTML5 History API
     $locationProvider.html5Mode(true);
 })
-
-
-
-.directive('dragMe', function() {
-    return {
-        restrict: 'A',
-        link: function(scope, elem, attr, ctrl) {
-            elem.draggable();
-        }
-    };
-})
-
+// Great for injecting Markdown content
 .filter('to_trusted', ['$sce', function($sce) {
     return function(text) {
         return $sce.trustAsHtml(text);
