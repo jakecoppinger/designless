@@ -34,7 +34,7 @@ gulp.task('serve', ['injectsass'], function() {
     gulp.watch("app/**/*.scss", ['injectsass']);
     gulp.watch("app/**/*.html").on('change', reload);
 
-    gulp.watch(['app/**/*.js'], reload); // ['jshint']
+    gulp.watch(['app/**/*.js'], ['jshint', reload]); // ['jshint']
 
 });
 
@@ -69,10 +69,12 @@ gulp.task('styles', function() {
 
 
 // Copy Web Fonts To Dist
-gulp.task('fonts', function () {
-  return gulp.src(['app/fonts/**'])
-    .pipe(gulp.dest('dist/fonts'))
-    .pipe($.size({title: 'fonts'}));
+gulp.task('fonts', function() {
+    return gulp.src(['app/fonts/**'])
+        .pipe(gulp.dest('dist/fonts'))
+        .pipe($.size({
+            title: 'fonts'
+        }));
 });
 
 // Uglify & Lint JavaScript
@@ -88,6 +90,22 @@ gulp.task('js', function() {
         //    preserveComments: false
         //}))
         .pipe(gulp.dest('dist/' + outputPath))
+});
+
+
+// Lint JavaScript
+gulp.task('jshint', function() {
+    return gulp.src([
+            'app/js/**/*.js'
+        ])
+        .pipe(reload({
+            stream: true,
+            once: true
+        }))
+        .pipe($.jshint.extract()) // Extract JS from .html files
+        .pipe($.jshint())
+        .pipe($.jshint.reporter('jshint-stylish'))
+        .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
 });
 
 
@@ -137,8 +155,7 @@ gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
 gulp.task('build', ['clean'], function(cb) {
     runSequence(
-        ['copy', 'styles', 'js'],
-        ['html','fonts'],
+        ['copy', 'styles', 'js'], ['html', 'fonts'],
         cb);
     // Note: add , 'precache' , after 'vulcanize', if your are going to use Service Worker
 });
