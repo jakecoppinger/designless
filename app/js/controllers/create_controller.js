@@ -93,9 +93,6 @@ angular.module('designlessApp')
     // Initially render the document
     documentObject.update(initialmdObj);
 
-
-
-
     // Live Markdown updating
     simplemde.codemirror.on("change", function() {
         //var md = new Markdown(simplemde.value());
@@ -107,14 +104,10 @@ angular.module('designlessApp')
         });
     });
 
-
     $scope.$watch("markdown", function(newValue, oldValue) {
         var md = new Markdown($scope.markdown);
         documentObject.update(md);
     });
-
-
-
 
     $scope.styles = layout.styles;
 
@@ -136,14 +129,16 @@ angular.module('designlessApp')
 
     $scope.$watch("styles", function(newValue, oldValue) {
         console.log($scope.styles);
-
-
-
         var differences = DeepDiff(oldValue, newValue);
         console.log(pretty(differences));
-
-
-
     }, true);
 
+    $scope.boxes = {
+        "NotDesignless.io": {
+            "content": "<h2>Hello world</h2>"
+        },
+
+        "something else":{
+            "content":"<h3>something world</h3>"}
+    };  
 });
