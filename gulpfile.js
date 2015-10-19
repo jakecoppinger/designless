@@ -1,8 +1,16 @@
 var gulp = require('gulp');
+
+var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync').create();
 var sass = require('gulp-sass');
+var del = require('del');
+var runSequence = require('run-sequence');
+var merge = require('merge-stream');
+
+var path = require('path');
 var reload = browserSync.reload;
 historyApiFallback = require('connect-history-api-fallback');
+
 
 //var watch = require('app/semantic/tasks/watch');
 //var build = require('app/semantic/tasks/build');
@@ -40,9 +48,61 @@ gulp.task('sass', function() {
         .pipe(browserSync.stream());
 });
 
+
+var styleTask = function(sourcePath, endPath, srcs) {
+    return gulp.src(srcs.map(function(src) {
+            return path.join('app', sourcePath, src);
+        }))
+        .pipe($.changed(sourcePath, {
+            extension: '.css'
+        }))
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('.tmp/' + sourcePath))
+        .pipe($.if('*.css', $.cssmin()))
+        .pipe(gulp.dest('dist/' + endPath))
+        .pipe($.size({
+            title: sourcePath
+        }));
+};
+
+// Compile and Automatically Prefix Stylesheets
+gulp.task('styles', function() {
+    return styleTask('scss', 'css', ['**/*.*css']);
+});
+
+// Clean Output Directory
+gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
+
+// Copy All Files At The Root Level (app)
+gulp.task('copy', function() {
+    var app = gulp.src(['app/*'], {
+        dot: true
+    }).pipe(gulp.dest('dist'));
+
+    var bower = gulp.src([
+        'bower_components/**/*'
+    ]).pipe(gulp.dest('dist/bower_components'));
+
+    var semantic = gulp.src([
+        'semantic/**/*'
+    ]).pipe(gulp.dest('dist/semantic'));
+
+    return merge(app, bower, semantic)
+        .pipe($.size({
+            title: 'copy'
+        }));
+});
+
+
+// Build Production Files, the Default Task
+gulp.task('build', ['clean'], function(cb) {
+    runSequence(
+        ['copy', 'styles'],
+        cb);
+    // Note: add , 'precache' , after 'vulcanize', if your are going to use Service Worker
+});
+
 gulp.task('default', ['serve']);
-
-
 
 
 
