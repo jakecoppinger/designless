@@ -72,6 +72,7 @@ angular.module('designlessApp')
         console.log("using default layout");
     }
 
+    console.log(pretty(layout));
 
     layoutConfig.layout = layout;
 
@@ -133,16 +134,16 @@ angular.module('designlessApp')
     });
     */
 
-    $scope.$watch("styles", function(newValue,oldValue) {
+    $scope.$watch("styles", function(newValue, oldValue) {
         console.log($scope.styles);
-    },true);
-    
 
 
+
+        var differences = DeepDiff(oldValue, newValue);
+        console.log(pretty(differences));
+
+
+
+    }, true);
 
 });
-
-
-
-
-

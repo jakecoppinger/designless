@@ -19,3 +19,7 @@ String.prototype.hashCode = function() {
     }
     return hash;
 };
+
+function pretty(s) {
+    return JSON.stringify(s, null, 2);
+}
