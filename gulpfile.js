@@ -5,7 +5,7 @@ var sass = require('gulp-sass');
 var del = require('del');
 var runSequence = require('run-sequence');
 var merge = require('merge-stream');
-
+var ngAnnotate = require('gulp-ng-annotate');
 var path = require('path');
 var reload = browserSync.reload;
 historyApiFallback = require('connect-history-api-fallback');
@@ -84,11 +84,12 @@ gulp.task('js', function() {
         'app/js/**/*.js'
     ])
 
-    .pipe($.jshint())
-        .pipe($.jshint.reporter('jshint-stylish'))
-        //.pipe($.uglify({
-        //    preserveComments: false
-        //}))
+    //.pipe($.jshint())
+        //.pipe($.jshint.reporter('jshint-stylish'))
+        .pipe(ngAnnotate()) // Fixes angularjs dependency injection
+        .pipe($.uglify({
+            preserveComments: false
+        }))
         .pipe(gulp.dest('dist/' + outputPath))
 });
 
