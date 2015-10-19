@@ -1,5 +1,4 @@
 var gulp = require('gulp');
-
 var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync').create();
 var sass = require('gulp-sass');
@@ -11,12 +10,11 @@ var path = require('path');
 var reload = browserSync.reload;
 historyApiFallback = require('connect-history-api-fallback');
 
-
 //var watch = require('app/semantic/tasks/watch');
 //var build = require('app/semantic/tasks/build');
 
 // Static Server + watching scss/html files
-gulp.task('serve', ['sass'], function() {
+gulp.task('serve', ['injectsass'], function() {
 
     browserSync.init({
         server: {
@@ -33,7 +31,7 @@ gulp.task('serve', ['sass'], function() {
 
     });
 
-    gulp.watch("app/**/*.scss", ['sass']);
+    gulp.watch("app/**/*.scss", ['injectsass']);
     gulp.watch("app/**/*.html").on('change', reload);
 
     gulp.watch(['app/**/*.js'], reload); // ['jshint']
@@ -41,41 +39,81 @@ gulp.task('serve', ['sass'], function() {
 });
 
 // Compile sass into CSS & auto-inject into browsers
-gulp.task('sass', function() {
+gulp.task('injectsass', function() {
     return gulp.src("app/scss/*.scss")
         .pipe(sass())
         .pipe(gulp.dest("app/css"))
         .pipe(browserSync.stream());
 });
 
+// Compile stylesheets
+gulp.task('styles', function() {
+    var inputPath = 'scss';
+    var outputPath = 'css';
 
-var styleTask = function(sourcePath, endPath, srcs) {
+    var srcs = ['**/*.*css'];
     return gulp.src(srcs.map(function(src) {
-            return path.join('app', sourcePath, src);
+            return path.join('app', inputPath, src);
         }))
-        .pipe($.changed(sourcePath, {
+        .pipe($.changed(inputPath, {
             extension: '.css'
         }))
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('.tmp/' + sourcePath))
+        .pipe(gulp.dest('.tmp/' + inputPath))
         .pipe($.if('*.css', $.cssmin()))
-        .pipe(gulp.dest('dist/' + endPath))
+        .pipe(gulp.dest('dist/' + outputPath))
         .pipe($.size({
-            title: sourcePath
+            title: inputPath
         }));
-};
-
-// Compile and Automatically Prefix Stylesheets
-gulp.task('styles', function() {
-    return styleTask('scss', 'css', ['**/*.*css']);
 });
 
-// Clean Output Directory
-gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
+
+// Copy Web Fonts To Dist
+gulp.task('fonts', function () {
+  return gulp.src(['app/fonts/**'])
+    .pipe(gulp.dest('dist/fonts'))
+    .pipe($.size({title: 'fonts'}));
+});
+
+// Uglify & Lint JavaScript
+gulp.task('js', function() {
+    var outputPath = 'js';
+    return gulp.src([
+        'app/js/**/*.js'
+    ])
+
+    .pipe($.jshint())
+        .pipe($.jshint.reporter('jshint-stylish'))
+        .pipe($.uglify({
+            preserveComments: false
+        }))
+        .pipe(gulp.dest('dist/' + outputPath))
+});
+
+
+// Scan Your HTML For Assets & Optimize Them
+gulp.task('html', function() {
+    return gulp.src(['app/**/*.html'])
+
+
+    .pipe($.if('*.html', $.minifyHtml({
+            quotes: true,
+            empty: true,
+            spare: true
+        })))
+        // Output Files
+        .pipe(gulp.dest('dist'))
+        .pipe($.size({
+            title: 'html'
+        }));
+});
+
 
 // Copy All Files At The Root Level (app)
 gulp.task('copy', function() {
-    var app = gulp.src(['app/*'], {
+    var app = gulp.src([
+        'app/*',
+    ], {
         dot: true
     }).pipe(gulp.dest('dist'));
 
@@ -93,18 +131,16 @@ gulp.task('copy', function() {
         }));
 });
 
+// Clean Output Directory
+gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
-// Build Production Files, the Default Task
+
 gulp.task('build', ['clean'], function(cb) {
     runSequence(
-        ['copy', 'styles'],
+        ['copy', 'styles', 'js'],
+        ['html','fonts'],
         cb);
     // Note: add , 'precache' , after 'vulcanize', if your are going to use Service Worker
 });
 
 gulp.task('default', ['serve']);
-
-
-
-//gulp.task('watch-ui', 'Watch UI for Semantic UI', watch);
-//gulp.task('build-ui', 'Build UI for Semantic UI', build);
