@@ -69,6 +69,8 @@ angular.module('designlessApp')
         console.log("using default layout");
     }
 
+    pretty(layout);
+
     layoutConfig.layout = layout;
 
     // Create layout object
@@ -122,8 +124,7 @@ angular.module('designlessApp')
 
     $scope.$watch("styles", function(newValue, oldValue) {
         //console.log($scope.styles);
-        var differences = DeepDiff(oldValue, newValue);
-        //console.log(pretty(differences));
+        viewObj.updateStyles(newValue,oldValue);
     }, true);
     /*
     $scope.boxes = {

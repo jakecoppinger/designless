@@ -115,3 +115,23 @@ View.prototype.deleteTextBox = function(heading) {
     var safeID = heading.hashCode();
     $("#" + safeID).remove();
 };
+
+
+View.prototype.updateStyles = function(newStyles, oldStyles) {
+    var differences = DeepDiff(newStyles,oldStyles);
+    if (differences) {
+        var stylename = path[0];
+        var styleAttribute = path[1];
+
+        if(styleAttribute == "textcolor") {
+            // Code for applying new textcolor
+        }
+
+
+        console.log(pretty(differences));
+    }
+}
+
+
+
+
