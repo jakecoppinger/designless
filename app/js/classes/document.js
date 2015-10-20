@@ -70,7 +70,8 @@ Document.prototype._layoutPlusMarkdownBox = function(boxKey) {
     var boxSize;
 
     // Copy object, otherwise out changes travel upstream
-    var completeBox = Object.create(this._layoutObj.box(boxKey));
+    var completeBox = JSON.parse(JSON.stringify(this._layoutObj.box(boxKey)));
+
 
     // Is layout of box heading defined
     if (this._layoutObj.boxExist(boxKey)) {
@@ -91,6 +92,7 @@ Document.prototype._layoutPlusMarkdownBox = function(boxKey) {
     completeBox.parentid = this._defaultContainerID;
     completeBox.id = boxKey.hashCode();
     completeBox.html = marked(boxMDStructured.markdowntext);
+
     return completeBox;
 };
 
