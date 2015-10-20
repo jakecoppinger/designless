@@ -45,13 +45,49 @@ Document.prototype._deleteBoxes = function(boxKeys) {
 
 
 Document.prototype._insertTextbox = function(boxKey) {
+    // Create new textbox
 
+    /*
+    textbox = new Box({
+        title: boxKey,
+        id: safeID,
+        text: boxMDStructured.markdowntext,
+        parentid: parentID,
+        position: boxPos,
+        size: boxSize
+    });
+*/
+
+    var box = this._layoutPlusMarkdownBox(boxKey);
+
+    console.log("JSON:");
+    console.log(box);
+    //console.log("Object:");
+    //console.log(textbox);
 
     var objectThis = this;
+
+    // Is layout of box heading NOT defined (again)
+    if (this._layoutObj.boxExist(boxKey) === false) {
+        console.log("Putting box layout into layout file");
+        this._layoutObj.insertTextbox(textbox);
+    }
+
+    // Insert textbox to DOM
+    this._view.newTextBox(box, function(currentBoxTitle, newBoxPos) {
+        objectThis._layoutObj.updateTextboxPosition(currentBoxTitle, newBoxPos);
+    }, function(currentBoxTitle, newBoxSize) {
+        objectThis._layoutObj.updateTextboxSize(currentBoxTitle, newBoxSize);
+    });
+
+};
+
+
+
+Document.prototype._layoutPlusMarkdownBox = function(boxKey) {
     var boxMDStructured = this._mdcontent[boxKey];
     var boxPos;
     var boxSize;
-
 
     var box = this._layoutObj.box(boxKey);
 
@@ -74,50 +110,15 @@ Document.prototype._insertTextbox = function(boxKey) {
         };
     }
 
-
-
     box.markdowntext = boxMDStructured.markdowntext;
-    box.title = boxKey;
+    box.heading = boxKey;
     box.parentid = this._defaultContainerID;
-    box.id = safeID,
-
-
-
-    
-    // Create new textbox
-
-    /*
-    textbox = new Box({
-        title: boxKey,
-        id: safeID,
-        text: boxMDStructured.markdowntext,
-        parentid: parentID,
-        position: boxPos,
-        size: boxSize
-    });
-*/
-
-
-    console.log("JSON:");
-    console.log(box);
-    //console.log("Object:");
-    //console.log(textbox);
-
-
-    // Is layout of box heading NOT defined (again)
-    if (this._layoutObj.boxExist(boxKey) === false) {
-        console.log("Putting box layout into layout file");
-        this._layoutObj.insertTextbox(textbox);
-    }
-
-    // Insert textbox to DOM
-    this._view.newTextBox(box, function(currentBoxTitle, newBoxPos) {
-        objectThis._layoutObj.updateTextboxPosition(currentBoxTitle, newBoxPos);
-    }, function(currentBoxTitle, newBoxSize) {
-        objectThis._layoutObj.updateTextboxSize(currentBoxTitle, newBoxSize);
-    });
-
+    box.id = safeID;
+    box.html = marked(boxMDStructured.markdowntext);
+    return box;
 };
+
+
 
 Document.prototype._boxChanges = function(mdcontent) {
     var objectThis = this;

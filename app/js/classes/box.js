@@ -11,6 +11,8 @@ This class stores information about each textbox on the screen as part of the Mo
 For position, use left:0 and top:0
 For size use width:0 and height:0
 */
+
+/*
 function Box(data) {
     this._title = data.title;
     this._id = data.id;
@@ -65,3 +67,5 @@ Box.prototype.layoutJSON = function() {
     };
 
 };
+
+*/

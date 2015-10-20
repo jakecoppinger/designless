@@ -24,6 +24,8 @@ Layout.prototype.deleteTextbox = function(boxTitle) {
 };
 
 Layout.prototype.updateTextboxPosition = function(boxTitle, pos) {
+    console.log(boxTitle);
+    console.log(this._layout.boxes[boxTitle]);
     this._layout.boxes[boxTitle].position = pos;
     this._changeCallback();
 };
