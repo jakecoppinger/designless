@@ -54,23 +54,20 @@ angular.module('designlessApp')
     };
 
     // Set up layout from localstorage if possible
-    var layoutJSON = Lockr.get('layoutjson');
-    var layout = JSON.parse(layoutJSON);
+    var layoutJSON;// = Lockr.get('layoutjson');
+    var layout;
 
-    if (layout) {
-        console.log("using local storage layout");
+    if (layoutJSON) {
+        layout  = JSON.parse(layoutJSON);
     } else {
 
-        layoutJSON = '{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{"Designless.io":{"size":{"width":100,"height":100},"position":{"left":0,"top":0},"style":"Papryus"},"Example textbox":{"size":{"width":100,"height":100},"position":{"left":0,"top":0},"style":"Papryus"}},"styles":{"Papyrus":{"font":"papyrus","textcolor":"rgb(182, 63, 63)"}}}';
+        layoutJSON = '{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{"Designless.io":{"size":{"width":100,"height":100},"position":{"left":0,"top":0},"style":"Papryus"},"Example textbox":{"size":{"width":100,"height":100},"position":{"left":56,"top":56},"style":"Papryus"}},"styles":{"Papyrus":{"font":"papyrus","textcolor":"rgb(182, 63, 63)"}}}';
 
         //'{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{},"styles":{"Default":{"font":"Arial"}}}';
 
-        layout = JSON.parse(layoutJSON);
-
+        layout  = JSON.parse(layoutJSON);
         console.log("using default layout");
     }
-
-    console.log(pretty(layout));
 
     layoutConfig.layout = layout;
 
@@ -109,8 +106,6 @@ angular.module('designlessApp')
 
     $scope.styles = layout.styles;
 
-    console.log(JSON.stringify(layout.styles));
-
     /*
     $scope.colors.boxcolor = {
         Papyrus: 'rgb(182, 63, 63)'
@@ -126,9 +121,9 @@ angular.module('designlessApp')
     */
 
     $scope.$watch("styles", function(newValue, oldValue) {
-        console.log($scope.styles);
+        //console.log($scope.styles);
         var differences = DeepDiff(oldValue, newValue);
-        console.log(pretty(differences));
+        //console.log(pretty(differences));
     }, true);
     /*
     $scope.boxes = {

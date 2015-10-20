@@ -22,6 +22,7 @@ Document.prototype.update = function(md) {
     this._updateBoxesContent(boxChanges.modified);
     this._deleteBoxes(boxChanges.deleted);
     this._view.updateOverflows(md.headings());
+
 };
 
 Document.prototype._insertBoxes = function(boxKeys) {
@@ -45,28 +46,9 @@ Document.prototype._deleteBoxes = function(boxKeys) {
 
 
 Document.prototype._insertTextbox = function(boxKey) {
-    // Create new textbox
-
-    /*
-    textbox = new Box({
-        title: boxKey,
-        id: safeID,
-        text: boxMDStructured.markdowntext,
-        parentid: parentID,
-        position: boxPos,
-        size: boxSize
-    });
-*/
-
-    var box = this._layoutPlusMarkdownBox(boxKey);
-
-    console.log("JSON:");
-    console.log(box);
-    //console.log("Object:");
-    //console.log(textbox);
-
     var objectThis = this;
-
+    var completeBox = this._layoutPlusMarkdownBox(boxKey);
+    
     // Is layout of box heading NOT defined (again)
     if (this._layoutObj.boxExist(boxKey) === false) {
         console.log("Putting box layout into layout file");
@@ -74,7 +56,7 @@ Document.prototype._insertTextbox = function(boxKey) {
     }
 
     // Insert textbox to DOM
-    this._view.newTextBox(box, function(currentBoxTitle, newBoxPos) {
+    this._view.newTextBox(completeBox, function(currentBoxTitle, newBoxPos) {
         objectThis._layoutObj.updateTextboxPosition(currentBoxTitle, newBoxPos);
     }, function(currentBoxTitle, newBoxSize) {
         objectThis._layoutObj.updateTextboxSize(currentBoxTitle, newBoxSize);
@@ -82,43 +64,35 @@ Document.prototype._insertTextbox = function(boxKey) {
 
 };
 
-
-
 Document.prototype._layoutPlusMarkdownBox = function(boxKey) {
     var boxMDStructured = this._mdcontent[boxKey];
     var boxPos;
     var boxSize;
 
-    var box = this._layoutObj.box(boxKey);
-
-
-    var safeID = boxKey.hashCode();
-    var parentID = this._defaultContainerID;
+    // Copy object, otherwise out changes travel upstream
+    var completeBox = Object.create(this._layoutObj.box(boxKey));
 
     // Is layout of box heading defined
     if (this._layoutObj.boxExist(boxKey)) {
         console.log("Box heading defined");
     } else {
         console.log("Box not in layout - defaulting");
-        box.size = {
+        completeBox.size = {
             width: 100,
             height: 100
         };
-        box.position = {
+        completeBox.position = {
             left: 0,
             top: 0
         };
     }
 
-    box.markdowntext = boxMDStructured.markdowntext;
-    box.heading = boxKey;
-    box.parentid = this._defaultContainerID;
-    box.id = safeID;
-    box.html = marked(boxMDStructured.markdowntext);
-    return box;
+    completeBox.heading = boxKey;
+    completeBox.parentid = this._defaultContainerID;
+    completeBox.id = boxKey.hashCode();
+    completeBox.html = marked(boxMDStructured.markdowntext);
+    return completeBox;
 };
-
-
 
 Document.prototype._boxChanges = function(mdcontent) {
     var objectThis = this;

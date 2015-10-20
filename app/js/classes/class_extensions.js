@@ -21,5 +21,5 @@ String.prototype.hashCode = function() {
 };
 
 function pretty(s) {
-    return JSON.stringify(s, null, 2);
+    console.log(JSON.stringify(s, null, 2));
 }
