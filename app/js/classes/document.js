@@ -55,24 +55,20 @@ Document.prototype._insertTextbox = function(boxKey) {
 
     var box = this._layoutObj.box(boxKey);
 
-    box.markdowntext = boxMDStructured.markdowntext;
-    box.parentid = this._defaultContainerID;
 
     var safeID = boxKey.hashCode();
     var parentID = this._defaultContainerID;
 
     // Is layout of box heading defined
     if (this._layoutObj.boxExist(boxKey)) {
-        textboxJSON = this._layoutObj.box(boxKey);
-        boxSize = box.size;
-        boxPos = box.position;
+        console.log("Box heading defined");
     } else {
         console.log("Box not in layout - defaulting");
-        boxSize = {
+        box.size = {
             width: 100,
             height: 100
         };
-        boxPos = {
+        box.position = {
             left: 0,
             top: 0
         };
@@ -80,9 +76,17 @@ Document.prototype._insertTextbox = function(boxKey) {
 
 
 
+    box.markdowntext = boxMDStructured.markdowntext;
+    box.title = boxKey;
+    box.parentid = this._defaultContainerID;
+    box.id = safeID,
 
 
+
+    
     // Create new textbox
+
+    /*
     textbox = new Box({
         title: boxKey,
         id: safeID,
@@ -91,12 +95,13 @@ Document.prototype._insertTextbox = function(boxKey) {
         position: boxPos,
         size: boxSize
     });
+*/
 
 
     console.log("JSON:");
     console.log(box);
-    console.log("Object:");
-    console.log(textbox);
+    //console.log("Object:");
+    //console.log(textbox);
 
 
     // Is layout of box heading NOT defined (again)
@@ -106,7 +111,7 @@ Document.prototype._insertTextbox = function(boxKey) {
     }
 
     // Insert textbox to DOM
-    this._view.newTextBox(textbox, function(currentBoxTitle, newBoxPos) {
+    this._view.newTextBox(box, function(currentBoxTitle, newBoxPos) {
         objectThis._layoutObj.updateTextboxPosition(currentBoxTitle, newBoxPos);
     }, function(currentBoxTitle, newBoxSize) {
         objectThis._layoutObj.updateTextboxSize(currentBoxTitle, newBoxSize);

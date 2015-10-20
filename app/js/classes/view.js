@@ -59,21 +59,21 @@ View.prototype._textboxDragged = function(pixelSize,heading,newSizeCallback) {
 
 
 View.prototype.newTextBox = function(box, newPositionCallback,newSizeCallback) {
-    var textboxWidth = box.size().width * this._ppm;
-    var textboxHeight = box.size().height * this._ppm;
-    var textboxHTML = '<div><div class="innertext">' + box.html() + '</div></div>';
+    var textboxWidth = box.size.width * this._ppm;
+    var textboxHeight = box.size.height * this._ppm;
+    var textboxHTML = '<div><div class="innertext">' + box.html + '</div></div>';
     var new_offset = this._mmToPixelPosition(box.position());
     var objectThis = this;
 
     var newElement$ = $(textboxHTML)
-        .appendTo('#' + box.parentid()) // Should this just be main?
-        .attr("id", box.id())
+        .appendTo('#' + box.parentid // Should this just be main?
+        .attr("id", box.id
         .attr("class", "ui-widget-content textbox") 
         .width(textboxWidth)
         .height(textboxHeight)
         .resizable({
             "stop": function(event,ui) {
-                objectThis._textboxDragged(ui.size,box.heading(),newSizeCallback);
+                objectThis._textboxDragged(ui.size,box.heading,newSizeCallback);
             }
         })
 
@@ -95,7 +95,7 @@ View.prototype.newTextBox = function(box, newPositionCallback,newSizeCallback) {
         },
 
         stop: function() {
-            var object = document.getElementById(box.id());
+            var object = document.getElementById(box.id;
             var leftPixels = parseInt(object.style.left);
             var topPixels = parseInt(object.style.top);
 
@@ -104,7 +104,7 @@ View.prototype.newTextBox = function(box, newPositionCallback,newSizeCallback) {
                 top: topPixels
             });
 
-            newPositionCallback(box.heading(), newBoxPos);
+            newPositionCallback(box.heading, newBoxPos);
         }
     });
 };
