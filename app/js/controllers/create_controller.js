@@ -61,7 +61,7 @@ angular.module('designlessApp')
         layout  = JSON.parse(layoutJSON);
     } else {
 
-        layoutJSON = '{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{"Designless.io":{"size":{"width":100,"height":100},"position":{"left":0,"top":0},"style":"Papryus"},"Example textbox":{"size":{"width":100,"height":100},"position":{"left":56,"top":56},"style":"Papryus"}},"styles":{"Papyrus":{"font":"papyrus","textcolor":"rgb(182, 63, 63)"}}}';
+        layoutJSON = '{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{"Designless.io":{"size":{"width":100,"height":100},"position":{"left":0,"top":0},"style":"papyrus"},"Example textbox":{"size":{"width":100,"height":100},"position":{"left":56,"top":56},"style":"papyrus"}},"styles":{"papyrus":{"font-family":"papyrus","color":"rgb(182, 63, 63)"}}}';
 
         //'{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{},"styles":{"Default":{"font":"Arial"}}}';
 
@@ -69,7 +69,7 @@ angular.module('designlessApp')
         console.log("using default layout");
     }
 
-    pretty(layout);
+    console.log(pretty(layout));
 
     layoutConfig.layout = layout;
 

@@ -57,7 +57,8 @@ View.prototype._textboxDragged = function(pixelSize, heading, newSizeCallback) {
 View.prototype.newTextBox = function(box, newPositionCallback, newSizeCallback) {
     var textboxWidth = box.size.width * this._ppm;
     var textboxHeight = box.size.height * this._ppm;
-    var textboxHTML = '<div><div class="innertext">' + box.html + '</div></div>';
+    var textboxHTML = '<div><div class="innertext ' + box.style + '">' + box.html + '</div></div>';
+
     var new_offset = this._mmToPixelPosition(box.position);
     var objectThis = this;
 
@@ -116,22 +117,39 @@ View.prototype.deleteTextBox = function(heading) {
     $("#" + safeID).remove();
 };
 
-
 View.prototype.updateStyles = function(newStyles, oldStyles) {
-    var differences = DeepDiff(newStyles,oldStyles);
-    if (differences) {
-        var stylename = path[0];
-        var styleAttribute = path[1];
+    var propertyLookups = [];
+    var change;
+    var style;
+    var property;
+    var value;
 
-        if(styleAttribute == "textcolor") {
-            // Code for applying new textcolor
+    var differences = DeepDiff(newStyles, oldStyles);
+    if (differences) {
+        for (var changeIndex in differences) {
+            change = differences[changeIndex];
+            style = change.path[0];
+            property = change.path[1];
+            value = change.lhs;
+            this._setStyleCSS(style, property, value);
+            console.log("[Styles] Set " + property + " to " + value + " on all " + style);
         }
 
+    } else {
+        // Apply all styles
+        var keys = [];
+        for (style in newStyles) {
+            var styleDict = newStyles[style];
+            for (property in styleDict) {
+                value = styleDict[property];
+                console.log("[Styles] Set " + property + " to " + value + " on all " + style);
+                this._setStyleCSS(style, property, value);
+            }
 
-        console.log(pretty(differences));
+        }
     }
-}
+};
 
-
-
-
+View.prototype._setStyleCSS = function(style, property, value) {
+    $('.' + style).css(property, value);
+};
