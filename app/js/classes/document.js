@@ -45,20 +45,25 @@ Document.prototype._deleteBoxes = function(boxKeys) {
 
 
 Document.prototype._insertTextbox = function(boxKey) {
+
+
     var objectThis = this;
     var boxMDStructured = this._mdcontent[boxKey];
     var boxPos;
     var boxSize;
 
-    var boxTitle = boxMDStructured.heading;
-    var box = this._layoutObj.box(boxTitle);    
 
-    var safeID = boxTitle.hashCode();
+    var box = this._layoutObj.box(boxKey);
+
+    box.markdowntext = boxMDStructured.markdowntext;
+    box.parentid = this._defaultContainerID;
+
+    var safeID = boxKey.hashCode();
     var parentID = this._defaultContainerID;
 
     // Is layout of box heading defined
-    if (this._layoutObj.boxExist(boxTitle)) {
-        textboxJSON = this._layoutObj.box(boxTitle);
+    if (this._layoutObj.boxExist(boxKey)) {
+        textboxJSON = this._layoutObj.box(boxKey);
         boxSize = box.size;
         boxPos = box.position;
     } else {
@@ -73,9 +78,13 @@ Document.prototype._insertTextbox = function(boxKey) {
         };
     }
 
+
+
+
+
     // Create new textbox
     textbox = new Box({
-        title: boxTitle,
+        title: boxKey,
         id: safeID,
         text: boxMDStructured.markdowntext,
         parentid: parentID,
@@ -84,8 +93,14 @@ Document.prototype._insertTextbox = function(boxKey) {
     });
 
 
+    console.log("JSON:");
+    console.log(box);
+    console.log("Object:");
+    console.log(textbox);
+
+
     // Is layout of box heading NOT defined (again)
-    if (this._layoutObj.boxExist(boxTitle) === false) {
+    if (this._layoutObj.boxExist(boxKey) === false) {
         console.log("Putting box layout into layout file");
         this._layoutObj.insertTextbox(textbox);
     }
@@ -93,7 +108,7 @@ Document.prototype._insertTextbox = function(boxKey) {
     // Insert textbox to DOM
     this._view.newTextBox(textbox, function(currentBoxTitle, newBoxPos) {
         objectThis._layoutObj.updateTextboxPosition(currentBoxTitle, newBoxPos);
-    }, function(currentBoxTitle,newBoxSize) {
+    }, function(currentBoxTitle, newBoxSize) {
         objectThis._layoutObj.updateTextboxSize(currentBoxTitle, newBoxSize);
     });
 
@@ -138,4 +153,3 @@ Document.prototype._boxModified = function(box1, box2) {
         return true;
     }
 };
-
