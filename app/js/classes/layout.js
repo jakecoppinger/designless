@@ -13,8 +13,13 @@ function Layout(layoutChangedFunction, obj) {
     this._layout = obj.layout;
 }
 
-Layout.prototype.insertTextbox = function(textbox) {
-    this._layout.boxes[textbox.heading()] = textbox.layoutJSON();
+Layout.prototype.insertTextbox = function(box) {
+    var layoutJSON = {
+        "size": box.size,
+        "position": box.position,
+        "style": box.style
+    };
+    this._layout.boxes[box.heading] = layoutJSON;
     this._changeCallback();
 };
 
@@ -41,7 +46,7 @@ Layout.prototype.boxExist = function(boxTitle) {
     }
 };
 
-Layout.prototype.getBoxJSON = function(boxTitle) {
+Layout.prototype.box = function(boxTitle) {
     return this._layout.boxes[boxTitle];
 };
 

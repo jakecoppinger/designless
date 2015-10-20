@@ -25,8 +25,7 @@
                         <h2>{{stylename}}</h2>
                         <p>Font: {{style.font}}</p>
                         <p>Color:</p>
-
-                       <color-picker ng-model="style.textcolor" color-picker-format="'rgb'" color-picker-swatch="true" color-picker-swatch-only="true" color-picker-swatch-bootstrap="false"></color-picker>
+                        <color-picker ng-model="style.color" color-picker-format="'rgb'" color-picker-swatch="true" color-picker-swatch-only="true" color-picker-swatch-bootstrap="false"></color-picker>
                     </div>
                 </div>
                 <div class="ui segment stylebox">
@@ -43,7 +42,20 @@
             </div>
         </div>
         <div id="designcenter">
-            <div id="page1" class="page"></div>
+            <div id="page1" class="page">
+
+                <!--
+                <div ng-repeat="(heading,box) in boxes">
+                    <div drag-box ng-bind-html="box.content | to_trusted">
+                    </div>
+                </div>
+            -->
+                <!--
+                <div drag-me>
+                    <p>Hello there</p>
+                </div>
+                -->
+            </div>
         </div>
     </div>
 </div>

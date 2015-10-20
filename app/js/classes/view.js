@@ -43,12 +43,10 @@ View.prototype._updateBoxOverflow = function(heading) {
     }
 };
 
-
-
-View.prototype._textboxDragged = function(pixelSize,heading,newSizeCallback) {
+View.prototype._textboxDragged = function(pixelSize, heading, newSizeCallback) {
     this._updateBoxOverflow(heading);
 
-    var newBoxSize =  {
+    var newBoxSize = {
         width: pixelSize.width / this._ppm,
         height: pixelSize.height / this._ppm
     };
@@ -56,24 +54,23 @@ View.prototype._textboxDragged = function(pixelSize,heading,newSizeCallback) {
     newSizeCallback(heading, newBoxSize);
 };
 
+View.prototype.newTextBox = function(box, newPositionCallback, newSizeCallback) {
+    var textboxWidth = box.size.width * this._ppm;
+    var textboxHeight = box.size.height * this._ppm;
+    var textboxHTML = '<div><div class="innertext ' + box.style + '">' + box.html + '</div></div>';
 
-
-View.prototype.newTextBox = function(box, newPositionCallback,newSizeCallback) {
-    var textboxWidth = box.size().width * this._ppm;
-    var textboxHeight = box.size().height * this._ppm;
-    var textboxHTML = '<div><div class="innertext">' + box.html() + '</div></div>';
-    var new_offset = this._mmToPixelPosition(box.position());
+    var new_offset = this._mmToPixelPosition(box.position);
     var objectThis = this;
 
     var newElement$ = $(textboxHTML)
-        .appendTo('#' + box.parentid()) // Should this just be main?
-        .attr("id", box.id())
-        .attr("class", "ui-widget-content textbox") 
+        .appendTo('#' + box.parentid) // Should this just be main?
+        .attr("id", box.id)
+        .attr("class", "ui-widget-content textbox")
         .width(textboxWidth)
         .height(textboxHeight)
         .resizable({
-            "stop": function(event,ui) {
-                objectThis._textboxDragged(ui.size,box.heading(),newSizeCallback);
+            "stop": function(event, ui) {
+                objectThis._textboxDragged(ui.size, box.heading, newSizeCallback);
             }
         })
 
@@ -85,7 +82,7 @@ View.prototype.newTextBox = function(box, newPositionCallback,newSizeCallback) {
     .draggable({
         containment: 'parent',
         cancel: "text",
-        snap:true,
+        snap: true,
         snapTolerance: 20,
         start: function() {
             $('#textarea').focus();
@@ -95,7 +92,7 @@ View.prototype.newTextBox = function(box, newPositionCallback,newSizeCallback) {
         },
 
         stop: function() {
-            var object = document.getElementById(box.id());
+            var object = document.getElementById(box.id);
             var leftPixels = parseInt(object.style.left);
             var topPixels = parseInt(object.style.top);
 
@@ -104,7 +101,7 @@ View.prototype.newTextBox = function(box, newPositionCallback,newSizeCallback) {
                 top: topPixels
             });
 
-            newPositionCallback(box.heading(), newBoxPos);
+            newPositionCallback(box.heading, newBoxPos);
         }
     });
 };
@@ -118,4 +115,41 @@ View.prototype.updateTextBox = function(structuredMD) {
 View.prototype.deleteTextBox = function(heading) {
     var safeID = heading.hashCode();
     $("#" + safeID).remove();
+};
+
+View.prototype.updateStyles = function(newStyles, oldStyles) {
+    var propertyLookups = [];
+    var change;
+    var style;
+    var property;
+    var value;
+
+    var differences = DeepDiff(newStyles, oldStyles);
+    if (differences) {
+        for (var changeIndex in differences) {
+            change = differences[changeIndex];
+            style = change.path[0];
+            property = change.path[1];
+            value = change.lhs;
+            this._setStyleCSS(style, property, value);
+            console.log("[Styles] Set " + property + " to " + value + " on all " + style);
+        }
+
+    } else {
+        // Apply all styles
+        var keys = [];
+        for (style in newStyles) {
+            var styleDict = newStyles[style];
+            for (property in styleDict) {
+                value = styleDict[property];
+                console.log("[Styles] Set " + property + " to " + value + " on all " + style);
+                this._setStyleCSS(style, property, value);
+            }
+
+        }
+    }
+};
+
+View.prototype._setStyleCSS = function(style, property, value) {
+    $('.' + style).css(property, value);
 };

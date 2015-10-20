@@ -14,17 +14,23 @@ angular.module('designlessApp', ['ngRoute', 'designlessApp.controllers', 'color.
     })
 
     .when('/create', {
-        templateUrl: 'pages/create.html',
-        controller: 'createController'
-    })
-.when('/guide', {
-        templateUrl: 'pages/guide.html'
-    })
-    .when('/contact', {
-        templateUrl: 'pages/contact.html',
-        controller: 'contactController'
-    });
+            templateUrl: 'pages/create.html',
+            controller: 'createController'
+        })
+        .when('/guide', {
+            templateUrl: 'pages/guide.html'
+        })
+        .when('/contact', {
+            templateUrl: 'pages/contact.html',
+            controller: 'contactController'
+        });
 
     // use the HTML5 History API
     $locationProvider.html5Mode(true);
-});
+})
+// Great for injecting Markdown content
+.filter('to_trusted', ['$sce', function($sce) {
+    return function(text) {
+        return $sce.trustAsHtml(text);
+    };
+}]);

@@ -22,6 +22,7 @@ Document.prototype.update = function(md) {
     this._updateBoxesContent(boxChanges.modified);
     this._deleteBoxes(boxChanges.deleted);
     this._view.updateOverflows(md.headings());
+
 };
 
 Document.prototype._insertBoxes = function(boxKeys) {
@@ -46,56 +47,53 @@ Document.prototype._deleteBoxes = function(boxKeys) {
 
 Document.prototype._insertTextbox = function(boxKey) {
     var objectThis = this;
-    var boxMDStructured = this._mdcontent[boxKey];
-    var boxPos;
-    var boxSize;
-    var safeID = (boxMDStructured.heading).hashCode();
-    var parentID = this._defaultContainerID;
-
-
-    //console.log(this._layoutObj.layoutJSON());
-
-    // Is layout of box heading defined
-    if (this._layoutObj.boxExist(boxMDStructured.heading)) {
-        textboxJSON = this._layoutObj.getBoxJSON(boxMDStructured.heading);
-        boxSize = textboxJSON.size;
-        boxPos = textboxJSON.position;
-    } else {
-        console.log("Box not in layout - defaulting");
-        boxSize = {
-            width: 100,
-            height: 100
-        };
-        boxPos = {
-            left: 0,
-            top: 0
-        };
-    }
-
-    // Create new textbox
-    textbox = new Box({
-        title: boxMDStructured.heading,
-        id: safeID,
-        text: boxMDStructured.markdowntext,
-        parentid: parentID,
-        position: boxPos,
-        size: boxSize
-    });
-
-
+    var completeBox = this._layoutPlusMarkdownBox(boxKey);
+    
     // Is layout of box heading NOT defined (again)
-    if (this._layoutObj.boxExist(boxMDStructured.heading) === false) {
+    if (this._layoutObj.boxExist(boxKey) === false) {
         console.log("Putting box layout into layout file");
         this._layoutObj.insertTextbox(textbox);
     }
 
     // Insert textbox to DOM
-    this._view.newTextBox(textbox, function(currentBoxTitle, newBoxPos) {
+    this._view.newTextBox(completeBox, function(currentBoxTitle, newBoxPos) {
         objectThis._layoutObj.updateTextboxPosition(currentBoxTitle, newBoxPos);
-    }, function(currentBoxTitle,newBoxSize) {
+    }, function(currentBoxTitle, newBoxSize) {
         objectThis._layoutObj.updateTextboxSize(currentBoxTitle, newBoxSize);
     });
 
+};
+
+Document.prototype._layoutPlusMarkdownBox = function(boxKey) {
+    var boxMDStructured = this._mdcontent[boxKey];
+    var boxPos;
+    var boxSize;
+
+    // Copy object, otherwise out changes travel upstream
+    var completeBox = JSON.parse(JSON.stringify(this._layoutObj.box(boxKey)));
+
+
+    // Is layout of box heading defined
+    if (this._layoutObj.boxExist(boxKey)) {
+        console.log("Box heading defined");
+    } else {
+        console.log("Box not in layout - defaulting");
+        completeBox.size = {
+            width: 100,
+            height: 100
+        };
+        completeBox.position = {
+            left: 0,
+            top: 0
+        };
+    }
+
+    completeBox.heading = boxKey;
+    completeBox.parentid = this._defaultContainerID;
+    completeBox.id = boxKey.hashCode();
+    completeBox.html = marked(boxMDStructured.markdowntext);
+
+    return completeBox;
 };
 
 Document.prototype._boxChanges = function(mdcontent) {
@@ -137,4 +135,3 @@ Document.prototype._boxModified = function(box1, box2) {
         return true;
     }
 };
-
