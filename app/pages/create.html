@@ -30,51 +30,47 @@
                 <h1>{{selectedStyle}}</h1>
                 <h1>{{select.style}}</h1>
                 <h1>{{styleSelectOptions}}</p>
-
-                
                 <div class="ui form">
-    <div class="field">
-        <label>Gender</label>
-        <select class="ui dropdown" ng-model="select.style">
-            <option ng:repeat="style in styleSelectOptions" value="{{style.id}}">
-                {{style.name}}
-            </option>
-        </select>
-    </div>
-</div>
-<div ng-repeat="(stylename,style) in styles">
-    <div class="ui segment stylebox">
-        <h2>{{selectedStyle}}</h2>
-        <form class="ui form">
-            <div class="field">
-                <div class="ui labeled input">
-                    <div class="ui label">
-                        Font
+                    <div class="field">
+                        <label>Gender</label>
+                        <select class="ui dropdown" ng-model="select.style">
+                            <option ng:repeat="style in styleSelectOptions" value="{{style.id}}">
+                                {{style.name}}
+                            </option>
+                        </select>
                     </div>
-                    <input type="text" ng-model="style.font">
                 </div>
-            </div>
-            <div class="field">
-                <div class="ui labeled input colorpicker">
-                    <div class="ui label">Color</div>
-                    <div class="ui label colorpicker">
-                        <color-picker ng-model="style.color" color-picker-format="'hex'" color-picker-swatch="true" color-picker-swatch-only="true" color-picker-swatch-bootstrap="false"></color-picker>
+                <div ng-repeat="(stylename,style) in styles">
+                    <div class="ui segment stylebox">
+                        <h2>{{selectedStyle}}</h2>
+                        <form class="ui form">
+                            <div class="field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">
+                                        Font
+                                    </div>
+                                    <input type="text" ng-model="style.font">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui labeled input colorpicker">
+                                    <div class="ui label">Color</div>
+                                    <div class="ui label colorpicker">
+                                        <color-picker ng-model="style.color" color-picker-format="'hex'" color-picker-swatch="true" color-picker-swatch-only="true" color-picker-swatch-bootstrap="false"></color-picker>
+                                    </div>
+                                    <input type="text" ng-model="style.color">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui toggle checkbox">
+                                    <input type="checkbox" tabindex="0" class="hidden">
+                                    <label>Kerning</label>
+                                </div>
+                            </div>
+                            <button class="ui button" type="submit">Save</button>
+                        </form>
                     </div>
-                    <input type="text" ng-model="style.color">
                 </div>
-            </div>
-            <div class="field">
-                <div class="ui toggle checkbox">
-                    <input type="checkbox" tabindex="0" class="hidden">
-                    <label>Kerning</label>
-                </div>
-            </div>
-            <button class="ui button" type="submit">Save</button>
-        </form>
-    </div>
-</div>
-
-
             </div>
         </div>
         <div id="designcenter">
