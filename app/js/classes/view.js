@@ -117,8 +117,18 @@ View.prototype.deleteTextBox = function(heading) {
     $("#" + safeID).remove();
 };
 
+View.prototype.stylePropertyLookups = function(propertyInput) {
+    var propertyLookups = {
+        "font": "font-family"
+    };
+
+    if (propertyInput in propertyLookups) {
+        return propertyLookups[propertyInput];
+    }
+    return propertyInput;
+};
+
 View.prototype.updateStyles = function(newStyles, oldStyles) {
-    var propertyLookups = [];
     var change;
     var style;
     var property;
@@ -131,7 +141,7 @@ View.prototype.updateStyles = function(newStyles, oldStyles) {
             style = change.path[0];
             property = change.path[1];
             value = change.lhs;
-            this._setStyleCSS(style, property, value);
+            this._setStyle(style, property, value);
             console.log("[Styles] Set " + property + " to " + value + " on all " + style);
         }
 
@@ -142,14 +152,16 @@ View.prototype.updateStyles = function(newStyles, oldStyles) {
             var styleDict = newStyles[style];
             for (property in styleDict) {
                 value = styleDict[property];
+
                 console.log("[Styles] Set " + property + " to " + value + " on all " + style);
-                this._setStyleCSS(style, property, value);
+                this._setStyle(style, property, value);
             }
 
         }
     }
 };
 
-View.prototype._setStyleCSS = function(style, property, value) {
-    $('.' + style).css(property, value);
+View.prototype._setStyle = function(style, property, value) {
+    var cssProperty = this.stylePropertyLookups(property);
+    $('.' + style).css(cssProperty, value);
 };
