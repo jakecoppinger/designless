@@ -27,6 +27,24 @@
                     </div>
                     <div class="results"></div>
                 </div>
+
+                <h1>{{selectedStyle}}</h1>
+                <h1>{{select.style}}</h1>
+                <h1>{{styleSelectOptions}}</p>
+
+                <div class="ui form">
+                    <div class="field">
+                        <label>Gender</label>
+                        <select class="ui dropdown"  ng-model="select.style" >
+
+                            <option ng:repeat="style in styleSelectOptions" value="{{style.id}}">
+                                {{style.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+
                 <div ng-repeat="(stylename,style) in styles">
                     <div class="ui segment stylebox">
                         <h2>{{stylename}}</h2>

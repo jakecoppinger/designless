@@ -8,6 +8,9 @@ angular.module('designlessApp')
             history: false
         });
 
+        $('.ui.dropdown')
+            .dropdown();
+
     }, 0);
 
     console.log("Loaded create controller");
@@ -54,18 +57,18 @@ angular.module('designlessApp')
     };
 
     // Set up layout from localstorage if possible
-    var layoutJSON;// = Lockr.get('layoutjson');
+    var layoutJSON; // = Lockr.get('layoutjson');
     var layout;
 
     if (layoutJSON) {
-        layout  = JSON.parse(layoutJSON);
+        layout = JSON.parse(layoutJSON);
     } else {
 
         layoutJSON = '{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{"Designless.io":{"size":{"width":100,"height":100},"position":{"left":0,"top":0},"style":"Papyrus"},"Example textbox":{"size":{"width":100,"height":100},"position":{"left":56,"top":56},"style":"Helvetica"}},"styles":{"Papyrus":{"font":"Papyrus","color":"#893039"},"Helvetica":{"font":"Helvetica Neue","color":"#173039"}},"fonts":["Apple Braille","Apple Color Emoji","Apple Symbols","AppleGothic","AquaKana","Courier","Geeza Pro Bold","Geeza Pro","Geneva","HelveLTMM","Helvetica LT MM","Helvetica","HelveticaNeue","HelveticaNeueDeskUI","Keyboard","LastResort","LucidaGrande","MarkerFelt","Menlo","Monaco","STHeiti Light","STHeiti Medium","Symbol","Thonburi","ThonburiBold","Times LT MM","Times","TimesLTMM","ZapfDingbats"]}';
 
         //'{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{},"styles":{"Default":{"font":"Arial"}}}';
 
-        layout  = JSON.parse(layoutJSON);
+        layout = JSON.parse(layoutJSON);
         console.log("using default layout");
     }
 
@@ -124,7 +127,7 @@ angular.module('designlessApp')
 
     $scope.$watch("styles", function(newValue, oldValue) {
         //console.log($scope.styles);
-        viewObj.updateStyles(newValue,oldValue);
+        viewObj.updateStyles(newValue, oldValue);
     }, true);
     /*
     $scope.boxes = {
@@ -138,39 +141,89 @@ angular.module('designlessApp')
     */
 
 
-var content = [
-  { title: 'Andorra' },
-  { title: 'United Arab Emirates' },
-  { title: 'Afghanistan' },
-  { title: 'Antigua' },
-  { title: 'Anguilla' },
-  { title: 'Albania' },
-  { title: 'Armenia' },
-  { title: 'Netherlands Antilles' },
-  { title: 'Angola' },
-  { title: 'Argentina' },
-  { title: 'American Samoa' },
-  { title: 'Austria' },
-  { title: 'Australia' },
-  { title: 'Aruba' },
-  { title: 'Aland Islands' },
-  { title: 'Azerbaijan' },
-  { title: 'Bosnia' },
-  { title: 'Barbados' },
-  { title: 'Bangladesh' },
-  { title: 'Belgium' },
-  { title: 'Burkina Faso' },
-  { title: 'Bulgaria' },
-  { title: 'Bahrain' },
-  { title: 'Burundi' }
-  // etc
-];
-
-$('#testsearch')
-  .search({
-    source: content
-  });
 
 
+    var content = [{
+            title: 'Andorra'
+        }, {
+            title: 'United Arab Emirates'
+        }, {
+            title: 'Afghanistan'
+        }, {
+            title: 'Antigua'
+        }, {
+            title: 'Anguilla'
+        }, {
+            title: 'Albania'
+        }, {
+            title: 'Armenia'
+        }, {
+            title: 'Netherlands Antilles'
+        }, {
+            title: 'Angola'
+        }, {
+            title: 'Argentina'
+        }, {
+            title: 'American Samoa'
+        }, {
+            title: 'Austria'
+        }, {
+            title: 'Australia'
+        }, {
+            title: 'Aruba'
+        }, {
+            title: 'Aland Islands'
+        }, {
+            title: 'Azerbaijan'
+        }, {
+            title: 'Bosnia'
+        }, {
+            title: 'Barbados'
+        }, {
+            title: 'Bangladesh'
+        }, {
+            title: 'Belgium'
+        }, {
+            title: 'Burkina Faso'
+        }, {
+            title: 'Bulgaria'
+        }, {
+            title: 'Bahrain'
+        }, {
+            title: 'Burundi'
+        }
+        // etc
+    ];
 
+    $('#testsearch')
+        .search({
+            source: content
+        });
+
+    // Create array for style dropdown
+    $scope.styleSelectOptions = [];
+    $scope.styleSelectOptions.push({
+        "name": "Default style",
+        "id": 1
+    });
+
+    var counter = 2;
+    for (var styleName in $scope.styles) {
+
+        $scope.styleSelectOptions.push({
+            "name": styleName,
+            "id": counter
+        });
+        counter += 1;
+    }
+
+
+    // Find name of selected style
+    $scope.$watch("select.style", function(newValue, oldValue) {
+        $scope.selectedStyle = $scope.styleSelectOptions[parseInt($scope.select.style) - 1].name;
+    });
+
+    $scope.select = {
+        "style": "1"
+    };
 });
