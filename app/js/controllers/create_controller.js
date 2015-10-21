@@ -64,7 +64,7 @@ angular.module('designlessApp')
         layout = JSON.parse(layoutJSON);
     } else {
 
-        layoutJSON = '{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{"Designless.io":{"size":{"width":100,"height":100},"position":{"left":0,"top":0},"style":"Papyrus"},"Example textbox":{"size":{"width":100,"height":100},"position":{"left":56,"top":56},"style":"Helvetica"}},"styles":{"Papyrus":{"font":"Papyrus","color":"#893039"},"Helvetica":{"font":"Helvetica Neue","color":"#173039"}},"fonts":["Apple Braille","Apple Color Emoji","Apple Symbols","AppleGothic","AquaKana","Courier","Geeza Pro Bold","Geeza Pro","Geneva","HelveLTMM","Helvetica LT MM","Helvetica","HelveticaNeue","HelveticaNeueDeskUI","Keyboard","LastResort","LucidaGrande","MarkerFelt","Menlo","Monaco","STHeiti Light","STHeiti Medium","Symbol","Thonburi","ThonburiBold","Times LT MM","Times","TimesLTMM","ZapfDingbats"]}';
+        layoutJSON = '{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{"Designless.io":{"size":{"width":100,"height":100},"position":{"left":0,"top":0},"style":"Papyrus"},"Example textbox":{"size":{"width":100,"height":100},"position":{"left":56,"top":56},"style":"Helvetica"}},"styles":{"Default style":{"font":"Comic Sans MS","color":"#B33039"},"Papyrus":{"font":"Papyrus","color":"#893039"},"Helvetica":{"font":"Helvetica Neue","color":"#173039"}},"fonts":["Apple Braille","Apple Color Emoji","Apple Symbols","AppleGothic","AquaKana","Courier","Geeza Pro Bold","Geeza Pro","Geneva","HelveLTMM","Helvetica LT MM","Helvetica","HelveticaNeue","HelveticaNeueDeskUI","Keyboard","LastResort","LucidaGrande","MarkerFelt","Menlo","Monaco","STHeiti Light","STHeiti Medium","Symbol","Thonburi","ThonburiBold","Times LT MM","Times","TimesLTMM","ZapfDingbats"]}';
 
         //'{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{},"styles":{"Default":{"font":"Arial"}}}';
 
@@ -84,6 +84,8 @@ angular.module('designlessApp')
         Lockr.set('layoutjson', this.layoutString());
     }, layoutConfig);
 
+
+    $scope.fontList = layout.fonts;
     // Create view object
     var viewObj = new View(pixelsPerMM.x);
 
@@ -111,89 +113,25 @@ angular.module('designlessApp')
 
     $scope.styles = layout.styles;
 
-    /*
-    $scope.colors.boxcolor = {
-        Papyrus: 'rgb(182, 63, 63)'
-    };
-    */
 
-    //console.log($scope.styles);
 
-    /*
-    $scope.$watch("styles.Papyrus.textcolor", function(newValue, oldValue) {
-        console.log($scope.styles.Papyrus.textcolor);
-    });
-    */
 
     $scope.$watch("styles", function(newValue, oldValue) {
         //console.log($scope.styles);
         viewObj.updateStyles(newValue, oldValue);
     }, true);
-    /*
-    $scope.boxes = {
-        "NotDesignless.io": {
-            "content": "<h2>Hello world</h2>"
-        },
-        "something else": {
-            "content": "<h3>something world</h3>"
-        }
-    };
-    */
 
 
 
 
-    var content = [{
-            title: 'Andorra'
-        }, {
-            title: 'United Arab Emirates'
-        }, {
-            title: 'Afghanistan'
-        }, {
-            title: 'Antigua'
-        }, {
-            title: 'Anguilla'
-        }, {
-            title: 'Albania'
-        }, {
-            title: 'Armenia'
-        }, {
-            title: 'Netherlands Antilles'
-        }, {
-            title: 'Angola'
-        }, {
-            title: 'Argentina'
-        }, {
-            title: 'American Samoa'
-        }, {
-            title: 'Austria'
-        }, {
-            title: 'Australia'
-        }, {
-            title: 'Aruba'
-        }, {
-            title: 'Aland Islands'
-        }, {
-            title: 'Azerbaijan'
-        }, {
-            title: 'Bosnia'
-        }, {
-            title: 'Barbados'
-        }, {
-            title: 'Bangladesh'
-        }, {
-            title: 'Belgium'
-        }, {
-            title: 'Burkina Faso'
-        }, {
-            title: 'Bulgaria'
-        }, {
-            title: 'Bahrain'
-        }, {
-            title: 'Burundi'
-        }
-        // etc
-    ];
+
+
+    var content = [];
+    for (var index in $scope.fontList) {
+        content.push({
+            "title": $scope.fontList[index]
+        })
+    }
 
     $('#testsearch')
         .search({

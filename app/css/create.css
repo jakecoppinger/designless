@@ -22,9 +22,6 @@
   padding: 0px;
   position: relative; }
 
-#designcontainer .ui.segment {
-  color: blue; }
-
 #designcontainer {
   width: 100%;
   text-align: left; }
@@ -49,7 +46,6 @@
 
 @media (max-width: 83em) {
   .side-panel {
-    color: red;
     width: calc(210mm / 2 - 3em);
     max-width: none; }
   #side-panel-container {

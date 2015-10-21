@@ -32,7 +32,7 @@
 }
 
 #designcontainer .ui.segment {
-    color: blue;
+    //color: blue;
 }
 
 #designcontainer {
@@ -74,7 +74,6 @@
 
 @media (max-width: 83em) {
     .side-panel {
-        color: red;
         width: calc(210mm / 2 - 3em);
         max-width: none;
     }
