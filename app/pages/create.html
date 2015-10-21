@@ -23,22 +23,32 @@
                 <div ng-repeat="(stylename,style) in styles">
                     <div class="ui segment stylebox">
                         <h2>{{stylename}}</h2>
-                        <div class="ui labeled input">
-                            <div class="ui label">
-                                Font
+                        <form class="ui form">
+                            <div class="field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">
+                                        Font
+                                    </div>
+                                    <input type="text" ng-model="style.font">
+                                </div>
                             </div>
-                            <input type="text" ng-model="style.font">
-                        </div>
-
-                        <div class="ui divider"></div>
-                        
-                        <div class="ui labeled input colorpicker">
-                            <div class="ui label">Color</div>
-                            <div class="ui label colorpicker">
-                                <color-picker ng-model="style.color" color-picker-format="'hex'" color-picker-swatch="true" color-picker-swatch-only="true" color-picker-swatch-bootstrap="false"></color-picker>
+                            <div class="field">
+                                <div class="ui labeled input colorpicker">
+                                    <div class="ui label">Color</div>
+                                    <div class="ui label colorpicker">
+                                        <color-picker ng-model="style.color" color-picker-format="'hex'" color-picker-swatch="true" color-picker-swatch-only="true" color-picker-swatch-bootstrap="false"></color-picker>
+                                    </div>
+                                    <input type="text" ng-model="style.color">
+                                </div>
                             </div>
-                            <input type="text" ng-model="style.color">
-                        </div>
+                            <div class="field">
+                                <div class="ui toggle checkbox">
+                                    <input type="checkbox" tabindex="0" class="hidden">
+                                    <label>Kerning</label>
+                                </div>
+                            </div>
+                            <button class="ui button" type="submit">Save</button>
+                        </form>
                     </div>
                 </div>
                 <div class="ui segment stylebox">
