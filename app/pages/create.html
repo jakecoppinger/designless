@@ -23,9 +23,22 @@
                 <div ng-repeat="(stylename,style) in styles">
                     <div class="ui segment stylebox">
                         <h2>{{stylename}}</h2>
-                        <p>Font: {{style.font}}</p>
-                        <p>Color:</p>
-                        <color-picker ng-model="style.color" color-picker-format="'rgb'" color-picker-swatch="true" color-picker-swatch-only="true" color-picker-swatch-bootstrap="false"></color-picker>
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                Font
+                            </div>
+                            <input type="text" ng-model="style.font">
+                        </div>
+
+                        <div class="ui divider"></div>
+                        
+                        <div class="ui labeled input colorpicker">
+                            <div class="ui label">Color</div>
+                            <div class="ui label colorpicker">
+                                <color-picker ng-model="style.color" color-picker-format="'hex'" color-picker-swatch="true" color-picker-swatch-only="true" color-picker-swatch-bootstrap="false"></color-picker>
+                            </div>
+                            <input type="text" ng-model="style.color">
+                        </div>
                     </div>
                 </div>
                 <div class="ui segment stylebox">
@@ -43,7 +56,6 @@
         </div>
         <div id="designcenter">
             <div id="page1" class="page">
-
                 <!--
                 <div ng-repeat="(heading,box) in boxes">
                     <div drag-box ng-bind-html="box.content | to_trusted">

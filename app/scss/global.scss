@@ -27,3 +27,21 @@ body {
     opacity: 0;
     cursor: pointer;
 }
+
+// Color picker fix on design page
+.stylebox {
+
+    .ui.labeled.input>.label:not(.corner) {
+    padding-top: 0.9em;
+    }
+
+    .colorpicker {
+        .ui.label.colorpicker {
+            padding: .2em .2em !important;
+        }
+        &.ui.labeled.input>.label:not(.corner) {
+            //padding-top: 0px !important;
+            padding-bottom: 0px !important;
+        }
+    }
+}

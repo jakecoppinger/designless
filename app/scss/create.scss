@@ -4,12 +4,20 @@
     position: absolute !important;
     cursor: move;
     overflow: hidden;
+
+    text-rendering: optimizeLegibility;
+
+
     &.overflowing {
         -webkit-animation: pulsateTextboxes 5s ease-out;
         -webkit-animation-iteration-count: infinite;
     }
     h1 {
         -webkit-margin-before: 0mm;
+    }
+
+    h1, h2, h3, h4, h5 {
+        font-family: inherit; // Override Semantic UI
     }
 }
 

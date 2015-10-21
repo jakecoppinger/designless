@@ -142,7 +142,6 @@ View.prototype.updateStyles = function(newStyles, oldStyles) {
             property = change.path[1];
             value = change.lhs;
             this._setStyle(style, property, value);
-            console.log("[Styles] Set " + property + " to " + value + " on all " + style);
         }
 
     } else {
@@ -152,8 +151,6 @@ View.prototype.updateStyles = function(newStyles, oldStyles) {
             var styleDict = newStyles[style];
             for (property in styleDict) {
                 value = styleDict[property];
-
-                console.log("[Styles] Set " + property + " to " + value + " on all " + style);
                 this._setStyle(style, property, value);
             }
 
@@ -163,5 +160,9 @@ View.prototype.updateStyles = function(newStyles, oldStyles) {
 
 View.prototype._setStyle = function(style, property, value) {
     var cssProperty = this.stylePropertyLookups(property);
+    console.log("[Styles] Set " + property + " (" + cssProperty + ") to " + value + " on all " + style);
     $('.' + style).css(cssProperty, value);
 };
+
+
+

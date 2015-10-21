@@ -16,3 +16,12 @@ body {
 .color-picker-wrapper.color-picker-swatch-only .color-picker-input {
   opacity: 0;
   cursor: pointer; }
+
+.stylebox .ui.labeled.input > .label:not(.corner) {
+  padding-top: 0.9em; }
+
+.stylebox .colorpicker .ui.label.colorpicker {
+  padding: 0.2em 0.2em !important; }
+
+.stylebox .colorpicker.ui.labeled.input > .label:not(.corner) {
+  padding-bottom: 0px !important; }
