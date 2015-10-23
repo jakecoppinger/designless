@@ -80,7 +80,7 @@ View.prototype.newTextBox = function(box, newPositionCallback, newSizeCallback) 
 
 
     .draggable({
-        containment: 'parent',
+        containment: '#page1',
         cancel: "text",
         snap: true,
         snapTolerance: 20,
