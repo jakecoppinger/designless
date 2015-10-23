@@ -10,7 +10,6 @@ angular.module('designlessApp')
 
         $('.ui.dropdown')
             .dropdown();
-
     }, 0);
 
     console.log("Loaded create controller");
@@ -113,18 +112,10 @@ angular.module('designlessApp')
 
     $scope.styles = layout.styles;
 
-
-
-
     $scope.$watch("styles", function(newValue, oldValue) {
         //console.log($scope.styles);
         viewObj.updateStyles(newValue, oldValue);
     }, true);
-
-
-
-
-
 
     var content = [];
     for (var index in $scope.fontList) {
@@ -135,7 +126,13 @@ angular.module('designlessApp')
 
     $('#testsearch')
         .search({
-            source: content
+            source: content,
+            onSelect: function(result, response) {
+                $scope.$apply(function() {
+                    $scope.styles[$scope.selectedStyle].font = result.title;
+                });
+                return true;
+            }
         });
 
     // Create array for style dropdown
@@ -154,7 +151,6 @@ angular.module('designlessApp')
         });
         counter += 1;
     }
-
 
     // Find name of selected style
     $scope.$watch("select.style", function(newValue, oldValue) {
