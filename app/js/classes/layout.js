@@ -7,10 +7,10 @@ Jake Coppinger 2015
 This class represents the layout object used by the app, suppoted by a flexible JSON data structure
 */
 
-function Layout(layoutChangedFunction, obj) {
+function Layout(layout,ppm,layoutChangedFunction) {
     this._changeCallback = layoutChangedFunction;
-    this._ppm = obj.ppm;
-    this._layout = obj.layout;
+    this._ppm = ppm;
+    this._layout = layout;
 }
 
 Layout.prototype.insertTextbox = function(box) {

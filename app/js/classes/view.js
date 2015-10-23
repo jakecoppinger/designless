@@ -7,8 +7,8 @@ Jake Coppinger 2015
 This class mamages writing, modifying and removing elements from the DOM
 */
 
-function View(pixelsPerMM) {
-    this._ppm = pixelsPerMM;
+function View() {
+    this._ppm = this.pixelsPerMM();
 }
 
 View.prototype._currentBoxPosition = function(obj) {
@@ -165,4 +165,19 @@ View.prototype._setStyle = function(style, property, value) {
 };
 
 
+View.prototype.pixelsPerMM = function() {
+    // Work out pixels per inch
+    var div = $("<div>").css({
+        position: "absolute",
+        left: "100mm",
+        top: "100mm"
+    }).appendTo(document.body);
+    var pos = div.offset();
+    div.remove();
+
+    var pixelsPerMM = pos.left / 100;
+
+    return pixelsPerMM;
+
+}
 
