@@ -110,7 +110,7 @@ angular.module('designlessApp')
     for (var index in $scope.fontList) {
         content.push({
             "title": $scope.fontList[index]
-        })
+        });
     }
 
     $('#testsearch')
@@ -150,4 +150,7 @@ angular.module('designlessApp')
     $scope.select = {
         "style": "1"
     };
+
+    $scope.pages = 3;
+
 });

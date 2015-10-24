@@ -80,9 +80,10 @@ View.prototype.newTextBox = function(box, newPositionCallback, newSizeCallback) 
 
 
     .draggable({
-        containment: '#page1',
+        containment: 'parent',
         cancel: "text",
-        snap: true,
+        snap: ".pageseparator, .textbox",
+        snapMode: "outer",
         snapTolerance: 20,
         start: function() {
             $('#textarea').focus();
@@ -179,5 +180,4 @@ View.prototype.pixelsPerMM = function() {
 
     return pixelsPerMM;
 
-}
-
+};

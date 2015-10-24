@@ -65,10 +65,9 @@
                 </div>
             </div>
         </div>
-        <div id="designcenter">
-            <div id="page1" class="page">
-            </div>
-            <div id="page2" class="page">
+        <div id="book">
+            <div id="paper" class="page" style='height: {{297 * pages}}mm'>
+                <span ng-repeat="n in [].constructor(pages -1 ) track by $index" class="pageseparator" style='top:{{ ($index+1) * 297 }}mm'></span>
             </div>
         </div>
     </div>

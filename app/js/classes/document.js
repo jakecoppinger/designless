@@ -8,7 +8,7 @@ This class forms the main scaffold for the operation of the app (the Controller)
 */
 
 function Document(viewObj, layoutObj) {
-    this._defaultContainerID = "page1";
+    this._defaultContainerID = "paper";
     this._view = viewObj;
     this._layoutObj = layoutObj;
     this._mdcontent = {};
@@ -22,7 +22,6 @@ Document.prototype.update = function(md) {
     this._updateBoxesContent(boxChanges.modified);
     this._deleteBoxes(boxChanges.deleted);
     this._view.updateOverflows(md.headings());
-
 };
 
 Document.prototype._insertBoxes = function(boxKeys) {
@@ -48,7 +47,7 @@ Document.prototype._deleteBoxes = function(boxKeys) {
 Document.prototype._insertTextbox = function(boxKey) {
     var objectThis = this;
     var completeBox = this._layoutPlusMarkdownBox(boxKey);
-    
+
     // Is layout of box heading NOT defined (again)
     if (this._layoutObj.boxExist(boxKey) === false) {
         console.log("Putting box layout into layout file");

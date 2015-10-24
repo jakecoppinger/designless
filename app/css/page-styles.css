@@ -1,4 +1,4 @@
-.page {
+#paper {
   background-color: white;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
@@ -62,56 +62,56 @@
     Figures and Captions
  *
  */ }
-  .page h1,
-  .page h2,
-  .page h3,
-  .page h4,
-  .page h5,
-  .page h6 {
+  #paper h1,
+  #paper h2,
+  #paper h3,
+  #paper h4,
+  #paper h5,
+  #paper h6 {
     text-rendering: optimizeLegibility;
     line-height: 1;
     margin: 0.5rem 0; }
-  .page h1,
-  .page h2,
-  .page h3,
-  .page h4,
-  .page h5,
-  .page h6 {
+  #paper h1,
+  #paper h2,
+  #paper h3,
+  #paper h4,
+  #paper h5,
+  #paper h6 {
     text-rendering: optimizeLegibility;
     line-height: 1;
     margin: 0.5rem 0; }
-  .page h1,
-  .page h2,
-  .page h3 {
+  #paper h1,
+  #paper h2,
+  #paper h3 {
     margin-bottom: 1rem; }
-  .page h1 {
+  #paper h1 {
     font-size: 2.75rem; }
-  .page h2 {
+  #paper h2 {
     font-size: 2.25rem; }
-  .page h3 {
+  #paper h3 {
     font-size: 1.75rem; }
-  .page h4 {
+  #paper h4 {
     font-size: 1.25rem; }
-  .page h5 {
+  #paper h5 {
     font-size: 1.00rem; }
-  .page h6 {
+  #paper h6 {
     font-size: 0.85rem; }
-  .page p {
+  #paper p {
     margin: 0 0 1.5em; }
-  .page blockquote {
+  #paper blockquote {
     margin: 0 0 1.5em;
     width: 96%;
     padding: 0 10px;
     border-left: 3px solid #ddd;
     color: #777; }
-  .page pre code {
+  #paper pre code {
     word-wrap: normal;
     white-space: pre-wrap;
     border: none;
     padding: 0;
     background-color: transparent;
     -webkit-border-radius: 0; }
-  .page pre {
+  #paper pre {
     white-space: pre-wrap;
     width: 96%;
     margin-bottom: 24px;
@@ -120,26 +120,26 @@
     -webkit-border-radius: 3px;
     background-color: #eee;
     border: 1px solid #ddd; }
-  .page code {
+  #paper code {
     white-space: nowrap;
     font-family: monospace;
     padding: 2px;
     -webkit-border-radius: 3px;
     background-color: #eee;
     border: 1px solid #ddd; }
-  .page small {
+  #paper small {
     font-size: 65%; }
-  .page dt {
+  #paper dt {
     display: inline;
     font-weight: bold; }
-  .page dd {
+  #paper dd {
     display: block; }
-  .page a {
+  #paper a {
     color: #308bd8;
     text-decoration: none; }
-  .page a:hover {
+  #paper a:hover {
     text-decoration: underline; }
-  .page hr {
+  #paper hr {
     width: 100%;
     margin: 3em auto;
     border: 0;
@@ -147,61 +147,61 @@
     background-color: #ccc;
     height: 1px;
     -webkit-box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.75); }
-  .page ol,
-  .page ul {
+  #paper ol,
+  #paper ul {
     list-style-position: outside;
     padding-left: 0;
     margin-left: 1.5em; }
-  .page ol li,
-  .page ul li {
+  #paper ol li,
+  #paper ul li {
     text-align: -webkit-match-parent; }
-  .page li p {
+  #paper li p {
     margin: 0.5em 0 0.5em; }
-  .page ol ol,
-  .page ol ul,
-  .page ul ul,
-  .page ul ol {
+  #paper ol ol,
+  #paper ol ul,
+  #paper ul ul,
+  #paper ul ol {
     padding-left: 1.5em; }
-  .page table {
+  #paper table {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 24px;
     border-bottom: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-spacing: 0; }
-  .page table th {
+  #paper table th {
     padding: 3px 10px;
     background-color: #eee;
     border-top: 1px solid #ddd;
     border-left: 1px solid #ddd; }
-  .page table td {
+  #paper table td {
     padding: 3px 10px;
     border-top: 1px solid #ddd;
     border-left: 1px solid #ddd; }
-  .page img {
+  #paper img {
     border: none;
     display: block;
     margin: 1em auto;
     max-width: 100%; }
-  .page mark {
+  #paper mark {
     background: #fefec0;
     padding: 1px 3px; }
-  .page .footnote {
+  #paper .footnote {
     font-size: 0.8rem;
     vertical-align: super; }
-  .page .footnotes ol {
+  #paper .footnotes ol {
     font-weight: bold; }
-  .page .footnotes ol li {
+  #paper .footnotes ol li {
     text-align: -webkit-match-parent; }
-  .page .footnotes ol li p {
+  #paper .footnotes ol li p {
     font-weight: normal; }
-  .page caption {
+  #paper caption {
     font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 5px; }
-  .page figure {
+  #paper figure {
     display: block;
     text-align: center; }
-  .page figcaption {
+  #paper figcaption {
     font-size: 0.8rem;
     font-style: italic; }
