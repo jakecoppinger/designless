@@ -12,7 +12,7 @@ angular.module('designlessApp')
     if (layoutJSON) {
         layout = JSON.parse(layoutJSON);
     } else {
-        layoutJSON = '{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{"Designless.io":{"size":{"width":100,"height":100},"position":{"page":0,"left":0,"top":0},"style":"Papyrus"},"Example textbox":{"size":{"width":100,"height":100},"position":{"page":1,"left":56,"top":56},"style":"Helvetica"}},"styles":{"Default style":{"font":"Comic Sans MS","color":"#B33039"},"Papyrus":{"font":"Papyrus","color":"#893039"},"Helvetica":{"font":"Helvetica Neue","color":"#173039"}},"fonts":["Apple Braille","Apple Color Emoji","Apple Symbols","AppleGothic","AquaKana","Courier","Geeza Pro Bold","Geeza Pro","Geneva","HelveLTMM","Helvetica LT MM","Helvetica","HelveticaNeue","HelveticaNeueDeskUI","Keyboard","LastResort","LucidaGrande","MarkerFelt","Menlo","Monaco","STHeiti Light","STHeiti Medium","Symbol","Thonburi","ThonburiBold","Times LT MM","Times","TimesLTMM","ZapfDingbats"]}';
+        layoutJSON = '{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{"Designless.io":{"size":{"width":100,"height":100},"position":{"page":1,"left":0,"top":0},"style":"Papyrus"},"Example textbox":{"size":{"width":100,"height":100},"position":{"page":2,"left":56,"top":56},"style":"Helvetica"}},"styles":{"Default style":{"font":"Comic Sans MS","color":"#B33039"},"Papyrus":{"font":"Papyrus","color":"#893039"},"Helvetica":{"font":"Helvetica Neue","color":"#173039"}},"fonts":["Apple Braille","Apple Color Emoji","Apple Symbols","AppleGothic","AquaKana","Courier","Geeza Pro Bold","Geeza Pro","Geneva","HelveLTMM","Helvetica LT MM","Helvetica","HelveticaNeue","HelveticaNeueDeskUI","Keyboard","LastResort","LucidaGrande","MarkerFelt","Menlo","Monaco","STHeiti Light","STHeiti Medium","Symbol","Thonburi","ThonburiBold","Times LT MM","Times","TimesLTMM","ZapfDingbats"]}';
 
         //'{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{},"styles":{"Default":{"font":"Arial"}}}';
 
@@ -152,5 +152,4 @@ angular.module('designlessApp')
     };
 
     $scope.pages = 3;
-
 });

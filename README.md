@@ -23,10 +23,13 @@ $ gulp serve
 https://scotch.io/tutorials/single-page-apps-with-angularjs-routing-and-templating
 
 - Typography Controls
+- Multiple pages
 
 # Not Done
 
-- Multiple pages
+- Creating styles and matching boxes to styles
+(http://semantic-ui.com/elements/rail.html)
+
 
 - Nested Boxes
 Have a number in the top right for each box.

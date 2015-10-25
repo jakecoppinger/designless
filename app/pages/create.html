@@ -55,9 +55,15 @@
                             </div>
                         </div>
                         <div class="field">
+                            <div class="ui slider range">
+                                <label>Opacity</label>
+                                <input type="range" min='0' max='1' step='0.001' value='1' ng-model="styles[selectedStyle].opacity" />
+                            </div>
+                        </div>
+                        <div class="field">
                             <div class="ui toggle checkbox">
-                                <input type="checkbox" tabindex="0" class="hidden">
                                 <label>Kerning</label>
+                                <input type="checkbox" tabindex="0" class="hidden">
                             </div>
                         </div>
                         <button class="ui button" type="submit">Save</button>
