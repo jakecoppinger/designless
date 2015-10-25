@@ -10,8 +10,8 @@ This class mamages writing, modifying and removing elements from the DOM
 function View() {
     this._ppm = this.pixelsPerMM();
     this._dimensions = {
-        "height": "297",
-        "width": "210"
+        "height": 297,
+        "width": 210
     };
 }
 
@@ -41,6 +41,21 @@ View.prototype._pixelToPagePosition = function(measuredPosition) {
         "left": mmPos.left
     };
 };
+
+View.prototype._pageToPixelPosition = function(position) {
+    console.log(position.left * this._ppm);
+    console.log(position);
+    var newPos = {
+        top: (position.top * this._ppm) + (this._dimensions.height * (position.page - 1) * this._ppm),
+        left: position.left * this._ppm
+    };
+
+    console.log(newPos);
+
+    return newPos;
+};
+
+
 
 View.prototype.updateOverflows = function(headings) {
     for (var i = 0; i < headings.length; i += 1) {
@@ -76,7 +91,12 @@ View.prototype.newTextBox = function(box, newPositionCallback, newSizeCallback) 
     var textboxHeight = box.size.height * this._ppm;
     var textboxHTML = '<div><div class="innertext ' + box.style + '">' + box.html + '</div></div>';
 
-    var new_offset = this._mmToPixelPosition(box.position);
+    var position = this._pageToPixelPosition(box.position);
+
+
+    // console.log(box.position);
+    // console.log(position);
+
     var objectThis = this;
 
     var newElement$ = $(textboxHTML)
@@ -92,8 +112,8 @@ View.prototype.newTextBox = function(box, newPositionCallback, newSizeCallback) 
         })
 
     // Set position relative to document page
-    .css("top", new_offset.top + "px")
-        .css("left", new_offset.left + "px")
+    .css("top", position.top + "px")
+        .css("left", position.left + "px")
 
 
     .draggable({

@@ -82,6 +82,7 @@ Document.prototype._layoutPlusMarkdownBox = function(boxKey) {
             height: 100
         };
         completeBox.position = {
+            page:0,
             left: 0,
             top: 0
         };
