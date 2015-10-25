@@ -76,7 +76,7 @@ angular.module('designlessApp')
     // Create layout object
     var layoutObj = new Layout(layout, viewObj.pixelsPerMM(), function() {
         //console.log("Layout changed!");
-        console.log(this.layoutString());
+        //console.log(this.layoutString());
 
         Lockr.set('layoutjson', this.layoutString());
     });

@@ -7,7 +7,7 @@ Jake Coppinger 2015
 This class represents the layout object used by the app, suppoted by a flexible JSON data structure
 */
 
-function Layout(layout,ppm,layoutChangedFunction) {
+function Layout(layout, ppm, layoutChangedFunction) {
     this._changeCallback = layoutChangedFunction;
     this._ppm = ppm;
     this._layout = layout;

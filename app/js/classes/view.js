@@ -9,19 +9,36 @@ This class mamages writing, modifying and removing elements from the DOM
 
 function View() {
     this._ppm = this.pixelsPerMM();
-}
-
-View.prototype._currentBoxPosition = function(obj) {
-    return {
-        left: obj.left / this._ppm,
-        top: obj.top / this._ppm
+    this._dimensions = {
+        "height": "297",
+        "width": "210"
     };
-};
+}
 
 View.prototype._mmToPixelPosition = function(desiredPosition) {
     return {
         top: desiredPosition.top * this._ppm,
         left: desiredPosition.left * this._ppm
+    };
+};
+
+View.prototype._pixelToMMPosition = function(measuredPosition) {
+    return {
+        top: measuredPosition.top / this._ppm,
+        left: measuredPosition.left / this._ppm
+    };
+};
+
+
+View.prototype._pixelToPagePosition = function(measuredPosition) {
+    var mmPos = this._pixelToMMPosition(measuredPosition);
+    var page = Math.floor(mmPos.top / 297) + 1;
+    // 0.13907722837768688 is the constant (apparent) mm height of a divider
+    var mmTopOnPage = (mmPos.top - (0.13907722837768688 * (page - 1))) % this._dimensions.height;
+    return {
+        "page": page,
+        "top": mmTopOnPage,
+        "left": mmPos.left
     };
 };
 
@@ -97,12 +114,14 @@ View.prototype.newTextBox = function(box, newPositionCallback, newSizeCallback) 
             var leftPixels = parseInt(object.style.left);
             var topPixels = parseInt(object.style.top);
 
-            var newBoxPos = objectThis._currentBoxPosition({
+            var mmBoxPos = objectThis._pixelToPagePosition({
                 left: leftPixels, //document.getElementById(box.id()).offsetLeft,
                 top: topPixels
             });
 
-            newPositionCallback(box.heading, newBoxPos);
+            console.log(mmBoxPos);
+
+            newPositionCallback(box.heading, mmBoxPos);
         }
     });
 };
