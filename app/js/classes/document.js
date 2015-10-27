@@ -17,6 +17,7 @@ function Document(viewObj, layoutObj) {
 Document.prototype.update = function(md) {
     var mdcontent = md.structured();
     var boxChanges = this._boxChanges(mdcontent);
+
     this._mdcontent = mdcontent;
     this._insertBoxes(boxChanges.new);
     this._updateBoxesContent(boxChanges.modified);
@@ -82,7 +83,7 @@ Document.prototype._layoutPlusMarkdownBox = function(boxKey) {
             height: 100
         };
         completeBox.position = {
-            page:0,
+            page: 0,
             left: 0,
             top: 0
         };
@@ -104,20 +105,27 @@ Document.prototype._boxChanges = function(mdcontent) {
 
     // Looking at new keys
     for (var newkey in mdcontent) {
-        if (newkey in this._mdcontent) {
-            if (objectThis._boxModified(mdcontent[newkey], this._mdcontent[newkey])) {
-                modifiedBoxes.push(newkey);
+        if (mdcontent.hasOwnProperty(newkey)) {
+            console.log(newkey);
+
+            if (newkey in this._mdcontent) {
+                if (objectThis._boxModified(mdcontent[newkey], this._mdcontent[newkey])) {
+                    modifiedBoxes.push(newkey);
+                }
+            } else {
+                newBoxes.push(newkey);
             }
-        } else {
-            newBoxes.push(newkey);
         }
     }
 
     // Looking at old keys
+
     for (var oldkey in this._mdcontent) {
-        if (oldkey in mdcontent === false) {
-            console.log(oldkey + " has been deleted");
-            deletedBoxes.push(oldkey);
+        if (this._mdcontent.hasOwnProperty(oldkey)) {
+            if (oldkey in mdcontent === false) {
+                console.log(oldkey + " has been deleted");
+                deletedBoxes.push(oldkey);
+            }
         }
     }
 

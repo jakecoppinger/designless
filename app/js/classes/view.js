@@ -177,23 +177,25 @@ View.prototype.updateStyles = function(newStyles, oldStyles) {
     var differences = DeepDiff(newStyles, oldStyles);
     if (differences) {
         for (var changeIndex in differences) {
-            change = differences[changeIndex];
-            style = change.path[0];
-            property = change.path[1];
-            value = change.lhs;
-            this._setStyle(style, property, value);
+            if (differences.hasOwnProperty(changeIndex)) {
+                change = differences[changeIndex];
+                style = change.path[0];
+                property = change.path[1];
+                value = change.lhs;
+                this._setStyle(style, property, value);
+            }
         }
 
     } else {
         // Apply all styles
-        var keys = [];
         for (style in newStyles) {
-            var styleDict = newStyles[style];
-            for (property in styleDict) {
-                value = styleDict[property];
-                this._setStyle(style, property, value);
+            if (newStyles.hasOwnProperty(style)) {
+                var styleDict = newStyles[style];
+                for (property in styleDict) {
+                    value = styleDict[property];
+                    this._setStyle(style, property, value);
+                }
             }
-
         }
     }
 };
