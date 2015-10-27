@@ -15,6 +15,7 @@
   position: absolute !important;
   cursor: move;
   overflow: hidden;
+  background: none;
   text-rendering: optimizeLegibility; }
   .textbox.overflowing {
     -webkit-animation: pulsateTextboxes 5s ease-out;

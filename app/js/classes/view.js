@@ -120,7 +120,7 @@ View.prototype.newTextBox = function(box, newPositionCallback, newSizeCallback) 
         containment: 'parent',
         cancel: "text",
         snap: ".pageseparator, .textbox",
-        snapMode: "outer",
+        snapMode: "both",
         snapTolerance: 20,
         start: function() {
             $('#textarea').focus();
