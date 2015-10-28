@@ -50,7 +50,7 @@ Document.prototype._insertTextbox = function(boxKey) {
     var completeBox = this._layoutPlusMarkdownBox(boxKey);
 
     // Is layout of box heading NOT defined (again)
-    if (this._layoutObj.boxExist(boxKey) === false) {
+    if (boxKey in this._layoutObj.layout.boxes === false) {
         console.log("Putting box layout into layout file");
         this._layoutObj.insertTextbox(textbox);
     }
@@ -69,18 +69,17 @@ Document.prototype._layoutPlusMarkdownBox = function(boxKey) {
     var boxPos;
     var boxSize;
 
-
-    console.log(this._layoutObj.box(boxKey));
+    console.log("BoxKey: " + boxKey);
+    console.log(pretty(this._layoutObj.layout.boxes))
 
     // Copy object, otherwise out changes travel upstream
-    var completeBox = JSON.parse(JSON.stringify(this._layoutObj.box(boxKey)));
-
+    var completeBox = JSON.parse(JSON.stringify(this._layoutObj.layout.boxes[boxKey]));
 
     // Is layout of box heading defined
-    if (this._layoutObj.boxExist(boxKey)) {
-        console.log("Box heading defined");
+    if (boxKey in this._layoutObj.layout.boxes) {
+        console.log(boxKey + "  is defined in layout");
     } else {
-        console.log("Box not in layout - defaulting");
+        console.log(boxKey + "  is NOT defined in layout - defaulting");
         completeBox.size = {
             width: 100,
             height: 100
@@ -109,8 +108,6 @@ Document.prototype._boxChanges = function(mdcontent) {
     // Looking at new keys
     for (var newkey in mdcontent) {
         if (mdcontent.hasOwnProperty(newkey)) {
-            console.log(newkey);
-
             if (newkey in this._mdcontent) {
                 if (objectThis._boxModified(mdcontent[newkey], this._mdcontent[newkey])) {
                     modifiedBoxes.push(newkey);
