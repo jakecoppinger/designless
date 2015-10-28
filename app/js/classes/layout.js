@@ -13,13 +13,13 @@ function Layout(layout, ppm, layoutChangedFunction) {
     this.layout = layout;
 }
 
-Layout.prototype.insertTextbox = function(box) {
+Layout.prototype.insertTextbox = function(boxTitle,box) {
     var layoutJSON = {
         "size": box.size,
         "position": box.position,
         "style": box.style
     };
-    this.layout.boxes[box.heading] = layoutJSON;
+    this.layout.boxes[boxTitle] = layoutJSON;
     this._changeCallback();
 };
 

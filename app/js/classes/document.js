@@ -18,6 +18,12 @@ Document.prototype.update = function(md) {
     var mdcontent = md.structured();
     var boxChanges = this._boxChanges(mdcontent);
 
+    console.log("Boxchanges:");
+    console.log(pretty(boxChanges));
+
+
+
+
     this._mdcontent = mdcontent;
     this._insertBoxes(boxChanges.new);
     this._updateBoxesContent(boxChanges.modified);
@@ -46,16 +52,29 @@ Document.prototype._deleteBoxes = function(boxKeys) {
 
 
 Document.prototype._insertTextbox = function(boxKey) {
-    var objectThis = this;
-    var completeBox = this._layoutPlusMarkdownBox(boxKey);
+    var completeBox;
+    var layoutBox = {};
+    if (boxKey in this._layoutObj.layout.boxes) {
+        completeBox = this._layoutPlusMarkdownBox(boxKey);
+    } else {
+        console.log(boxKey + " is not in layout. Inserting.");
+        layoutBox.size = {
+            width: 100,
+            height: 100
+        };
+        layoutBox.position = {
+            page: 1,
+            left: 0,
+            top: 0
+        };
+        layoutBox.style = 'Default style';
 
-    // Is layout of box heading NOT defined (again)
-    if (boxKey in this._layoutObj.layout.boxes === false) {
-        console.log("Putting box layout into layout file");
-        this._layoutObj.insertTextbox(textbox);
+        this._layoutObj.insertTextbox(boxKey,layoutBox);
+        completeBox = this._layoutPlusMarkdownBox(boxKey);
     }
 
     // Insert textbox to DOM
+    var objectThis = this;
     this._view.newTextBox(completeBox, function(currentBoxTitle, newBoxPos) {
         objectThis._layoutObj.updateTextboxPosition(currentBoxTitle, newBoxPos);
     }, function(currentBoxTitle, newBoxSize) {
@@ -66,30 +85,9 @@ Document.prototype._insertTextbox = function(boxKey) {
 
 Document.prototype._layoutPlusMarkdownBox = function(boxKey) {
     var boxMDStructured = this._mdcontent[boxKey];
-    var boxPos;
-    var boxSize;
-
-    console.log("BoxKey: " + boxKey);
-    console.log(pretty(this._layoutObj.layout.boxes))
 
     // Copy object, otherwise out changes travel upstream
     var completeBox = JSON.parse(JSON.stringify(this._layoutObj.layout.boxes[boxKey]));
-
-    // Is layout of box heading defined
-    if (boxKey in this._layoutObj.layout.boxes) {
-        console.log(boxKey + "  is defined in layout");
-    } else {
-        console.log(boxKey + "  is NOT defined in layout - defaulting");
-        completeBox.size = {
-            width: 100,
-            height: 100
-        };
-        completeBox.position = {
-            page: 0,
-            left: 0,
-            top: 0
-        };
-    }
 
     completeBox.heading = boxKey;
     completeBox.parentid = this._defaultContainerID;
@@ -119,7 +117,6 @@ Document.prototype._boxChanges = function(mdcontent) {
     }
 
     // Looking at old keys
-
     for (var oldkey in this._mdcontent) {
         if (this._mdcontent.hasOwnProperty(oldkey)) {
             if (oldkey in mdcontent === false) {

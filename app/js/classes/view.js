@@ -89,8 +89,8 @@ View.prototype.newTextBox = function(box, newPositionCallback, newSizeCallback) 
     var position = this._pageToPixelPosition(box.position);
 
 
-    // console.log(box.position);
-    // console.log(position);
+    console.log(box.position);
+    console.log(position);
 
     var objectThis = this;
 
@@ -139,6 +139,7 @@ View.prototype.newTextBox = function(box, newPositionCallback, newSizeCallback) 
             newPositionCallback(box.heading, mmBoxPos);
         }
     });
+
 };
 
 View.prototype.updateTextBox = function(structuredMD) {
