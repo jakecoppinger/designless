@@ -82,30 +82,28 @@ View.prototype._textboxDragged = function(pixelSize, heading, newSizeCallback) {
 };
 
 View.prototype.newTextBox = function(box, newPositionCallback, newSizeCallback) {
-    var textboxWidth = box.size.width * this._ppm;
-    var textboxHeight = box.size.height * this._ppm;
+    var content = box.content;
+    var layout = box.layout;
 
-    var safeStyleSelector = this._safeStyleSelector(box.style);
+    var textboxWidth = layout.size.width * this._ppm;
+    var textboxHeight = layout.size.height * this._ppm;
 
-    var textboxHTML = '<div><div class="innertext ' + safeStyleSelector + '">' + box.html + '</div></div>';
+    var safeStyleSelector = this._safeStyleSelector(layout.style);
+    var textboxHTML = '<div><div class="innertext ' + safeStyleSelector + '">' + content.html + '</div></div>';
 
-    var position = this._pageToPixelPosition(box.position);
-
-
-    console.log(box.position);
-    console.log(position);
+    var position = this._pageToPixelPosition(layout.position);
 
     var objectThis = this;
 
     var newElement$ = $(textboxHTML)
-        .appendTo('#' + box.parentid) // Should this just be main?
-        .attr("id", box.id)
+        .appendTo('#' + content.parentid) // Should this just be main?
+        .attr("id", content.id)
         .attr("class", "ui-widget-content textbox")
         .width(textboxWidth)
         .height(textboxHeight)
         .resizable({
             "stop": function(event, ui) {
-                objectThis._textboxDragged(ui.size, box.heading, newSizeCallback);
+                objectThis._textboxDragged(ui.size, content.heading, newSizeCallback);
             }
         })
 
@@ -128,18 +126,18 @@ View.prototype.newTextBox = function(box, newPositionCallback, newSizeCallback) 
         },
 
         stop: function() {
-            var object = document.getElementById(box.id);
+            var object = document.getElementById(content.id);
             var leftPixels = parseInt(object.style.left);
             var topPixels = parseInt(object.style.top);
 
             var mmBoxPos = objectThis._pixelToPagePosition({
-                left: leftPixels, //document.getElementById(box.id()).offsetLeft,
+                left: leftPixels, //document.getElementById(content.id()).offsetLeft,
                 top: topPixels
             });
 
             console.log(mmBoxPos);
 
-            newPositionCallback(box.heading, mmBoxPos);
+            newPositionCallback(content.heading, mmBoxPos);
         }
     });
 
@@ -206,7 +204,6 @@ View.prototype._setStyle = function(style, property, value) {
     //console.log("[Styles] Set " + property + " (" + cssProperty + ") to " + value + " on all " + style);
     $('.' + style).css(cssProperty, value);
 };
-
 
 View.prototype.pixelsPerMM = function() {
     // Work out pixels per inch

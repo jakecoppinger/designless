@@ -73,6 +73,9 @@ Document.prototype._insertTextbox = function(boxKey) {
         completeBox = this._layoutPlusMarkdownBox(boxKey);
     }
 
+
+    console.log(pretty(completeBox));
+
     // Insert textbox to DOM
     var objectThis = this;
     this._view.newTextBox(completeBox, function(currentBoxTitle, newBoxPos) {
@@ -87,13 +90,14 @@ Document.prototype._layoutPlusMarkdownBox = function(boxKey) {
     var boxMDStructured = this._mdcontent[boxKey];
 
     // Copy object, otherwise out changes travel upstream
-    var completeBox = JSON.parse(JSON.stringify(this._layoutObj.layout.boxes[boxKey]));
-
-    completeBox.heading = boxKey;
-    completeBox.parentid = this._defaultContainerID;
-    completeBox.id = boxKey.hashCode();
-    completeBox.html = marked(boxMDStructured.markdowntext);
-
+    var completeBox = {layout:JSON.parse(JSON.stringify(this._layoutObj.layout.boxes[boxKey])),
+        content: {
+            heading:boxKey,
+            parentid:this._defaultContainerID,
+            id:boxKey.hashCode(),
+            html:marked(boxMDStructured.markdowntext)
+        }
+    };
     return completeBox;
 };
 
