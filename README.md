@@ -30,12 +30,6 @@ https://scotch.io/tutorials/single-page-apps-with-angularjs-routing-and-templati
 - Creating styles and matching boxes to styles
 (http://semantic-ui.com/elements/rail.html)
 
-
-- Nested Boxes
-Have a number in the top right for each box.
-This becomes a grouping class. When dragging one box, they all move.
-When any one is dragged, find all with the class and drag them too.
-
 - Images
 - GitHub/Dropbox Import & Export of content
 - Snap to lines
@@ -44,3 +38,10 @@ When any one is dragged, find all with the class and drag them too.
 
 - (Plain) HTML export?
 - Print preview toggle/shortcut
+
+
+# Scrapped
+- Nested Boxes
+Have a number in the top right for each box.
+This becomes a grouping class. When dragging one box, they all move.
+When any one is dragged, find all with the class and drag them too.
