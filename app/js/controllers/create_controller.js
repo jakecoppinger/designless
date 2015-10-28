@@ -88,7 +88,7 @@ angular.module('designlessApp')
     // Initially render the document
     // Create markdown object from textarea
     var initialmdObj = new Markdown($scope.markdown);
-    documentObject.update(initialmdObj);
+    //documentObject.update(initialmdObj);
 
     $scope.$watch("markdown", function(newValue, oldValue) {
         var md = new Markdown($scope.markdown);
