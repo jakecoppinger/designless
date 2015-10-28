@@ -69,6 +69,9 @@ Document.prototype._layoutPlusMarkdownBox = function(boxKey) {
     var boxPos;
     var boxSize;
 
+
+    console.log(this._layoutObj.box(boxKey));
+
     // Copy object, otherwise out changes travel upstream
     var completeBox = JSON.parse(JSON.stringify(this._layoutObj.box(boxKey)));
 

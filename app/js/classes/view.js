@@ -43,15 +43,10 @@ View.prototype._pixelToPagePosition = function(measuredPosition) {
 };
 
 View.prototype._pageToPixelPosition = function(position) {
-    console.log(position.left * this._ppm);
-    console.log(position);
     var newPos = {
         top: (position.top * this._ppm) + (this._dimensions.height * (position.page - 1) * this._ppm),
         left: position.left * this._ppm
     };
-
-    console.log(newPos);
-
     return newPos;
 };
 
@@ -202,7 +197,7 @@ View.prototype.updateStyles = function(newStyles, oldStyles) {
 
 View.prototype._setStyle = function(style, property, value) {
     var cssProperty = this.stylePropertyLookups(property);
-    console.log("[Styles] Set " + property + " (" + cssProperty + ") to " + value + " on all " + style);
+    //console.log("[Styles] Set " + property + " (" + cssProperty + ") to " + value + " on all " + style);
     $('.' + style).css(cssProperty, value);
 };
 
