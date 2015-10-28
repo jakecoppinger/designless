@@ -18,93 +18,62 @@
 </div>
 <div class="ui tab active" data-tab="design">
     <div id="designcontainer">
-        <div id="side-panel-container">
-            <div id="designleft" class="side-panel">
-                <div class="ui segment stylebox">
-                    <div class="ui form">
-                        <div class="field">
-                            <label>Box style</label>
-                            <select class="ui dropdown" ng-model="select.style">
-                                <option ng:repeat="style in styleSelectOptions" value="{{style.id}}">
-                                    {{style.name}}
-                                </option>
-                            </select>
-                        </div>
+        <div id="designleft" class="side-panel">
+            <div class="ui segment stylebox">
+                <div class="ui form">
+                    <div class="field">
+                        <label>Box style</label>
+                        <select class="ui dropdown" ng-model="select.style">
+                            <option ng:repeat="style in styleSelectOptions" value="{{style.id}}">
+                                {{style.name}}
+                            </option>
+                        </select>
                     </div>
                 </div>
-                <div class="ui segment stylebox">
-                    <h2>{{selectedStyle}}</h2>
-                    <form class="ui form">
-                        <div class="field">
-                            <label>Font</label>
-                            <div class="ui search" id="testsearch">
-                                <div class="ui icon input">
-                                    <input class="prompt" type="text" ng-model="styles[selectedStyle].font">
-                                    <i class="search icon"></i>
-                                </div>
-                                <div class="results"></div>
+            </div>
+            <div class="ui segment stylebox">
+                <h2>{{selectedStyle}}</h2>
+                <form class="ui form">
+                    <div class="field">
+                        <label>Font</label>
+                        <div class="ui search" id="testsearch">
+                            <div class="ui icon input">
+                                <input class="prompt" type="text" ng-model="styles[selectedStyle].font">
+                                <i class="search icon"></i>
                             </div>
+                            <div class="results"></div>
                         </div>
-                        <div class="field">
-                            <div class="ui labeled input colorpicker">
-                                <div class="ui label">Color</div>
-                                <div class="ui label colorpicker">
-                                    <color-picker ng-model="styles[selectedStyle].color" color-picker-format="'hex'" color-picker-swatch="true" color-picker-swatch-only="true" color-picker-swatch-bootstrap="false"></color-picker>
-                                </div>
-                                <input type="text" ng-model="styles[selectedStyle].color">
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input colorpicker">
+                            <div class="ui label">Color</div>
+                            <div class="ui label colorpicker">
+                                <color-picker ng-model="styles[selectedStyle].color" color-picker-format="'hex'" color-picker-swatch="true" color-picker-swatch-only="true" color-picker-swatch-bootstrap="false"></color-picker>
                             </div>
+                            <input type="text" ng-model="styles[selectedStyle].color">
                         </div>
-                        <div class="field">
-                            <div class="ui slider range">
-                                <label>Opacity</label>
-                                <input type="range" min='0' max='1' step='0.001' value='1' ng-model="styles[selectedStyle].opacity" />
-                            </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui slider range">
+                            <label>Opacity</label>
+                            <input type="range" min='0' max='1' step='0.001' value='1' ng-model="styles[selectedStyle].opacity" />
                         </div>
-                        <div class="field">
-                            <div class="ui toggle checkbox">
-                                <label>Kerning</label>
-                                <input type="checkbox" tabindex="0" class="hidden">
-                            </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui toggle checkbox">
+                            <label>Kerning</label>
+                            <input type="checkbox" tabindex="0" class="hidden">
                         </div>
-                        <button class="ui button" type="submit">Save</button>
-                    </form>
-                </div>
+                    </div>
+                    <button class="ui button" type="submit">Save</button>
+                </form>
             </div>
         </div>
 
+        
 
-  <!--       <div class="jtk-demo-main">
-        <div class="jtk-demo-canvas canvas-wide drag-drop-demo jtk-surface jtk-surface-nopan" id="canvas">
-            <div class="window" id="dragDropWindow1">one
-                <br/>
-                <br/><a href="#" class="cmdLink hide" rel="dragDropWindow1">toggle connections</a>
-                <br/><a href="#" class="cmdLink drag" rel="dragDropWindow1">disable dragging</a>
-                <br/><a href="#" class="cmdLink detach" rel="dragDropWindow1">detach all</a></div>
-            <div class="window" id="dragDropWindow2">two
-                <br/>
-                <br/><a href="#" class="cmdLink hide" rel="dragDropWindow2">toggle connections</a>
-                <br/><a href="#" class="cmdLink drag" rel="dragDropWindow2">disable dragging</a>
-                <br/><a href="#" class="cmdLink detach" rel="dragDropWindow2">detach all</a></div>
-            <div class="window" id="dragDropWindow3">three
-                <br/>
-                <br/><a href="#" class="cmdLink hide" rel="dragDropWindow3">toggle connections</a>
-                <br/><a href="#" class="cmdLink drag" rel="dragDropWindow3">disable dragging</a>
-                <br/><a href="#" class="cmdLink detach" rel="dragDropWindow3">detach all</a></div>
-            <div class="window" id="dragDropWindow4">four
-                <br/>
-                <br/><a href="#" class="cmdLink hide" rel="dragDropWindow4">toggle connections</a>
-                <br/><a href="#" class="cmdLink drag" rel="dragDropWindow4">disable dragging</a>
-                <br/><a href="#" class="cmdLink detach" rel="dragDropWindow4">detach all</a></div>
-            <div id="list"></div>
-        </div>
-    </div>
- -->
-
-
-        <div id="book">
-            <div id="paper" class="page" style='height: {{297 * pages}}mm'>
-                <span ng-repeat="n in [].constructor(pages -1 ) track by $index" class="pageseparator" style='top:{{ ($index+1) * 297 }}mm'></span>
-            </div>
+        <div id="paper" class="page" style='height: {{297 * pages}}mm'>
+            <span ng-repeat="n in [].constructor(pages -1 ) track by $index" class="pageseparator" style='top:{{ ($index+1) * 297 }}mm'></span>
         </div>
     </div>
 </div>
