@@ -84,7 +84,10 @@ View.prototype._textboxDragged = function(pixelSize, heading, newSizeCallback) {
 View.prototype.newTextBox = function(box, newPositionCallback, newSizeCallback) {
     var textboxWidth = box.size.width * this._ppm;
     var textboxHeight = box.size.height * this._ppm;
-    var textboxHTML = '<div><div class="innertext ' + box.style + '">' + box.html + '</div></div>';
+
+    var safeStyleSelector = this._safeStyleSelector(box.style);
+
+    var textboxHTML = '<div><div class="innertext ' + safeStyleSelector + '">' + box.html + '</div></div>';
 
     var position = this._pageToPixelPosition(box.position);
 
@@ -169,7 +172,7 @@ View.prototype.updateStyles = function(newStyles, oldStyles) {
     var style;
     var property;
     var value;
-
+    var safeStyleSelector;
     var differences = DeepDiff(newStyles, oldStyles);
     if (differences) {
         for (var changeIndex in differences) {
@@ -178,7 +181,8 @@ View.prototype.updateStyles = function(newStyles, oldStyles) {
                 style = change.path[0];
                 property = change.path[1];
                 value = change.lhs;
-                this._setStyle(style, property, value);
+                safeStyleSelector = this._safeStyleSelector(style);
+                this._setStyle(safeStyleSelector, property, value);
             }
         }
 
@@ -189,7 +193,8 @@ View.prototype.updateStyles = function(newStyles, oldStyles) {
                 var styleDict = newStyles[style];
                 for (property in styleDict) {
                     value = styleDict[property];
-                    this._setStyle(style, property, value);
+                    safeStyleSelector = this._safeStyleSelector(style);
+                    this._setStyle(safeStyleSelector, property, value);
                 }
             }
         }
@@ -216,5 +221,14 @@ View.prototype.pixelsPerMM = function() {
     var pixelsPerMM = pos.left / 100;
 
     return pixelsPerMM;
-
 };
+
+View.prototype._safeStyleSelector = function(name) {
+return "styleclass" + name.replace(/[^a-z0-9]/g, function(s) {
+        var c = s.charCodeAt(0);
+        if (c == 32) return '-';
+        if (c >= 65 && c <= 90) return '_' + s.toLowerCase();
+        return '__' + ('000' + c.toString(16)).slice(-4);
+    });
+};
+
