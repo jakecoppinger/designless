@@ -52,7 +52,7 @@ View.prototype._pageToPixelPosition = function(position) {
 
 
 
-View.prototype.updateOverflows = function(headings) {
+View.prototype.updateOverflowingBoxes = function(headings) {
     for (var i = 0; i < headings.length; i += 1) {
         this._updateBoxOverflow(headings[i]);
     }
@@ -185,19 +185,25 @@ View.prototype.updateStyles = function(newStyles, oldStyles) {
         }
 
     } else {
-        // Apply all styles
-        for (style in newStyles) {
-            if (newStyles.hasOwnProperty(style)) {
-                var styleDict = newStyles[style];
+        this.updateAllStyles(newStyles);
+    }
+};
+
+
+
+View.prototype.updateAllStyles = function(styles) {
+        for (var style in styles) {
+            if (styles.hasOwnProperty(style)) {
+                var styleDict = styles[style];
                 for (property in styleDict) {
                     value = styleDict[property];
                     safeStyleSelector = this._safeStyleSelector(style);
                     this._setStyle(safeStyleSelector, property, value);
                 }
+                console.log(style);
             }
         }
-    }
-};
+}
 
 View.prototype._setStyle = function(style, property, value) {
     var cssProperty = this.stylePropertyLookups(property);

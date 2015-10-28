@@ -21,14 +21,29 @@ Document.prototype.update = function(md) {
     console.log("Boxchanges:");
     console.log(pretty(boxChanges));
 
-
-
-
     this._mdcontent = mdcontent;
-    this._insertBoxes(boxChanges.new);
-    this._updateBoxesContent(boxChanges.modified);
-    this._deleteBoxes(boxChanges.deleted);
-    this._view.updateOverflows(md.headings());
+
+
+    if (boxChanges.new.length == 1 && boxChanges.deleted.length == 1) {
+        console.log("We have a header name change!");
+
+        var newBoxName = boxChanges.new[0];
+        var oldBoxName = boxChanges.deleted[0];
+
+        var oldLayout = this._layoutObj.layout.boxes[oldBoxName];
+
+        this._insertTextbox(newBoxName,oldLayout);
+        this._deleteBoxes(boxChanges.deleted);
+        this._layoutObj.deleteTextbox(oldBoxName);
+
+    } else {
+        this._insertBoxes(boxChanges.new);
+        this._updateBoxesContent(boxChanges.modified);
+        this._deleteBoxes(boxChanges.deleted);
+    }
+
+    this._view.updateOverflowingBoxes(md.headings());
+    this._view.updateAllStyles(this._layoutObj.layout.styles);
 };
 
 Document.prototype._insertBoxes = function(boxKeys) {
@@ -51,30 +66,32 @@ Document.prototype._deleteBoxes = function(boxKeys) {
 };
 
 
-Document.prototype._insertTextbox = function(boxKey) {
+Document.prototype._insertTextbox = function(boxKey, layout) {
     var completeBox;
     var layoutBox = {};
+
     if (boxKey in this._layoutObj.layout.boxes) {
         completeBox = this._layoutPlusMarkdownBox(boxKey);
     } else {
-        console.log(boxKey + " is not in layout. Inserting.");
-        layoutBox.size = {
-            width: 100,
-            height: 100
-        };
-        layoutBox.position = {
-            page: 1,
-            left: 0,
-            top: 0
-        };
-        layoutBox.style = 'Default style';
 
-        this._layoutObj.insertTextbox(boxKey,layoutBox);
+        if (typeof(layout) === 'undefined') {
+            console.log(boxKey + " is not in layout. Inserting.");
+            layoutBox.size = {
+                width: 100,
+                height: 100
+            };
+            layoutBox.position = {
+                page: 1,
+                left: 0,
+                top: 0
+            };
+            layoutBox.style = 'Default style';
+        } else {
+            layoutBox = layout;
+        }
+        this._layoutObj.insertTextbox(boxKey, layoutBox);
         completeBox = this._layoutPlusMarkdownBox(boxKey);
     }
-
-
-    console.log(pretty(completeBox));
 
     // Insert textbox to DOM
     var objectThis = this;
@@ -90,12 +107,13 @@ Document.prototype._layoutPlusMarkdownBox = function(boxKey) {
     var boxMDStructured = this._mdcontent[boxKey];
 
     // Copy object, otherwise out changes travel upstream
-    var completeBox = {layout:JSON.parse(JSON.stringify(this._layoutObj.layout.boxes[boxKey])),
+    var completeBox = {
+        layout: JSON.parse(JSON.stringify(this._layoutObj.layout.boxes[boxKey])),
         content: {
-            heading:boxKey,
-            parentid:this._defaultContainerID,
-            id:boxKey.hashCode(),
-            html:marked(boxMDStructured.markdowntext)
+            heading: boxKey,
+            parentid: this._defaultContainerID,
+            id: boxKey.hashCode(),
+            html: marked(boxMDStructured.markdowntext)
         }
     };
     return completeBox;
