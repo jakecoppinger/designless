@@ -29,7 +29,6 @@ View.prototype._pixelToMMPosition = function(measuredPosition) {
     };
 };
 
-
 View.prototype._pixelToPagePosition = function(measuredPosition) {
     var mmPos = this._pixelToMMPosition(measuredPosition);
     var page = Math.floor(mmPos.top / 297) + 1;
@@ -173,6 +172,7 @@ View.prototype.updateStyles = function(newStyles, oldStyles) {
     var safeStyleSelector;
     var differences = DeepDiff(newStyles, oldStyles);
     if (differences) {
+        console.log(pretty(differences));
         for (var changeIndex in differences) {
             if (differences.hasOwnProperty(changeIndex)) {
                 change = differences[changeIndex];
@@ -189,25 +189,24 @@ View.prototype.updateStyles = function(newStyles, oldStyles) {
     }
 };
 
-
-
 View.prototype.updateAllStyles = function(styles) {
+   console.log("Updating styles");
+    console.log(pretty(styles));
         for (var style in styles) {
             if (styles.hasOwnProperty(style)) {
                 var styleDict = styles[style];
-                for (property in styleDict) {
+                for (var property in styleDict) {
                     value = styleDict[property];
                     safeStyleSelector = this._safeStyleSelector(style);
                     this._setStyle(safeStyleSelector, property, value);
                 }
-                console.log(style);
             }
         }
-}
+};
 
 View.prototype._setStyle = function(style, property, value) {
     var cssProperty = this.stylePropertyLookups(property);
-    //console.log("[Styles] Set " + property + " (" + cssProperty + ") to " + value + " on all " + style);
+    console.log("[Styles] Set " + property + " (" + cssProperty + ") to " + value + " on all " + style);
     $('.' + style).css(cssProperty, value);
 };
 

@@ -12,7 +12,7 @@ angular.module('designlessApp')
     if (layoutJSON) {
         layout = JSON.parse(layoutJSON);
     } else {
-        layoutJSON = '{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{"Designless.io":{"size":{"width":100,"height":100},"position":{"page":1,"left":0,"top":0},"style":"Papyrus"},"Example textbox":{"size":{"width":100,"height":100},"position":{"page":2,"left":56,"top":56},"style":"Helvetica"}},"styles":{"Default style":{"font":"Comic Sans MS","color":"#B33039"},"Papyrus":{"font":"Papyrus","color":"#893039"},"Helvetica":{"font":"Helvetica Neue","color":"#173039"}},"fonts":["Apple Braille","Apple Color Emoji","Apple Symbols","AppleGothic","AquaKana","Courier","Geeza Pro Bold","Geeza Pro","Geneva","HelveLTMM","Helvetica LT MM","Helvetica","HelveticaNeue","HelveticaNeueDeskUI","Keyboard","LastResort","LucidaGrande","MarkerFelt","Menlo","Monaco","STHeiti Light","STHeiti Medium","Symbol","Thonburi","ThonburiBold","Times LT MM","Times","TimesLTMM","ZapfDingbats"]}';
+        layoutJSON = '{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{"Designless.io":{"size":{"width":100,"height":100},"position":{"page":1,"left":0,"top":0},"style":"Papyrus"},"Example textbox":{"size":{"width":100,"height":100},"position":{"page":2,"left":56,"top":56},"style":"Helvetica"}},"styles":{"Default style":{"font":"Comic Sans S","color":"#893039"},"Papyrus":{"font":"Papyrus","color":"#893039"},"Helvetica":{"font":"Helvetica Neue","color":"#173039"}},"fonts":["Apple Braille","Apple Color Emoji","Apple Symbols","AppleGothic","AquaKana","Courier","Geeza Pro Bold","Geeza Pro","Geneva","HelveLTMM","Helvetica LT MM","Helvetica","HelveticaNeue","HelveticaNeueDeskUI","Keyboard","LastResort","LucidaGrande","MarkerFelt","Menlo","Monaco","STHeiti Light","STHeiti Medium","Symbol","Thonburi","ThonburiBold","Times LT MM","Times","TimesLTMM","ZapfDingbats"]}';
 
         //'{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{},"styles":{"Default":{"font":"Arial"}}}';
 
@@ -101,6 +101,8 @@ angular.module('designlessApp')
     $scope.fontList = layout.fonts;
     $scope.styles = layout.styles;
 
+
+    
     $scope.$watch("styles", function(newValue, oldValue) {
         //console.log($scope.styles);
         viewObj.updateStyles(newValue, oldValue);
@@ -127,12 +129,8 @@ angular.module('designlessApp')
 
     // Create array for style dropdown
     $scope.styleSelectOptions = [];
-    $scope.styleSelectOptions.push({
-        "name": "Default style",
-        "id": 1
-    });
 
-    var counter = 2;
+    var counter = 1;
     for (var styleName in $scope.styles) {
         $scope.styleSelectOptions.push({
             "name": styleName,
@@ -144,6 +142,12 @@ angular.module('designlessApp')
     // Find name of selected style
     $scope.$watch("select.style", function(newValue, oldValue) {
         $scope.selectedStyle = $scope.styleSelectOptions[parseInt($scope.select.style) - 1].name;
+
+        // console.log("Scope.select.style");
+        // console.log($scope.select.style);
+
+        // console.log("Selected Style:");
+        // console.log($scope.selectedStyle);
     });
 
     // Always select the default style
