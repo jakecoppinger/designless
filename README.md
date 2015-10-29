@@ -24,13 +24,14 @@ https://scotch.io/tutorials/single-page-apps-with-angularjs-routing-and-templati
 
 - Typography Controls
 - Multiple pages
+- Images
+
 
 # Not Done
 
 - Creating styles and matching boxes to styles
 (http://semantic-ui.com/elements/rail.html)
 
-- Images
 - GitHub/Dropbox Import & Export of content
 - Snap to lines
 

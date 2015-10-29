@@ -1,12 +1,12 @@
 <br>
 <div class="ui center aligned grid">
     <div class="ui pointing secondary demo menu inverted">
-        <a class="active white item" data-tab="write">Write</a>
-        <a class="white item" data-tab="design">Design</a>
+        <a class="white item" data-tab="write">Write</a>
+        <a class="active white item" data-tab="design">Design</a>
     </div>
 </div>
 <br>
-<div class="ui tab active" data-tab="write">
+<div class="ui tab " data-tab="write">
     <div class="ui text container">
         <div class="markdownpage">
             <textarea id="markdowninput">
@@ -16,7 +16,7 @@
         </div>
     </div>
 </div>
-<div class="ui tab" data-tab="design">
+<div class="ui tab active" data-tab="design">
     <div id="designcontainer">
         <div id="designleft" class="side-panel">
             <div class="ui segment stylebox">
@@ -31,8 +31,8 @@
                     </div>
                 </div>
             </div>
-            <div class=" ui segment stylebox">
-                <h2>{{selectedStyle}}</h2>
+            <div class="ui segment stylebox">
+                <h2>Customise <i>{{selectedStyle}}</i></h2>
                 <form class="ui form">
                     <div class="field">
                         <label>Font</label>
@@ -68,6 +68,19 @@
                     <button class="ui button" type="submit">Save</button>
                 </form>
             </div>
+
+            <!-- Fix here!!! -->
+            <div ng-repeat="box in layout" class="ui segment">
+
+                {{box}}
+
+
+            </div>
+
+
+
+
+
         </div>
 
         
