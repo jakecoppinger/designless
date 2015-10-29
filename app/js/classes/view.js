@@ -153,6 +153,8 @@ View.prototype.deleteTextBox = function(heading) {
     $("#" + safeID).remove();
 };
 
+// A sort of hash table connecting convenient property names
+// (eg font) to the CSS counterparts (font-family)
 View.prototype.stylePropertyLookups = function(propertyInput) {
     var propertyLookups = {
         "font": "font-family"
@@ -163,7 +165,8 @@ View.prototype.stylePropertyLookups = function(propertyInput) {
     }
     return propertyInput;
 };
-
+// Update only the changed styles into the DOM
+// (Yes, it really diffs!)
 View.prototype.updateStyles = function(newStyles, oldStyles) {
     var change;
     var style;
@@ -188,7 +191,7 @@ View.prototype.updateStyles = function(newStyles, oldStyles) {
         this.updateAllStyles(newStyles);
     }
 };
-
+// Update every style there is into the DOM
 View.prototype.updateAllStyles = function(styles) {
    console.log("Updating styles");
     console.log(pretty(styles));

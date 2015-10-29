@@ -97,17 +97,17 @@ angular.module('designlessApp')
 
     ///////////////////////////////////////
 
-
+    // Copy the layout into Angular's scope
     $scope.fontList = layout.fonts;
     $scope.styles = layout.styles;
 
-
-    
     $scope.$watch("styles", function(newValue, oldValue) {
         //console.log($scope.styles);
         viewObj.updateStyles(newValue, oldValue);
     }, true);
 
+    // Convert the fontList array to a funky dictionary that the 
+    // search field wants
     var content = [];
     for (var index in $scope.fontList) {
         content.push({
@@ -115,6 +115,7 @@ angular.module('designlessApp')
         });
     }
 
+    // And initialize that search fied with the fonts for autocomplete
     $('#testsearch')
         .search({
             source: content,
@@ -142,12 +143,6 @@ angular.module('designlessApp')
     // Find name of selected style
     $scope.$watch("select.style", function(newValue, oldValue) {
         $scope.selectedStyle = $scope.styleSelectOptions[parseInt($scope.select.style) - 1].name;
-
-        // console.log("Scope.select.style");
-        // console.log($scope.select.style);
-
-        // console.log("Selected Style:");
-        // console.log($scope.selectedStyle);
     });
 
     // Always select the default style
