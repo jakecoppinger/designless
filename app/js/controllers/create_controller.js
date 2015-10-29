@@ -20,7 +20,6 @@ angular.module('designlessApp')
         console.log("using default layout");
     }
 
-
     ///////////////////////////////////////
 
     // Initialize Semantic UI
@@ -66,8 +65,6 @@ angular.module('designlessApp')
         });
     });
 
-
-
     ///////////////////////////////////////
 
     // Create view object
@@ -102,8 +99,21 @@ angular.module('designlessApp')
     $scope.styles = layout.styles;
 
     $scope.$watch("styles", function(newValue, oldValue) {
-        //console.log($scope.styles);
-        viewObj.updateStyles(newValue, oldValue);
+
+        // There is a bug in the angular-color-picker import
+        // (https://github.com/ruhley/angular-color-picker)
+        // when the object initializes it changes the color to white.
+        // Here is the slightly hacky fix.
+        var defaultStyleName = 'Default style';
+        if (newValue != oldValue) {
+            var painfulDefault = 'rgb(255, 255, 255)';
+            if (newValue[defaultStyleName].color == painfulDefault) {
+                newValue[defaultStyleName].color = oldValue[defaultStyleName].color;
+                viewObj.updateAllStyles(oldValue)
+            } else {
+                viewObj.updateStyles(newValue, oldValue);
+            }
+        }
     }, true);
 
     // Convert the fontList array to a funky dictionary that the 

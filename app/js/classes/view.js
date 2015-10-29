@@ -175,7 +175,6 @@ View.prototype.updateStyles = function(newStyles, oldStyles) {
     var safeStyleSelector;
     var differences = DeepDiff(newStyles, oldStyles);
     if (differences) {
-        console.log(pretty(differences));
         for (var changeIndex in differences) {
             if (differences.hasOwnProperty(changeIndex)) {
                 change = differences[changeIndex];
@@ -186,35 +185,33 @@ View.prototype.updateStyles = function(newStyles, oldStyles) {
                 this._setStyle(safeStyleSelector, property, value);
             }
         }
-
     } else {
         this.updateAllStyles(newStyles);
     }
 };
 // Update every style there is into the DOM
 View.prototype.updateAllStyles = function(styles) {
-   console.log("Updating styles");
-    console.log(pretty(styles));
-        for (var style in styles) {
-            if (styles.hasOwnProperty(style)) {
-                var styleDict = styles[style];
-                for (var property in styleDict) {
-                    value = styleDict[property];
-                    safeStyleSelector = this._safeStyleSelector(style);
-                    this._setStyle(safeStyleSelector, property, value);
-                }
+    for (var style in styles) {
+        if (styles.hasOwnProperty(style)) {
+            var styleDict = styles[style];
+            for (var property in styleDict) {
+                value = styleDict[property];
+                safeStyleSelector = this._safeStyleSelector(style);
+                this._setStyle(safeStyleSelector, property, value);
             }
         }
+    }
 };
 
 View.prototype._setStyle = function(style, property, value) {
     var cssProperty = this.stylePropertyLookups(property);
-    console.log("[Styles] Set " + property + " (" + cssProperty + ") to " + value + " on all " + style);
+    //console.log("[Styles] Set " + property + " (" + cssProperty + ") to " + value + " on all " + style);
     $('.' + style).css(cssProperty, value);
 };
 
+
+// Work out pixels per inch
 View.prototype.pixelsPerMM = function() {
-    // Work out pixels per inch
     var div = $("<div>").css({
         position: "absolute",
         left: "100mm",
@@ -229,11 +226,10 @@ View.prototype.pixelsPerMM = function() {
 };
 
 View.prototype._safeStyleSelector = function(name) {
-return "styleclass" + name.replace(/[^a-z0-9]/g, function(s) {
+    return "styleclass" + name.replace(/[^a-z0-9]/g, function(s) {
         var c = s.charCodeAt(0);
         if (c == 32) return '-';
         if (c >= 65 && c <= 90) return '_' + s.toLowerCase();
         return '__' + ('000' + c.toString(16)).slice(-4);
     });
 };
-
