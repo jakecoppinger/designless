@@ -70,6 +70,8 @@ angular.module('designlessApp')
     // Create view object
     var viewObj = new View();
 
+    $scope.layout = layout;
+
     // Create layout object
     var layoutObj = new Layout(layout, viewObj.pixelsPerMM(), function() {
         //console.log("Layout changed!");
@@ -99,7 +101,7 @@ angular.module('designlessApp')
     $scope.styles = layout.styles;
 
     $scope.$watch("styles", function(newValue, oldValue) {
-
+        console.log("Updated styles");
         // There is a bug in the angular-color-picker import
         // (https://github.com/ruhley/angular-color-picker)
         // when the object initializes it changes the color to white.
@@ -161,4 +163,30 @@ angular.module('designlessApp')
     };
 
     $scope.pages = 3;
+
+
+    $scope.items = [{
+  id: 0,
+  label: 'aLabel'
+}, {
+  id: 1,
+  label: 'bLabel'
+}];
+
+    console.log(pretty($scope.styleSelectOptions));
+
+    $scope.selected = {
+    item : $scope.styleSelectOptions[0]
+
+    };
+
+        $scope.$watch("selected.item", function(newValue, oldValue) {
+        
+            console.log("Selected changed to ");
+            var selectedItem = newValue;
+            var boxName = selectedItem.name;
+            console.log($scope.box[boxName]);
+    }, true);
+
+
 });
