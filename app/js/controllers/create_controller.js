@@ -205,4 +205,22 @@ angular.module('designlessApp')
     console.log($scope.boxOptions);
 
 
+    // Find name of selected style
+    $scope.$watch("select.box", function(newValue, oldValue) {
+        $scope.selectedBox = $scope.layout.boxes[$scope.select.box];
+
+        console.log($scope.select.box);
+
+        console.log($scope.selectedBox);
+        //$scope.styleSelectOptions[parseInt($scope.select.style) - 1].name;
+    });
+
+
+
+
+
+
+    // Select first box by deafult
+    $scope.select.box = Object.keys($scope.layout.boxes)[0];
+
 });

@@ -68,6 +68,17 @@
                     <button class="ui button" type="submit">Save</button>
                 </form>
             </div>
+            <div class="ui segment">
+                <select class="ui dropdown" ng-model="select.box">
+                    <option ng:repeat="box in boxOptions">{{box.name}}</option>
+                </select>
+                <h1>{{selectedBox.style}}</h1>
+
+                
+
+
+                
+            </div>
             <!-- Fix here!!! -->
             <!-- <div ng-repeat="(name,box) in layout.boxes" class="ui segment">
                 <h2>{{name}}</h2>
@@ -80,17 +91,6 @@
                 <p>{{box.style}}</p>
                 <select ng-options="item as item.name for item in styleSelectOptions track by item.id" ng-model="selected.item"></select>
             </div> -->
-
-            <div class="ui segment">
-                <select>
-                    <option ng:repeat="box in boxOptions" value="{{box.name}}">
-                        {{box.name}} and {{boxOptions.style}}
-                    </option>
-
-                    {{}}
-
-                </select>
-            </div> 
         </div>
         <div id="paper" class="page" style='height: {{297 * pages}}mm'>
             <span ng-repeat="n in [].constructor(pages -1 ) track by $index" class="pageseparator" style='top:{{ ($index+1) * 297 }}mm'></span>
