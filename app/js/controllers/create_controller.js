@@ -166,27 +166,43 @@ angular.module('designlessApp')
 
 
     $scope.items = [{
-  id: 0,
-  label: 'aLabel'
-}, {
-  id: 1,
-  label: 'bLabel'
-}];
+        id: 0,
+        label: 'aLabel'
+    }, {
+        id: 1,
+        label: 'bLabel'
+    }];
 
     console.log(pretty($scope.styleSelectOptions));
 
     $scope.selected = {
-    item : $scope.styleSelectOptions[0]
+        item: $scope.styleSelectOptions[0]
 
     };
 
-        $scope.$watch("selected.item", function(newValue, oldValue) {
-        
-            console.log("Selected changed to ");
-            var selectedItem = newValue;
-            var boxName = selectedItem.name;
-            console.log($scope.box[boxName]);
-    }, true);
+    // $scope.$watch("selected.item", function(newValue, oldValue) {
+    //     console.log("Selected changed to ");
+    //     var selectedItem = newValue;
+    //     var boxName = selectedItem.name;
+    //     console.log($scope.box[boxName]);
+    // }, true);
+
+
+
+    // Create array for style dropdown
+    $scope.boxOptions = [];
+
+    var counter = 1;
+    for (var boxName in $scope.layout.boxes) {
+        $scope.boxOptions.push({
+            "name": boxName,
+            "style": $scope.layout.boxes[boxName].style,
+            "id": counter
+        });
+        counter += 1;
+    }
+
+    console.log($scope.boxOptions);
 
 
 });

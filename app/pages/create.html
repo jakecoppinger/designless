@@ -69,17 +69,28 @@
                 </form>
             </div>
             <!-- Fix here!!! -->
-            <div ng-repeat="(name,box) in layout.boxes" class="ui segment">
+            <!-- <div ng-repeat="(name,box) in layout.boxes" class="ui segment">
                 <h2>{{name}}</h2>
-                <!-- <select>
+                <select>
                      <option ng:repeat="style in styleSelectOptions" value="{{style.name}}">
                         {{style.name}}
                     </option> 
-                </select> -->
+                </select>
                 <p>{{selected.name}}</p>
                 <p>{{box.style}}</p>
                 <select ng-options="item as item.name for item in styleSelectOptions track by item.id" ng-model="selected.item"></select>
-            </div>
+            </div> -->
+
+            <div class="ui segment">
+                <select>
+                    <option ng:repeat="box in boxOptions" value="{{box.name}}">
+                        {{box.name}} and {{boxOptions.style}}
+                    </option>
+
+                    {{}}
+
+                </select>
+            </div> 
         </div>
         <div id="paper" class="page" style='height: {{297 * pages}}mm'>
             <span ng-repeat="n in [].constructor(pages -1 ) track by $index" class="pageseparator" style='top:{{ ($index+1) * 297 }}mm'></span>
