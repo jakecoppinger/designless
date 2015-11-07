@@ -216,9 +216,6 @@ angular.module('designlessApp')
     });
         */
 
-
-
-
     $scope.$watch('layout', function(newVal, oldVal) {
         var differences = DeepDiff(newVal, oldVal);
         if (differences) {
@@ -226,7 +223,6 @@ angular.module('designlessApp')
             documentObject.updateLayout($scope.layout);
         }
     }, true);
-
 
 
     // Select first box by default
