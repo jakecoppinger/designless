@@ -19,20 +19,15 @@
 <div class="ui tab active" data-tab="design">
     <div id="designcontainer">
         <div id="designleft" class="side-panel">
-            <div class="ui segment stylebox">
-                <div class="ui form">
-                    <div class="field">
-                        <label>Box style</label>
-                        <select class="ui dropdown" ng-model="select.style">
-                            <option ng:repeat="style in styleSelectOptions" value="{{style.id}}">
-                                {{style.name}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
+            <div class="ui top attached header">
+                <h3 class="inlineheader">Customise Style</h3>
+                <select class="ui dropdown" ng-model="select.style">
+                    <option ng:repeat="style in styleSelectOptions" value="{{style.id}}">
+                        {{style.name}}
+                    </option>
+                </select>
             </div>
-            <div class="ui segment stylebox">
-                <h2>Customise <i>{{selectedStyle}}</i></h2>
+            <div class="ui segment stylebox bottom attached">
                 <form class="ui form">
                     <div class="field">
                         <label>Font</label>
@@ -68,20 +63,16 @@
                     <button class="ui button" type="submit">Save</button>
                 </form>
             </div>
-            <div class="ui segment">
+            <div class="ui segment top attached">
+                <h3 class="inlineheader">Box style</h3>
                 <select class="ui dropdown" ng-model="select.box">
                     <option ng:repeat="box in boxOptions">{{box.name}}</option>
                 </select>
-                
-
+            </div>
+            <div class="ui segment bottom attached">
                 <select ng-model="layout.boxes[select.box].style">
                     <option ng:repeat="style in styleSelectOptions">{{style.name}}</option>
                 </select>
-
-
-                <h1>{{selectedBox.style}}</h1>
-                <h2>{{layout.boxes[select.box].style}}</h2>
-
             </div>
             <!-- Fix here!!! -->
             <!-- <div ng-repeat="(name,box) in layout.boxes" class="ui segment">
