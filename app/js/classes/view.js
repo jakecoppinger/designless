@@ -204,7 +204,16 @@ View.prototype.updateAllStyles = function(styles) {
     }
 };
 
-
+// Applies styleclass_{{style}} to each style box on the page
+View.prototype.updateBoxStyles = function(boxes) {
+    for(var boxName in boxes) {
+        var boxID = '#' + boxName.hashCode();
+        var styleClass = this._safeStyleSelector(boxes[boxName].style);
+        var selector = boxID + " .innertext";
+        var newClasses = "innertext " + styleClass;
+        $(selector).attr('class', newClasses);
+    }
+};
 
 
 View.prototype._setStyle = function(style, property, value) {

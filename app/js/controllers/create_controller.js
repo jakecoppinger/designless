@@ -229,7 +229,7 @@ angular.module('designlessApp')
 
 
 
-    // Select first box by deafult
+    // Select first box by default
     $scope.select.box = Object.keys($scope.layout.boxes)[0];
 
 });

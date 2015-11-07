@@ -18,12 +18,11 @@ function Document(viewObj, layoutObj) {
 }
 
 Document.prototype.updateLayout = function(layout) {
-    console.log(pretty(layout));
     this._layoutObj.updateLayout(layout);
-
-
-
-    //this._view.updateAllStyles(this._layoutObj.layout.styles);
+    this._view.updateBoxStyles(this._layoutObj.layout.boxes);
+    
+    this._view.updateAllStyles(this._layoutObj.layout.styles);
+    
 };
 
 Document.prototype.update = function(md) {
