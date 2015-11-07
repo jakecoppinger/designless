@@ -41,7 +41,6 @@
                         {{style.name}}
                     </option>
                 </select>
-                <i class="add circle link icon"></i>
             </div>
             <div class="ui segment stylebox bottom attached">
                 <form class="ui form">
@@ -72,8 +71,7 @@
                     </div>
                     <div class="field">
                         <div class="ui toggle checkbox">
-
-                        <label>Kerning</label>
+                            <label>Kerning</label>
                             <input type="checkbox" tabindex="0" class="hidden"></input>
                         </div>
                     </div>
@@ -86,8 +84,18 @@
                             <div class="ui button"><i class="align justify icon"></i></div>
                         </div>
                     </div>
-                    <button class="ui button" type="submit">Save</button>
                 </form>
+                <div id="stylePickerPopup" class="ui teal icon button right floated">
+                    <i class="add icon"></i>
+                </div>
+                <div class="ui popup wide top left transition invisible inverted">
+                    <div class="ui action input">
+                        <input type="text" id="styleNameText" placeholder="Style name...">
+                        <button class="ui button" id="addStyleButton">Add style</button>
+                    </div>
+                </div>
+                <br>
+                <br>
             </div>
         </div>
         <div id="paper" class="page" style='height: {{297 * pages}}mm'>

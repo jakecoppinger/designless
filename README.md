@@ -30,7 +30,7 @@ https://scotch.io/tutorials/single-page-apps-with-angularjs-routing-and-templati
 
 # Not Done
 
-- Add styles
+- Add styles/delete styles
 - GitHub/Dropbox Import & Export of content
 - Snap to lines
 

@@ -30,6 +30,41 @@ angular.module('designlessApp')
 
         $('.ui.dropdown')
             .dropdown();
+
+
+        // $('#stylePickerPopup')
+        //     .popup({
+        //         inline: true,
+        //         hoverable: true,
+        //         position: 'top left',
+        //         delay: {
+        //             show: 300,
+        //             hide: 300
+        //         }
+        //     });
+
+        $('#stylePickerPopup')
+            .popup({
+                on: 'click',
+                position: 'top right'
+            });
+
+
+        document.getElementById('addStyleButton').onclick = function() {
+
+            console.log("We clicked");
+
+            var text = $("#styleNameText").val();
+
+            console.log(text);
+            $scope.styles[text] = {
+                color:"rgb(0,0,0)",
+                font: "Arial"
+            };
+
+            $('#stylePickerPopup').popup('hide');
+        };
+
     }, 0);
 
 
