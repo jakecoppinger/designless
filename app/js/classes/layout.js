@@ -29,7 +29,7 @@ Layout.prototype.insertTextbox = function(boxTitle, box) {
 };
 
 Layout.prototype.deleteTextbox = function(boxTitle) {
-    this.layout.boxes[boxTitle] = undefined;
+    delete this.layout.boxes[boxTitle];
     this._changeCallback();
 };
 
