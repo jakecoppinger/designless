@@ -19,13 +19,29 @@
 <div class="ui tab active" data-tab="design">
     <div id="designcontainer">
         <div id="designleft" class="side-panel">
+            <div class="ui segment top attached">
+                <h3 class="inlineheader">Customise box</h3>
+                <select class="ui dropdown" ng-model="select.box">
+                    <option ng:repeat="box in boxOptions">{{box.name}}</option>
+                </select>
+            </div>
+            <div class="ui segment bottom attached">
+                <div class="field">
+                    <label>Style</label>
+                    <br>
+                    <select ng-model="layout.boxes[select.box].style">
+                        <option ng:repeat="style in styleSelectOptions">{{style.name}}</option>
+                    </select>
+                </div>
+            </div>
             <div class="ui top attached header">
-                <h3 class="inlineheader">Customise Style</h3>
+                <h3 class="inlineheader">Style</h3>
                 <select class="ui dropdown" ng-model="select.style">
                     <option ng:repeat="style in styleSelectOptions" value="{{style.id}}">
                         {{style.name}}
                     </option>
                 </select>
+                <i class="add circle link icon"></i>
             </div>
             <div class="ui segment stylebox bottom attached">
                 <form class="ui form">
@@ -56,36 +72,23 @@
                     </div>
                     <div class="field">
                         <div class="ui toggle checkbox">
-                            <label>Kerning</label>
-                            <input type="checkbox" tabindex="0" class="hidden">
+
+                        <label>Kerning</label>
+                            <input type="checkbox" tabindex="0" class="hidden"></input>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Alignment</label>
+                        <div class="ui icon buttons">
+                            <div class="ui button"><i class="align left icon"></i></div>
+                            <div class="ui button"><i class="align center icon"></i></div>
+                            <div class="ui button"><i class="align right icon"></i></div>
+                            <div class="ui button"><i class="align justify icon"></i></div>
                         </div>
                     </div>
                     <button class="ui button" type="submit">Save</button>
                 </form>
             </div>
-            <div class="ui segment top attached">
-                <h3 class="inlineheader">Box style</h3>
-                <select class="ui dropdown" ng-model="select.box">
-                    <option ng:repeat="box in boxOptions">{{box.name}}</option>
-                </select>
-            </div>
-            <div class="ui segment bottom attached">
-                <select ng-model="layout.boxes[select.box].style">
-                    <option ng:repeat="style in styleSelectOptions">{{style.name}}</option>
-                </select>
-            </div>
-            <!-- Fix here!!! -->
-            <!-- <div ng-repeat="(name,box) in layout.boxes" class="ui segment">
-                <h2>{{name}}</h2>
-                <select>
-                     <option ng:repeat="style in styleSelectOptions" value="{{style.name}}">
-                        {{style.name}}
-                    </option> 
-                </select>
-                <p>{{selected.name}}</p>
-                <p>{{box.style}}</p>
-                <select ng-options="item as item.name for item in styleSelectOptions track by item.id" ng-model="selected.item"></select>
-            </div> -->
         </div>
         <div id="paper" class="page" style='height: {{297 * pages}}mm'>
             <span ng-repeat="n in [].constructor(pages -1 ) track by $index" class="pageseparator" style='top:{{ ($index+1) * 297 }}mm'></span>
