@@ -81,6 +81,7 @@ View.prototype._textboxDragged = function(pixelSize, heading, newSizeCallback) {
 };
 
 View.prototype.newTextBox = function(box, newPositionCallback, newSizeCallback) {
+    console.log("Created new textbox");
     var content = box.content;
     var layout = box.layout;
 
@@ -202,6 +203,9 @@ View.prototype.updateAllStyles = function(styles) {
         }
     }
 };
+
+
+
 
 View.prototype._setStyle = function(style, property, value) {
     var cssProperty = this.stylePropertyLookups(property);

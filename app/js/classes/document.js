@@ -12,7 +12,19 @@ function Document(viewObj, layoutObj) {
     this._view = viewObj;
     this._layoutObj = layoutObj;
     this._mdcontent = {};
+
+
+    console.log(pretty(this._layoutObj));
 }
+
+Document.prototype.updateLayout = function(layout) {
+    console.log(pretty(layout));
+    this._layoutObj.updateLayout(layout);
+
+
+
+    //this._view.updateAllStyles(this._layoutObj.layout.styles);
+};
 
 Document.prototype.update = function(md) {
     var mdcontent = md.structured();
@@ -32,7 +44,7 @@ Document.prototype.update = function(md) {
 
         var oldLayout = this._layoutObj.layout.boxes[oldBoxName];
 
-        this._insertTextbox(newBoxName,oldLayout);
+        this._insertTextbox(newBoxName, oldLayout);
         this._deleteBoxes(boxChanges.deleted);
         this._layoutObj.deleteTextbox(oldBoxName);
 

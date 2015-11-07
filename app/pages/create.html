@@ -72,12 +72,16 @@
                 <select class="ui dropdown" ng-model="select.box">
                     <option ng:repeat="box in boxOptions">{{box.name}}</option>
                 </select>
+                
+
+                <select ng-model="layout.boxes[select.box].style">
+                    <option ng:repeat="style in styleSelectOptions">{{style.name}}</option>
+                </select>
+
+
                 <h1>{{selectedBox.style}}</h1>
+                <h2>{{layout.boxes[select.box].style}}</h2>
 
-                
-
-
-                
             </div>
             <!-- Fix here!!! -->
             <!-- <div ng-repeat="(name,box) in layout.boxes" class="ui segment">

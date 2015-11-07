@@ -12,7 +12,7 @@ angular.module('designlessApp')
     if (layoutJSON) {
         layout = JSON.parse(layoutJSON);
     } else {
-        layoutJSON = '{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{"Designless.io":{"size":{"width":100,"height":100},"position":{"page":1,"left":0,"top":0},"style":"Papyrus"},"Example textbox":{"size":{"width":100,"height":100},"position":{"page":2,"left":56,"top":56},"style":"Helvetica"}},"styles":{"Default style":{"font":"Comic Sans S","color":"#893039"},"Papyrus":{"font":"Papyrus","color":"#893039"},"Helvetica":{"font":"Helvetica Neue","color":"#173039"}},"fonts":["Apple Braille","Apple Color Emoji","Apple Symbols","AppleGothic","AquaKana","Courier","Geeza Pro Bold","Geeza Pro","Geneva","HelveLTMM","Helvetica LT MM","Helvetica","HelveticaNeue","HelveticaNeueDeskUI","Keyboard","LastResort","LucidaGrande","MarkerFelt","Menlo","Monaco","STHeiti Light","STHeiti Medium","Symbol","Thonburi","ThonburiBold","Times LT MM","Times","TimesLTMM","ZapfDingbats"]}';
+        layoutJSON = '{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{"Designless.io":{"size":{"width":100,"height":100},"position":{"page":1,"left":0,"top":0},"style":"Papyrus"},"Example textbox":{"size":{"width":100,"height":100},"position":{"page":2,"left":56,"top":56},"style":"Helvetica"}},"styles":{"Default style":{"font":"Comic Sans S","color":"rgb(137, 48, 57)"},"Papyrus":{"font":"Papyrus","color":"rgb(137, 48, 57)"},"Helvetica":{"font":"Helvetica Neue","color":"#000000"}},"fonts":["Apple Braille","Apple Color Emoji","Apple Symbols","AppleGothic","AquaKana","Courier","Geeza Pro Bold","Geeza Pro","Geneva","HelveLTMM","Helvetica LT MM","Helvetica","HelveticaNeue","HelveticaNeueDeskUI","Keyboard","LastResort","LucidaGrande","MarkerFelt","Menlo","Monaco","STHeiti Light","STHeiti Medium","Symbol","Thonburi","ThonburiBold","Times LT MM","Times","TimesLTMM","ZapfDingbats"]}';
 
         //'{"document":{"height":210,"width":297,"layout":"absolute"},"boxes":{},"styles":{"Default":{"font":"Arial"}}}';
 
@@ -111,7 +111,7 @@ angular.module('designlessApp')
             var painfulDefault = 'rgb(255, 255, 255)';
             if (newValue[defaultStyleName].color == painfulDefault) {
                 newValue[defaultStyleName].color = oldValue[defaultStyleName].color;
-                viewObj.updateAllStyles(oldValue)
+                viewObj.updateAllStyles(oldValue);
             } else {
                 viewObj.updateStyles(newValue, oldValue);
             }
@@ -192,7 +192,7 @@ angular.module('designlessApp')
     // Create array for style dropdown
     $scope.boxOptions = [];
 
-    var counter = 1;
+    counter = 1;
     for (var boxName in $scope.layout.boxes) {
         $scope.boxOptions.push({
             "name": boxName,
@@ -204,7 +204,7 @@ angular.module('designlessApp')
 
     console.log($scope.boxOptions);
 
-
+    /*
     // Find name of selected style
     $scope.$watch("select.box", function(newValue, oldValue) {
         $scope.selectedBox = $scope.layout.boxes[$scope.select.box];
@@ -214,9 +214,18 @@ angular.module('designlessApp')
         console.log($scope.selectedBox);
         //$scope.styleSelectOptions[parseInt($scope.select.style) - 1].name;
     });
+        */
 
 
 
+
+    $scope.$watch('layout', function(newVal, oldVal) {
+        var differences = DeepDiff(newVal, oldVal);
+        if (differences) {
+            console.log("Updated layout!");
+            documentObject.updateLayout($scope.layout);
+        }
+    }, true);
 
 
 
