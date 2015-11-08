@@ -6,16 +6,22 @@ function setupSemanticUI(scope) {
 
     $('.ui.dropdown')
         .dropdown();
+
+    // Add and delete style buttons
     $('#stylePickerPopup')
         .popup({
             on: 'click',
             position: 'top right'
         });
+    $('#styleRemovePopup')
+        .popup({
+            on: 'click',
+            position: 'top right'
+        });
+
 
     document.getElementById('addStyleButton').onclick = function() {
-        console.log("We clicked");
         var text = $("#styleNameText").val();
-        console.log(text);
         scope.$apply(function() {
             // Set new style defaults
             scope.styles[text] = {
@@ -32,9 +38,26 @@ function setupSemanticUI(scope) {
             scope.select.style = styleSelectIndex;
         });
 
-        console.log(scope.styles);
         $('#stylePickerPopup').popup('hide');
     };
+
+
+
+
+    document.getElementById('removeStyleButton').onclick = function() {
+        console.log(findSelectedStyleSelectObject(scope.select.style,scope);
+
+
+    };
+
+
+
+
+
+
+
+
+
 }
 
 function findStyleSelectObject(styleName, scope) {
@@ -45,4 +68,10 @@ function findStyleSelectObject(styleName, scope) {
         }
     }
     return undefined;
+}
+
+function findSelectedStyleSelectObject(id,scope) {
+
+    console.log(id);
+
 }
