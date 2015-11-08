@@ -21,7 +21,8 @@
         <div id="designleft" class="side-panel">
             <div class="ui segment top attached">
                 <h3 class="inlineheader">Customise box</h3>
-                <select class="ui dropdown" ng-model="select.box">
+                <!-- class="ui dropdown" -->
+                <select ng-model="select.box">
                     <option ng:repeat="box in boxOptions">{{box.name}}</option>
                 </select>
             </div>
@@ -36,7 +37,7 @@
             </div>
             <div class="ui top attached header">
                 <h3 class="inlineheader">Style</h3>
-                <select  ng-model="select.style">
+                <select ng-model="select.style">
                     <option ng:repeat="style in styleSelectOptions" value="{{style.id}}">
                         {{style.name}}
                     </option>

@@ -100,19 +100,11 @@ function updateSelectDropdowns(scope) {
     // Select first box by default
     scope.select.box = Object.keys(scope.layout.boxes)[0];
 
-    scope.items = [{
-        id: 0,
-        label: 'aLabel'
-    }, {
-        id: 1,
-        label: 'bLabel'
-    }];
-
     console.log(pretty(scope.styleSelectOptions));
 
-    scope.selected = {
-        item: scope.styleSelectOptions[0]
-    };
+    // scope.selected = {
+    //     item: scope.styleSelectOptions[0]
+    // };
 
     // Create array for style dropdown
     scope.boxOptions = [];
