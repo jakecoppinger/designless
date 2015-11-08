@@ -20,56 +20,11 @@ angular.module('designlessApp')
         console.log("using default layout");
     }
 
-    ///////////////////////////////////////
 
-    // Initialize Semantic UI
-    $timeout(function() {
-        $('.demo.menu .item').tab({
-            history: false
-        });
-
-        $('.ui.dropdown')
-            .dropdown();
-
-
-        // $('#stylePickerPopup')
-        //     .popup({
-        //         inline: true,
-        //         hoverable: true,
-        //         position: 'top left',
-        //         delay: {
-        //             show: 300,
-        //             hide: 300
-        //         }
-        //     });
-
-        $('#stylePickerPopup')
-            .popup({
-                on: 'click',
-                position: 'top right'
-            });
-
-
-        document.getElementById('addStyleButton').onclick = function() {
-
-            console.log("We clicked");
-
-            var text = $("#styleNameText").val();
-
-            console.log(text);
-            $scope.styles[text] = {
-                color:"rgb(0,0,0)",
-                font: "Arial"
-            };
-
-            $('#stylePickerPopup').popup('hide');
-        };
-
-    }, 0);
 
 
     // Because SimpleMDE mashes it
-    // We dont want two-way
+    // we dont want two-way
     $("#markdowninput").val($scope.markdown);
     //$scope.markdowninput = defaultStr;
 
@@ -137,6 +92,9 @@ angular.module('designlessApp')
 
     $scope.$watch("styles", function(newValue, oldValue) {
         console.log("Updated styles");
+
+
+
         // There is a bug in the angular-color-picker import
         // (https://github.com/ruhley/angular-color-picker)
         // when the object initializes it changes the color to white.
@@ -262,5 +220,64 @@ angular.module('designlessApp')
 
     // Select first box by default
     $scope.select.box = Object.keys($scope.layout.boxes)[0];
+
+
+
+    ///////////////////////////////////////
+
+    // Initialize Semantic UI
+    $timeout(function() {
+        $('.demo.menu .item').tab({
+            history: false
+        });
+
+        $('.ui.dropdown')
+            .dropdown();
+
+
+        // $('#stylePickerPopup')
+        //     .popup({
+        //         inline: true,
+        //         hoverable: true,
+        //         position: 'top left',
+        //         delay: {
+        //             show: 300,
+        //             hide: 300
+        //         }
+        //     });
+
+        $('#stylePickerPopup')
+            .popup({
+                on: 'click',
+                position: 'top right'
+            });
+
+
+        document.getElementById('addStyleButton').onclick = function() {
+
+            console.log("We clicked");
+
+            var text = $("#styleNameText").val();
+
+            console.log(text);
+
+            $scope.$apply(function() {
+
+                $scope.styles[text] = {
+                    color: "rgb(0,0,0)",
+                    font: "Arial"
+                };
+
+            });
+
+
+
+
+            console.log($scope.styles);
+            $('#stylePickerPopup').popup('hide');
+        };
+
+    }, 0);
+
 
 });

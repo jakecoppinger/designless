@@ -179,13 +179,19 @@ View.prototype.updateStyles = function(newStyles, oldStyles) {
         for (var changeIndex in differences) {
             if (differences.hasOwnProperty(changeIndex)) {
                 change = differences[changeIndex];
-                style = change.path[0];
-                property = change.path[1];
-                value = change.lhs;
-                safeStyleSelector = this._safeStyleSelector(style);
-                this._setStyle(safeStyleSelector, property, value);
+                if (change.path.length == 2) {
+                    style = change.path[0];
+                    property = change.path[1];
+                    value = change.lhs;
+                    safeStyleSelector = this._safeStyleSelector(style);
+                    this._setStyle(safeStyleSelector, property, value);
+                } else {
+                    //console.log("Added or removed style: not gonna try to change color or something");
+                }
             }
         }
+
+
     } else {
         this.updateAllStyles(newStyles);
     }
