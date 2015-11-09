@@ -27,18 +27,17 @@ https://scotch.io/tutorials/single-page-apps-with-angularjs-routing-and-templati
 - Images
 - Creating styles and matching boxes to styles
 (http://semantic-ui.com/elements/rail.html)
+- Add styles/delete styles
 
 # Not Done
+- Import/Export
 
-- Add styles/delete styles
-- GitHub/Dropbox Import & Export of content
-- Snap to lines
 
 # Only stretch goals
-
 - (Plain) HTML export?
 - Print preview toggle/shortcut
-
+- GitHub/Dropbox Import & Export of content
+- Snap to lines
 
 # Scrapped
 - Nested Boxes
