@@ -19,7 +19,6 @@ function setupSemanticUI(scope) {
             position: 'top right'
         });
 
-
     document.getElementById('addStyleButton').onclick = function() {
         var text = $("#styleNameText").val();
         scope.$apply(function() {
@@ -41,23 +40,17 @@ function setupSemanticUI(scope) {
         $('#stylePickerPopup').popup('hide');
     };
 
-
-
-
     document.getElementById('removeStyleButton').onclick = function() {
-        console.log(findSelectedStyleSelectObject(scope.select.style,scope);
-
+        scope.$apply(function() {
+            var selectedStyleName = findSelectedStyleName(scope.select.style, scope);
+            scope.select.style = '1';
+            delete scope.styles[selectedStyleName];
+            // Update seilect elements
+            updateSelectDropdowns(scope);
+        });
+        $('#styleRemovePopup').popup('hide');
 
     };
-
-
-
-
-
-
-
-
-
 }
 
 function findStyleSelectObject(styleName, scope) {
@@ -70,8 +63,12 @@ function findStyleSelectObject(styleName, scope) {
     return undefined;
 }
 
-function findSelectedStyleSelectObject(id,scope) {
-
-    console.log(id);
-
+function findSelectedStyleName(id, scope) {
+    for (var i = 0; i < scope.styleSelectOptions.length; i += 1) {
+        var style = scope.styleSelectOptions[i];
+        if (style.id == Number(id)) {
+            return style.name;
+        }
+    }
+    return undefined;
 }

@@ -93,6 +93,13 @@ function updateSelectDropdowns(scope) {
     // Find name of selected style
     scope.$watch("select.style", function(newValue, oldValue) {
         scope.selectedStyle = scope.styleSelectOptions[parseInt(scope.select.style) - 1].name;
+        // Disable or enable the delete style button if default 
+        // is selected.
+        if (scope.selectedStyle == "Default style") {
+            $("#styleRemovePopup").addClass("disabled");
+        } else {
+            $("#styleRemovePopup").removeClass("disabled");
+        }
     });
 
     /////////////////////////////
