@@ -6,7 +6,7 @@ function setupSimpleMDE(scope) {
 
     ///////////////////////////////////////
     // Initialise SimpleMDE
-    var simplemde = new SimpleMDE({
+    scope.simplemde = new SimpleMDE({
         element: $("#markdowninput")[0],
         spellChecker: false
     });
@@ -19,13 +19,13 @@ function setupSimpleMDE(scope) {
     });
 
     // Live Markdown updating
-    simplemde.codemirror.on("change", function() {
+    scope.simplemde.codemirror.on("change", function() {
         //var md = new Markdown(simplemde.value());
         //documentObject.update(md);
         console.log("Updating markdown");
 
         scope.$apply(function() {
-            scope.markdown = simplemde.value();
+            scope.markdown = scope.simplemde.value();
         });
     });
 

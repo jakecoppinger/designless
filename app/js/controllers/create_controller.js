@@ -23,6 +23,9 @@ angular.module('designlessApp')
 
     updateSelectDropdowns($scope);
 
+
+    setupMarkdownUploader($scope);
+
     $scope.$watch("styles", function(newValue, oldValue) {
         console.log("Updated styles");
         // There is a bug in the angular-color-picker import
@@ -150,4 +153,45 @@ function setupFontSelect(scope) {
                 return true;
             }
         });
+}
+
+function setupMarkdownUploader(scope) {
+
+    var fileInput = document.getElementById('markdownFileInput');
+    var fileDisplayArea = document.getElementById('fileDisplayArea');
+
+    fileInput.addEventListener('change', function(e) {
+        var file = fileInput.files[0];
+        var textType = /text.*/;
+
+        if (file.type.match(textType)) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                //fileDisplayArea.innerText = reader.result;
+               
+
+                    var markdown = reader.result
+
+                    
+                // scope.$apply(function() {
+                //     scope.markdown = markdown;
+                // });
+
+
+                    scope.simplemde.value(markdown);
+
+
+            }
+
+            reader.readAsText(file);
+        } else {
+            alert("This filetype is not supported. Please import a Markdown or plain text file");
+
+
+
+
+        }
+    });
+
 }
