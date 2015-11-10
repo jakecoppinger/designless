@@ -24,7 +24,7 @@ angular.module('designlessApp')
     updateSelectDropdowns($scope);
 
 
-    setupMarkdownUploader($scope);
+    setupImportExport($scope);
 
     $scope.$watch("styles", function(newValue, oldValue) {
         console.log("Updated styles");
@@ -43,6 +43,7 @@ angular.module('designlessApp')
             }
         }
     }, true);
+
 
 
     $scope.$watch('layout', function(newVal, oldVal) {
@@ -155,11 +156,8 @@ function setupFontSelect(scope) {
         });
 }
 
-function setupMarkdownUploader(scope) {
-
-    var fileInput = document.getElementById('markdownFileInput');
-    var fileDisplayArea = document.getElementById('fileDisplayArea');
-
+function setupImportExport(scope) {
+    var fileInput = document.getElementById('importMarkdown');
     fileInput.addEventListener('change', function(e) {
         var file = fileInput.files[0];
         var textType = /text.*/;
@@ -168,30 +166,20 @@ function setupMarkdownUploader(scope) {
             var reader = new FileReader();
 
             reader.onload = function(e) {
-                //fileDisplayArea.innerText = reader.result;
-               
-
-                    var markdown = reader.result
-
-                    
-                // scope.$apply(function() {
-                //     scope.markdown = markdown;
-                // });
-
-
-                    scope.simplemde.value(markdown);
-
-
-            }
-
+                var markdown = reader.result;
+                scope.simplemde.value(markdown);
+            };
             reader.readAsText(file);
         } else {
             alert("This filetype is not supported. Please import a Markdown or plain text file");
-
-
-
-
         }
     });
 
+    document.getElementById('exportMarkdown').onclick = function() {
+        var content = scope.markdown;
+        var blob = new Blob([content], {
+            type: "text/plain;charset=utf-8"
+        });
+        saveAs(blob, "Designless document.md");
+    };
 }

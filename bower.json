@@ -24,7 +24,8 @@
     "simplemde-markdown-editor": "https://github.com/NextStepWebs/simplemde-markdown-editor.git#~1.7.4",
     "open-sans-fontface": "~1.4.2",
     "deep-diff": "~0.3.2",
-    "jsPlumb": "jsplumb#~2.0.4"
+    "jsPlumb": "jsplumb#~2.0.4",
+    "file-saver.js": "~1.20150507.2"
   },
   "devDependencies": {
     "angular-color-picker": "angularjs-color-picker#~0.6.8"

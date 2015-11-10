@@ -9,16 +9,14 @@
 <div class="ui tab active" data-tab="write">
     <div class="ui text container">
         <div class="markdownpage">
-            <!-- <input type="file" id="markdownFileInput" />
- -->
-            <div>
-    <label for="markdownFileInput" class="ui icon button">
-        <i class="file icon"></i>
-        Import File</label>
-    <input type="file" id="markdownFileInput" style="display:none">
-</div>
-
-
+            <div class="ui  icon buttons">
+                <button class="ui button"><i class="file icon"></i> Save in browser</button>
+                <button class="ui button"><i class="save icon"></i> Load from browser</button>
+                <label for="importMarkdown" class="ui icon button">
+                    <i class="upload icon"></i> Import</label>
+                <input type="file" id="importMarkdown" style="display:none">
+                <button class="ui button" id="exportMarkdown"><i class="download icon"></i> Export</button>
+            </div>
             <textarea id="markdowninput">
                 <!-- This textarea is used by SimpleMDE Markdown editor -->
                 {{markdowninput}}
