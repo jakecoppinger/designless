@@ -7,8 +7,6 @@ Jake Coppinger 2015
   padding: 10px;
   font: inherit; }
   .CodeMirror pre {
-    -moz-border-radius: 0;
-    -webkit-border-radius: 0;
     border-radius: 0;
     border-width: 0;
     background: 0 0;

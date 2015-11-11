@@ -8,7 +8,11 @@ var merge = require('merge-stream');
 var ngAnnotate = require('gulp-ng-annotate');
 var path = require('path');
 var reload = browserSync.reload;
+
+var autoprefixer = require('gulp-autoprefixer');
+
 historyApiFallback = require('connect-history-api-fallback');
+
 
 //var watch = require('app/semantic/tasks/watch');
 //var build = require('app/semantic/tasks/build');
@@ -42,6 +46,10 @@ gulp.task('serve', ['injectsass'], function() {
 gulp.task('injectsass', function() {
     return gulp.src("app/scss/*.scss")
         .pipe(sass())
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        }))
         .pipe(gulp.dest("app/css"))
         .pipe(browserSync.stream());
 });
@@ -60,6 +68,10 @@ gulp.task('styles', function() {
         }))
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('.tmp/' + inputPath))
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        }))
         .pipe($.cssmin())
         .pipe(gulp.dest('dist/' + outputPath))
         .pipe($.size({

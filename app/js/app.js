@@ -3,34 +3,32 @@ angular.module('designlessApp', ['ngRoute', 'designlessApp.controllers', 'color.
 
 // configure our routes
 .config(function($routeProvider, $locationProvider) {
-    $routeProvider.when('/', {
-        templateUrl: 'pages/home.html',
-        controller: 'mainController'
+        $routeProvider.when('/', {
+                templateUrl: 'pages/home.html',
+                controller: 'mainController'
+            })
+            .when('/about', {
+                templateUrl: 'pages/about.html',
+                controller: 'aboutController'
+            })
+            .when('/create', {
+                templateUrl: 'pages/create.html',
+                controller: 'createController'
+            })
+            .when('/guide', {
+                templateUrl: 'pages/guide.html'
+            })
+            .when('/contact', {
+                templateUrl: 'pages/contact.html',
+                controller: 'contactController'
+            });
+
+        // use the HTML5 History API
+        $locationProvider.html5Mode(true);
     })
-
-    .when('/about', {
-        templateUrl: 'pages/about.html',
-        controller: 'aboutController'
-    })
-
-    .when('/create', {
-            templateUrl: 'pages/create.html',
-            controller: 'createController'
-        })
-        .when('/guide', {
-            templateUrl: 'pages/guide.html'
-        })
-        .when('/contact', {
-            templateUrl: 'pages/contact.html',
-            controller: 'contactController'
-        });
-
-    // use the HTML5 History API
-    $locationProvider.html5Mode(true);
-})
-// Great for injecting Markdown content
-.filter('to_trusted', ['$sce', function($sce) {
-    return function(text) {
-        return $sce.trustAsHtml(text);
-    };
-}]);
+    // Great for injecting Markdown content
+    .filter('to_trusted', ['$sce', function($sce) {
+        return function(text) {
+            return $sce.trustAsHtml(text);
+        };
+    }]);

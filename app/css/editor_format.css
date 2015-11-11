@@ -53,13 +53,8 @@ Jake Coppinger 2015
   width: auto;
   border: 0;
   -webkit-animation: blink 1.06s steps(1) infinite;
-  -moz-animation: blink 1.06s steps(1) infinite;
   animation: blink 1.06s steps(1) infinite;
   background-color: #7e7; }
-
-@-moz-keyframes blink {
-  50% {
-    background-color: transparent; } }
 
 @-webkit-keyframes blink {
   50% {
@@ -234,6 +229,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
   border: none !important;
   -webkit-user-select: none;
   -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none; }
 
 .CodeMirror-gutter-background {
@@ -281,7 +277,6 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
 .CodeMirror-linenumber,
 .CodeMirror-scroll,
 .CodeMirror-sizer {
-  -moz-box-sizing: content-box;
   box-sizing: content-box; }
 
 .CodeMirror-measure {
@@ -308,6 +303,12 @@ div.CodeMirror-dragcursors {
 
 .CodeMirror-selected {
   background: #d9d9d9; }
+
+.CodeMirror-focused .CodeMirror-selected,
+.CodeMirror-line::-moz-selection,
+.CodeMirror-line > span::-moz-selection,
+.CodeMirror-line > span > span::-moz-selection {
+  background: #d7d4f0; }
 
 .CodeMirror-focused .CodeMirror-selected,
 .CodeMirror-line::selection,
