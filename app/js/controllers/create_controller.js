@@ -245,4 +245,13 @@ function setupLayoutImportExport(scope) {
         Lockr.set('layoutjson', layoutJSON);
     };
 
+
+    document.getElementById('printDocument').onclick = function() {
+        var r = confirm("Make sure to set the paper size to A4 and margins to none to print accurately");
+        if (r == true) {
+            window.print();
+        }
+    };
+
+
 }
