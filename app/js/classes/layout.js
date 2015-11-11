@@ -39,6 +39,7 @@ Layout.prototype.updateTextboxPosition = function(boxTitle, pos) {
 };
 
 Layout.prototype.updateTextboxSize = function(boxTitle, size) {
+    console.log("Textbox size upated");
     this.layout.boxes[boxTitle].size = size;
     this._changeCallback();
 };

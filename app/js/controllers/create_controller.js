@@ -63,7 +63,7 @@ function createDocumentObject(scope) {
     // Create layout object
     var layoutObj = new Layout(scope.layout, scope.viewObj.pixelsPerMM(), function() {
         console.log("Layout changed!!!!");
-        //console.log(this.layoutString());
+        console.log(this.layoutString());
 
         // Lockr.set('layoutjson', this.layoutString());
     });
@@ -229,10 +229,10 @@ function setupLayoutImportExport(scope) {
     document.getElementById('loadLayout').onclick = function() {
         var layoutJSON = Lockr.get('layoutjson');
         if (layoutJSON) {
-
-
             scope.$apply(function() {
                 scope.layout = JSON.parse(layoutJSON);
+                scope.documentObject.update("# test");
+                scope.documentObject.update(scope.markdown);
             });
 
         } else {
@@ -248,7 +248,7 @@ function setupLayoutImportExport(scope) {
 
     document.getElementById('printDocument').onclick = function() {
         var r = confirm("Make sure to set the paper size to A4 and margins to none to print accurately");
-        if (r == true) {
+        if (r) {
             window.print();
         }
     };
