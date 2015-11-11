@@ -9,7 +9,8 @@ Jake Coppinger 2015
     z-index: 2;
     position: absolute;
     top: 0px;
-    left: 0px; }
+    left: 0px;
+    box-shadow: none; }
   .ui-widget-content {
     border: none !important;
     transition: background 0.25s ease; }
