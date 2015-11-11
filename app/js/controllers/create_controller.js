@@ -61,10 +61,10 @@ function createDocumentObject(scope) {
 
     // Create layout object
     var layoutObj = new Layout(scope.layout, scope.viewObj.pixelsPerMM(), function() {
-        //console.log("Layout changed!");
+        console.log("Layout changed!!!!");
         //console.log(this.layoutString());
 
-        Lockr.set('layoutjson', this.layoutString());
+        // Lockr.set('layoutjson', this.layoutString());
     });
 
     // Create document object
@@ -181,5 +181,19 @@ function setupImportExport(scope) {
             type: "text/plain;charset=utf-8"
         });
         saveAs(blob, "Designless document.md");
+    };
+
+    document.getElementById('loadMarkdown').onclick = function() {
+        var markdown = Lockr.get('markdown');
+        if (markdown) {
+            scope.simplemde.value(markdown);
+        } else {
+            alert("Could not load Markdown from browser local storage.");
+        }
+    };
+
+    document.getElementById('saveMarkdown').onclick = function() {
+        Lockr.set('markdown', scope.markdown);
+
     };
 }
