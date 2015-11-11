@@ -158,7 +158,8 @@ View.prototype.deleteTextBox = function(heading) {
 // (eg font) to the CSS counterparts (font-family)
 View.prototype.stylePropertyLookups = function(propertyInput) {
     var propertyLookups = {
-        "font": "font-family"
+        "font": "font-family",
+        "textalign":"text-align"
     };
 
     if (propertyInput in propertyLookups) {

@@ -41,11 +41,7 @@
                     <i class="upload icon"></i> Import</label>
                 <input type="file" id="importLayout" style="display:none">
                 <button class="ui button inverted" id="exportLayout"><i class="download icon"></i> Export</button>
-
                 <button class="ui button inverted" id="printDocument"><i class="print icon"></i>Print</button>
-        
-
-
             </div>
         </div>
         <br>
@@ -109,12 +105,21 @@
                     </div>
                     <div class="field">
                         <label>Alignment</label>
-                        <div class="ui icon buttons">
+<!--                         <div class="ui icon buttons">
                             <div class="ui button"><i class="align left icon"></i></div>
                             <div class="ui button"><i class="align center icon"></i></div>
-                            <div class="ui button"><i class="align right icon"></i></div>
+                            <div class="ui button active"><i class="align right icon"></i></div>
                             <div class="ui button"><i class="align justify icon"></i></div>
-                        </div>
+                        </div> -->
+                        
+                            <input type="radio" ng-model="styles[selectedStyle].textalign" value="left"> Left</input>
+                 
+                            <input type="radio" ng-model="styles[selectedStyle].textalign" value="center"> Center</input>
+                      
+                            <input type="radio" ng-model="styles[selectedStyle].textalign" value="right"> Right</input>
+                       
+                            <input type="radio" ng-model="styles[selectedStyle].textalign" value="justify"> Justify</input>
+                       
                     </div>
                 </form>
                 <div id="stylePickerPopup" class="ui teal icon button right floated">
