@@ -24,7 +24,8 @@ angular.module('designlessApp')
     updateSelectDropdowns($scope);
 
 
-    setupImportExport($scope);
+    setupMarkdownImportExport($scope);
+    setupLayoutImportExport($scope);
 
     $scope.$watch("styles", function(newValue, oldValue) {
         console.log("Updated styles");
@@ -156,7 +157,7 @@ function setupFontSelect(scope) {
         });
 }
 
-function setupImportExport(scope) {
+function setupMarkdownImportExport(scope) {
     var fileInput = document.getElementById('importMarkdown');
     fileInput.addEventListener('change', function(e) {
         var file = fileInput.files[0];
@@ -194,6 +195,54 @@ function setupImportExport(scope) {
 
     document.getElementById('saveMarkdown').onclick = function() {
         Lockr.set('markdown', scope.markdown);
-
     };
+}
+
+function setupLayoutImportExport(scope) {
+    var fileInput = document.getElementById('importLayout');
+    fileInput.addEventListener('change', function(e) {
+        var file = fileInput.files[0];
+        var textType = /text.*/;
+
+        if (file.type.match(textType)) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var layoutJSON = reader.result;
+                scope.$apply(function() {
+                    scope.layout = JSON.parse(layoutJSON);
+                });
+            };
+            reader.readAsText(file);
+        } else {
+            alert("This filetype is not supported. Please import a layout file created with Designless");
+        }
+    });
+
+    document.getElementById('exportLayout').onclick = function() {
+        var content = JSON.stringify(scope.layout, null, 2);
+        var blob = new Blob([content], {
+            type: "text/plain;charset=utf-8"
+        });
+        saveAs(blob, "Designless layout.json");
+    };
+
+    document.getElementById('loadLayout').onclick = function() {
+        var layoutJSON = Lockr.get('layoutjson');
+        if (layoutJSON) {
+
+
+            scope.$apply(function() {
+                scope.layout = JSON.parse(layoutJSON);
+            });
+
+        } else {
+            alert("Could not load layout from browser local storage.");
+        }
+    };
+
+    document.getElementById('saveLayout').onclick = function() {
+        var layoutJSON = JSON.stringify(scope.layout, null, 2);
+        Lockr.set('layoutjson', layoutJSON);
+    };
+
 }
