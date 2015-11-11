@@ -1,0 +1,19 @@
+/* 
+Designless
+Jake Coppinger 2015
+*/
+@media print {
+  #paper {
+    margin: 0px !important;
+    padding: 0px !important;
+    z-index: 2;
+    position: absolute;
+    top: 0px;
+    left: 0px; }
+  .ui-widget-content {
+    border: none !important;
+    transition: background 0.25s ease; }
+  .ui-resizable-handle {
+    display: none !important; }
+  .pageseparator {
+    display: none; } }
