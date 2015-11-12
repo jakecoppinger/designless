@@ -229,11 +229,20 @@ function setupLayoutImportExport(scope) {
     document.getElementById('loadLayout').onclick = function() {
         var layoutJSON = Lockr.get('layoutjson');
         if (layoutJSON) {
+
+
+            var randomHeading = "# " + stringGen(5);
+            var markObj = new Markdown(randomHeading);
+
+            scope.documentObject.update(markObj);
+
+
             scope.$apply(function() {
                 scope.layout = JSON.parse(layoutJSON);
-                scope.documentObject.update("# test");
-                scope.documentObject.update(scope.markdown);
             });
+
+            var md = new Markdown(scope.markdown);
+            scope.documentObject.update(md);
 
         } else {
             alert("Could not load layout from browser local storage.");
@@ -254,4 +263,16 @@ function setupLayoutImportExport(scope) {
     };
 
 
+}
+
+function stringGen(len)
+{
+    var text = " ";
+
+    var charset = "abcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < len; i++ )
+        text += charset.charAt(Math.floor(Math.random() * charset.length));
+
+    return text;
 }
