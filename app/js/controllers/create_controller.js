@@ -11,7 +11,7 @@ angular.module('designlessApp')
         setupSemanticUI($scope);
     }, 0);
 
-    $scope.pages = 3;
+    $scope.pages = 30;
 
     setupMarkdown($scope);
     setupSimpleMDE($scope);

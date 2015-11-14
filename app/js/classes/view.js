@@ -156,14 +156,17 @@ View.prototype.deleteTextBox = function(heading) {
 // (eg font) to the CSS counterparts (font-family)
 View.prototype.stylePropertyLookups = function(propertyInput) {
     var propertyLookups = {
-        "font": "font-family",
-        "textalign":"text-align"
+        "font": ["font-family"],
+        "textalign": ["text-align"],
+        "fontsize":["font-size","pt"],
+        "headingsize":["font-size","pt","h1"],
+        "lineheight":["line-height"]
     };
 
     if (propertyInput in propertyLookups) {
         return propertyLookups[propertyInput];
     }
-    return propertyInput;
+    return [propertyInput];
 };
 // Update only the changed styles into the DOM
 // (Yes, it really diffs!)
@@ -222,9 +225,30 @@ View.prototype.updateBoxStyles = function(boxes) {
 
 
 View.prototype._setStyle = function(style, property, value) {
-    var cssProperty = this.stylePropertyLookups(property);
+    var cssPropertyObject = this.stylePropertyLookups(property);
     //console.log("[Styles] Set " + property + " (" + cssProperty + ") to " + value + " on all " + style);
-    $('.' + style).css(cssProperty, value);
+
+
+    var selector = style;
+
+    var unitValue;
+    if (cssPropertyObject.length > 1) {
+        unitValue = value + cssPropertyObject[1];
+        if(cssPropertyObject.length > 2) {
+            selector = style + " " + cssPropertyObject[2];
+        }
+    } else {
+        unitValue = value;
+    }
+
+
+
+    console.log("CSS selector, property, and value");
+    console.log(selector);
+    console.log(cssPropertyObject[0]);
+    console.log(unitValue);
+
+    $('.' + selector).css(cssPropertyObject[0], unitValue);
 };
 
 

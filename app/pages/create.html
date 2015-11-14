@@ -93,10 +93,35 @@
                     </div>
                     <div class="field">
                         <div class="ui slider range">
-                            <label>Opacity</label>
+                            <label>Opacity&nbsp;&nbsp;&nbsp;</label>
                             <input type="range" min='0' max='1' step='0.001' value='1' ng-model="styles[selectedStyle].opacity" />
                         </div>
                     </div>
+
+                    <div class="field">
+                        <div class="ui slider range">
+                            <label>Font size&nbsp;&nbsp;&nbsp;</label>
+                            <input type="range" min='0' max='100' step='0.001' value='1' ng-model="styles[selectedStyle].fontsize" />
+                            <label>{{styles[selectedStyle].fontsize}}pt</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui slider range">
+                            <label>Heading size&nbsp;&nbsp;&nbsp;</label>
+                            <input type="range" min='0' max='100' step='0.001' value='1' ng-model="styles[selectedStyle].headingsize" />
+                            <label>{{styles[selectedStyle].headingsize}}pt</label>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="ui slider range">
+                            <label>Line height &nbsp;&nbsp;&nbsp;</label>
+                            <input type="range" min='0' max='10' step='0.001' value='1' ng-model="styles[selectedStyle].lineheight" />
+                            <label>{{styles[selectedStyle].lineheight}}pt</label>
+                        </div>
+                    </div>
+
+
                     <!-- <div class="field">
                         <div class="ui toggle checkbox">
                             <label>Kerning</label>
