@@ -7,12 +7,12 @@ Jake Coppinger 2015
 This class forms the main scaffold for the operation of the app (the Controller), managing the location of boxes and updating the view when the data changes.
 */
 
-function Document(viewObj, layoutObj) {
+function Document(viewObj, layoutObj,scope) {
     this._defaultContainerID = "paper";
     this._view = viewObj;
     this._layoutObj = layoutObj;
     this._mdcontent = {};
-
+    this._scope = scope;
 
     console.log(pretty(this._layoutObj));
 }
@@ -43,15 +43,23 @@ Document.prototype.update = function(md) {
 
         var oldLayout = this._layoutObj.layout.boxes[oldBoxName];
 
+
+
         this._insertTextbox(newBoxName, oldLayout);
         this._deleteBoxes(boxChanges.deleted);
         this._layoutObj.deleteTextbox(oldBoxName);
+
+
 
     } else {
         this._insertBoxes(boxChanges.new);
         this._updateBoxesContent(boxChanges.modified);
         this._deleteBoxes(boxChanges.deleted);
-    }
+    }  
+
+    // Hacky fix to update drop down
+    updateSelectDropdowns(this._scope);
+
 
     this._view.updateOverflowingBoxes(md.headings());
     this._view.updateAllStyles(this._layoutObj.layout.styles);
@@ -111,7 +119,6 @@ Document.prototype._insertTextbox = function(boxKey, layout) {
     }, function(currentBoxTitle, newBoxSize) {
         objectThis._layoutObj.updateTextboxSize(currentBoxTitle, newBoxSize);
     });
-
 };
 
 

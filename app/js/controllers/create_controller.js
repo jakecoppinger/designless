@@ -73,7 +73,7 @@ function createDocumentObject(scope) {
     });
 
     // Create document object
-    scope.documentObject = new Document(scope.viewObj, layoutObj);
+    scope.documentObject = new Document(scope.viewObj, layoutObj,scope);
 
     // Initially render the document
     // Create markdown object from textarea
@@ -82,6 +82,8 @@ function createDocumentObject(scope) {
     scope.$watch("markdown", function(newValue, oldValue) {
         var md = new Markdown(scope.markdown);
         scope.documentObject.update(md);
+
+        //updateSelectDropdowns(scope);
     });
 
 }
@@ -115,6 +117,8 @@ function updateSelectDropdowns(scope) {
     // Select first box by default
     scope.select.box = Object.keys(scope.layout.boxes)[0];
     console.log(pretty(scope.styleSelectOptions));
+
+
 
     // Create array for style dropdown
     scope.boxOptions = [];
