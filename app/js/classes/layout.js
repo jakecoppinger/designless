@@ -18,6 +18,7 @@ Layout.prototype.updateLayout = function(newLayout) {
     this._changeCallback();
 };
 
+// Insert textbox to the layout file
 Layout.prototype.insertTextbox = function(boxTitle, box) {
     var layoutJSON = {
         "size": box.size,
@@ -44,18 +45,11 @@ Layout.prototype.updateTextboxSize = function(boxTitle, size) {
     this._changeCallback();
 };
 
-// Layout.prototype.boxExist = function(boxTitle) {
-//     if (boxTitle in this.layout.boxes) {
-//         return true;
-//     } else {
-//         return false;
-//     }
-// };
-
 Layout.prototype.box = function(boxTitle) {
     return this.layout.boxes[boxTitle];
 };
 
+// Finds the box position, taking into account the resolution of the display
 Layout.prototype.boxPosition = function(boxPos, parentPos) {
     return {
         left: (boxPos.left - parentPos.left) / this._ppm,

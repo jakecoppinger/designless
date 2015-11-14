@@ -19,14 +19,12 @@ function Document(viewObj, layoutObj) {
 
 Document.prototype.updateLayout = function(layout) {
     this._layoutObj.updateLayout(layout);
-
-
     this._view.updateBoxStyles(this._layoutObj.layout.boxes);
-    
     this._view.updateAllStyles(this._layoutObj.layout.styles);
 
 };
 
+// Takes markdown from the model, and updates the view
 Document.prototype.update = function(md) {
     var mdcontent = md.structured();
     var boxChanges = this._boxChanges(mdcontent);
@@ -116,6 +114,10 @@ Document.prototype._insertTextbox = function(boxKey, layout) {
 
 };
 
+
+
+// Creates a box object including the layout and Markdown (this is
+// where they are combined)
 Document.prototype._layoutPlusMarkdownBox = function(boxKey) {
     var boxMDStructured = this._mdcontent[boxKey];
 

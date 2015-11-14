@@ -1,15 +1,18 @@
+// This is where all the bindings are created for Angular,
+// attaching the views to the controllers. Oh, it's a single
+// page website too!
+
+
 angular.module('designlessApp.controllers', ['color.picker']);
 angular.module('designlessApp', ['ngRoute', 'designlessApp.controllers', 'color.picker'])
 
-// configure our routes
+// Configure our routes
 .config(function($routeProvider, $locationProvider) {
         $routeProvider.when('/', {
-                templateUrl: 'pages/home.html',
-                controller: 'mainController'
+                templateUrl: 'pages/home.html'
             })
             .when('/about', {
-                templateUrl: 'pages/about.html',
-                controller: 'aboutController'
+                templateUrl: 'pages/about.html'
             })
             .when('/create', {
                 templateUrl: 'pages/create.html',
@@ -19,8 +22,7 @@ angular.module('designlessApp', ['ngRoute', 'designlessApp.controllers', 'color.
                 templateUrl: 'pages/guide.html'
             })
             .when('/contact', {
-                templateUrl: 'pages/contact.html',
-                controller: 'contactController'
+                templateUrl: 'pages/contact.html'
             });
 
         // use the HTML5 History API

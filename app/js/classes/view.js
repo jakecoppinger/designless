@@ -49,8 +49,6 @@ View.prototype._pageToPixelPosition = function(position) {
     return newPos;
 };
 
-
-
 View.prototype.updateOverflowingBoxes = function(headings) {
     for (var i = 0; i < headings.length; i += 1) {
         this._updateBoxOverflow(headings[i]);

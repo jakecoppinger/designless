@@ -20,6 +20,7 @@ String.prototype.hashCode = function() {
     return hash;
 };
 
+// Pretty print JS objects
 function pretty(s) {
     return JSON.stringify(s, null, 2);
 }

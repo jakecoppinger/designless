@@ -1,3 +1,9 @@
+// This is where everything happens.
+// This Angular controller start of the Model, Controller and View class objects
+// (in Markdown.js, Document.js and View.js)
+// and sets up asynchronous callbacks through the setup_*.js files to
+// watch for changes in variables
+
 angular.module('designlessApp')
 
 .controller('createController', function($scope, $timeout) {
@@ -22,11 +28,10 @@ angular.module('designlessApp')
     };
 
     updateSelectDropdowns($scope);
-
-
     setupMarkdownImportExport($scope);
     setupLayoutImportExport($scope);
 
+    // Watch the styles variable to push style changes ino the DOM
     $scope.$watch("styles", function(newValue, oldValue) {
         console.log("Updated styles");
         // There is a bug in the angular-color-picker import
@@ -46,7 +51,7 @@ angular.module('designlessApp')
     }, true);
 
 
-
+    // Watch the layout variable, to update the document object
     $scope.$watch('layout', function(newVal, oldVal) {
         var differences = DeepDiff(newVal, oldVal);
         if (differences) {
@@ -64,7 +69,6 @@ function createDocumentObject(scope) {
     var layoutObj = new Layout(scope.layout, scope.viewObj.pixelsPerMM(), function() {
         console.log("Layout changed!!!!");
         console.log(this.layoutString());
-
         // Lockr.set('layoutjson', this.layoutString());
     });
 
@@ -107,16 +111,10 @@ function updateSelectDropdowns(scope) {
         }
     });
 
-    /////////////////////////////
 
     // Select first box by default
     scope.select.box = Object.keys(scope.layout.boxes)[0];
-
     console.log(pretty(scope.styleSelectOptions));
-
-    // scope.selected = {
-    //     item: scope.styleSelectOptions[0]
-    // };
 
     // Create array for style dropdown
     scope.boxOptions = [];
@@ -130,13 +128,12 @@ function updateSelectDropdowns(scope) {
         });
         counter += 1;
     }
-
     console.log(scope.boxOptions);
 }
 
 function setupFontSelect(scope) {
     // Convert the fontList array to a funky dictionary that the 
-    // search field wants
+    // AngularJS search field wants
     var content = [];
     for (var index in scope.fontList) {
         content.push({
@@ -157,7 +154,9 @@ function setupFontSelect(scope) {
         });
 }
 
+
 function setupMarkdownImportExport(scope) {
+    // A filepicker dialogue to upload markdown files
     var fileInput = document.getElementById('importMarkdown');
     fileInput.addEventListener('change', function(e) {
         var file = fileInput.files[0];
@@ -176,6 +175,7 @@ function setupMarkdownImportExport(scope) {
         }
     });
 
+    // Save markdown as a .md file
     document.getElementById('exportMarkdown').onclick = function() {
         var content = scope.markdown;
         var blob = new Blob([content], {
@@ -193,6 +193,7 @@ function setupMarkdownImportExport(scope) {
         }
     };
 
+    // Save markdown to local storage with the help of Lockr
     document.getElementById('saveMarkdown').onclick = function() {
         Lockr.set('markdown', scope.markdown);
     };
@@ -226,16 +227,17 @@ function setupLayoutImportExport(scope) {
         saveAs(blob, "Designless layout.json");
     };
 
+
+    // To make sure the DOM is completely updated when importing the layout,
+    // The document object is initialized with an entirely new document 
+    // with one random textbox. Then the new layout is loaded in!
     document.getElementById('loadLayout').onclick = function() {
         var layoutJSON = Lockr.get('layoutjson');
         if (layoutJSON) {
-
-
             var randomHeading = "# " + stringGen(5);
             var markObj = new Markdown(randomHeading);
 
             scope.documentObject.update(markObj);
-
 
             scope.$apply(function() {
                 scope.layout = JSON.parse(layoutJSON);
@@ -261,18 +263,12 @@ function setupLayoutImportExport(scope) {
             window.print();
         }
     };
-
-
 }
 
-function stringGen(len)
-{
+function stringGen(len) {
     var text = " ";
-
     var charset = "abcdefghijklmnopqrstuvwxyz0123456789";
-
-    for( var i=0; i < len; i++ )
+    for (var i = 0; i < len; i++)
         text += charset.charAt(Math.floor(Math.random() * charset.length));
-
     return text;
 }

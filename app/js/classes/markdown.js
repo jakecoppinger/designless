@@ -12,6 +12,7 @@ function Markdown(mdtext) {
     this._structured = this.structured();
 }
 
+// Takes Markdown and splits it into paragraphs under each heading
 Markdown.prototype.structured = function() {
     var lines = this.mdtext.split("\n");
     var paragraphs = [];
