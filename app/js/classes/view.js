@@ -160,7 +160,8 @@ View.prototype.stylePropertyLookups = function(propertyInput) {
         "textalign": ["text-align"],
         "fontsize":["font-size","pt"],
         "headingsize":["font-size","pt","h1"],
-        "lineheight":["line-height"]
+        "lineheight":["line-height"],
+        "fontweight":["font-weight"]
     };
 
     if (propertyInput in propertyLookups) {

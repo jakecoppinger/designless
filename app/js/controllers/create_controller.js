@@ -61,6 +61,7 @@ angular.module('designlessApp')
         var differences = DeepDiff(newVal, oldVal);
         if (differences) {
             console.log("Updated layout!");
+            console.log($scope.layout);
             $scope.documentObject.updateLayout($scope.layout);
         }
     }, true);
@@ -214,7 +215,7 @@ function setupLayoutImportExport(scope) {
         var file = fileInput.files[0];
         var textType = /text.*/;
 
-        if (file.type.match(textType)) {
+        // if (file.type.match(textType)) {
             var reader = new FileReader();
             reader.onload = function(e) {
                 var layoutJSON = reader.result;
@@ -223,9 +224,9 @@ function setupLayoutImportExport(scope) {
                 });
             };
             reader.readAsText(file);
-        } else {
-            alert("This filetype is not supported. Please import a layout file created with Designless");
-        }
+        // } else {
+        //     alert("This filetype is not supported. Please import a layout file created with Designless");
+        // }
     });
 
     document.getElementById('exportLayout').onclick = function() {
