@@ -1,3 +1,7 @@
+/* 
+Designless
+Jake Coppinger 2015
+*/
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync').create();

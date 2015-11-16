@@ -1,3 +1,8 @@
+/* 
+Designless
+Jake Coppinger 2015
+*/
+
 // This is where all the bindings are created for Angular,
 // attaching the views to the controllers. Oh, it's a single
 // page website too!

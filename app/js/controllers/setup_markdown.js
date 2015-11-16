@@ -1,3 +1,8 @@
+/* 
+Designless
+Jake Coppinger 2015
+*/
+
 function setupMarkdown(scope) {
     // Set up Markdown
     scope.markdown = "# Designless.io\n*If you can use an emoticon, you can write Markdown.*\n\nDeployed frequently at [Designless.io](http://www.designless.io).\nBuilt by [Jake Coppinger](http://www.jakecoppinger.com).\n\n## Example textbox\n**This is an example textbox**\nTextboxes are created with a heading, denoted with a hash (or number of hashes\n\nSee the Markdown Guide in the menu for more information";

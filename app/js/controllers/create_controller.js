@@ -1,3 +1,8 @@
+/* 
+Designless
+Jake Coppinger 2015
+*/
+
 // This is where everything happens.
 // This Angular controller start of the Model, Controller and View class objects
 // (in Markdown.js, Document.js and View.js)

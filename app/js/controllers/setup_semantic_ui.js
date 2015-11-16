@@ -1,3 +1,8 @@
+/* 
+Designless
+Jake Coppinger 2015
+*/
+
 // Initialize Semantic UI
 function setupSemanticUI(scope) {
     $('.demo.menu .item').tab({

@@ -1,3 +1,8 @@
+/* 
+Designless
+Jake Coppinger 2015
+*/
+
 function setupSimpleMDE(scope) {
     // Because SimpleMDE mashes it
     // we dont want two-way
