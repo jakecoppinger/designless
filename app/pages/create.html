@@ -5,12 +5,12 @@ Jake Coppinger 2015
 <br>
 <div class="ui center aligned grid">
     <div class="ui pointing secondary demo menu inverted">
-        <a class=" white item" data-tab="write">Write</a>
-        <a class="active white item" data-tab="design">Design</a>
+        <a class="active white item" data-tab="write">Write</a>
+        <a class="white item" data-tab="design">Design</a>
     </div>
 </div>
 <br>
-<div class="ui tab " data-tab="write">
+<div class="ui tab active" data-tab="write">
     <div class="ui text container">
         <div class="markdownpage">
             <br>
@@ -33,7 +33,7 @@ Jake Coppinger 2015
         </div>
     </div>
 </div>
-<div class="ui tab active" data-tab="design">
+<div class="ui tab" data-tab="design">
     <div id="designcontainer">
         <br>
         <div class="ui center aligned grid ">
@@ -101,7 +101,6 @@ Jake Coppinger 2015
                             <input type="range" min='0' max='1' step='0.001' value='1' ng-model="styles[selectedStyle].opacity" />
                         </div>
                     </div>
-
                     <div class="field">
                         <div class="ui slider range">
                             <label>Font size&nbsp;&nbsp;&nbsp;</label>
@@ -116,7 +115,6 @@ Jake Coppinger 2015
                             <label>{{styles[selectedStyle].headingsize}}pt</label>
                         </div>
                     </div>
-
                     <div class="field">
                         <div class="ui slider range">
                             <label>Line height &nbsp;&nbsp;&nbsp;</label>
@@ -124,8 +122,6 @@ Jake Coppinger 2015
                             <label>{{styles[selectedStyle].lineheight}}pt</label>
                         </div>
                     </div>
-
-
                     <!-- <div class="field">
                         <div class="ui toggle checkbox">
                             <label>Kerning</label>
@@ -134,21 +130,16 @@ Jake Coppinger 2015
                     </div> -->
                     <div class="field">
                         <label>Alignment</label>
-<!--                         <div class="ui icon buttons">
+                        <!--                         <div class="ui icon buttons">
                             <div class="ui button"><i class="align left icon"></i></div>
                             <div class="ui button"><i class="align center icon"></i></div>
                             <div class="ui button active"><i class="align right icon"></i></div>
                             <div class="ui button"><i class="align justify icon"></i></div>
                         </div> -->
-                        
-                            <input type="radio" ng-model="styles[selectedStyle].textalign" value="left"> Left</input>
-                 
-                            <input type="radio" ng-model="styles[selectedStyle].textalign" value="center"> Center</input>
-                      
-                            <input type="radio" ng-model="styles[selectedStyle].textalign" value="right"> Right</input>
-                       
-                            <input type="radio" ng-model="styles[selectedStyle].textalign" value="justify"> Justify</input>
-                       
+                        <input type="radio" ng-model="styles[selectedStyle].textalign" value="left"> Left</input>
+                        <input type="radio" ng-model="styles[selectedStyle].textalign" value="center"> Center</input>
+                        <input type="radio" ng-model="styles[selectedStyle].textalign" value="right"> Right</input>
+                        <input type="radio" ng-model="styles[selectedStyle].textalign" value="justify"> Justify</input>
                     </div>
                 </form>
                 <div id="stylePickerPopup" class="ui teal icon button right floated">
