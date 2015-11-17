@@ -1,6 +1,11 @@
 # Designless
 Jake Coppinger, 2015
 
+# Please note:
+Front end URL routing doesn't work with a standard Python or Apache server. You will be able to navigate to the /create page but with a reload you will get a 404. The server needs to be specially configured to send all requests to the index.html page, where the JavaScript will route it.
+
+To see a demo of this in action, see designless.io
+
 ## Building from source
 Designless is also hosted at Designless.io, however this will be updated.
 To run a pre-build local version, spin up a web server from the dist/ directory. For example,
