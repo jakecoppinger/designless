@@ -46,6 +46,8 @@ npm install
 bower install
 ```
 
+During `npm install`, accept the defaults for the SemanticUI installation.
+
 
 ## Building from source
 
