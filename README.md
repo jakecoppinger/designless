@@ -78,6 +78,12 @@ You will then be able to try the app at `http://localhost:3000`
 
 ## Deployment
 
+I deply using [Surge](http://www.surge.sh). To install surge:
+
+```
+sudo npm install --global surge
+```
+
 Front end URL routing doesn't work with a standard Python or Apache server. You will be able to navigate to the `/create` page but with a reload you will get a 404. The server needs to be specially configured to send all requests to the index.html page, where the JavaScript will route it.
 
 To see a demo of the app in action, see [designless.io](http://www.designless.io)
