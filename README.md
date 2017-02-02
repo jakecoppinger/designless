@@ -24,9 +24,7 @@ cd designless
 
 ```
 sudo apt-get update
-sudo apt-get -y install nodejs
-sudo apt-get -y install npm
-sudo apt-get -y install nodejs-legacy
+sudo apt-get -y install nodejs nodejs-legacy npm
 ```
 
 Bower will need nodejs-legacy to work
